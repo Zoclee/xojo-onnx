@@ -24,11 +24,11 @@ Begin DesktopWindow WindowMain
    Type            =   0
    Visible         =   True
    Width           =   600
-   Begin DesktopButton ButtonTest
+   Begin DesktopButton ButtonExample
       AllowAutoDeactivate=   True
       Bold            =   False
       Cancel          =   False
-      Caption         =   "Test"
+      Caption         =   "Example"
       Default         =   False
       Enabled         =   True
       FontName        =   "System"
@@ -61,7 +61,7 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events ButtonTest
+#tag Events ButtonExample
 	#tag Event
 		Sub Pressed()
 		  Var X As ONNX.Tensor
@@ -70,10 +70,11 @@ End
 		  Var Y As ONNX.Tensor
 		  Var node1 As ONNX.Node
 		  Var node2 As ONNX.Node
+		  Var graph As ONNX.Graph
 		  
 		  // inputs
 		  
-		  // 'X' is the name, FLOAT the type, [-1, -1] the shape
+		  // "X" is the name, FLOAT the type, [-1, -1] the shape
 		  X = new ONNX.Tensor("X", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
 		  A = new ONNX.Tensor("A", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
 		  B = new ONNX.Tensor("B", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
@@ -85,9 +86,15 @@ End
 		  // nodes
 		  
 		  // It creates a node defined by the operator type MatMul,
-		  // 'X', 'A' are the inputs of the node, 'XA' the output.
+		  // "X", "A" are the inputs of the node, "XA" the output.
 		  node1 = new ONNX.Node(ONNX.OperatorEnum.MatMul, array("X", "A"), array("XA"))
 		  node2 = new ONNX.Node(ONNX.OperatorEnum.Add, array("XA", "B"), array("Y"))
+		  
+		  // from nodes to graph
+		  // the graph is built from the list of nodes, the list of inputs,
+		  // the list of outputs and a name.
+		  
+		  graph = new ONNX.Graph(array(node1, node2), "lr", array(X, A, B), array(Y))
 		  
 		  break
 		  
