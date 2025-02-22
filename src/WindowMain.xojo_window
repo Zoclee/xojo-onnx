@@ -67,10 +67,29 @@ End
 		  Var X As ONNX.Tensor
 		  Var A As ONNX.Tensor
 		  Var B As ONNX.Tensor
+		  Var Y As ONNX.Tensor
+		  Var node1 As ONNX.Node
+		  Var node2 As ONNX.Node
 		  
+		  // inputs
+		  
+		  // 'X' is the name, FLOAT the type, [-1, -1] the shape
 		  X = new ONNX.Tensor("X", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
 		  A = new ONNX.Tensor("A", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
 		  B = new ONNX.Tensor("B", ONNX.ElementTypeEnum.FLOAT, Array(-1, -1))
+		  
+		  // outputs, the shape is left undefined
+		  
+		  Y = new ONNX.Tensor("Y", ONNX.ElementTypeEnum.FLOAT, Array(-1))
+		  
+		  // nodes
+		  
+		  // It creates a node defined by the operator type MatMul,
+		  // 'X', 'A' are the inputs of the node, 'XA' the output.
+		  node1 = new ONNX.Node(ONNX.OperatorEnum.MatMul, array("X", "A"), array("XA"))
+		  node2 = new ONNX.Node(ONNX.OperatorEnum.Add, array("XA", "B"), array("Y"))
+		  
+		  break
 		  
 		End Sub
 	#tag EndEvent
