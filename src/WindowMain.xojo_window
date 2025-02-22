@@ -71,6 +71,7 @@ End
 		  Var node1 As ONNX.Node
 		  Var node2 As ONNX.Node
 		  Var graph As ONNX.Graph
+		  Var model As ONNX.Model
 		  
 		  // inputs
 		  
@@ -95,6 +96,11 @@ End
 		  // the list of outputs and a name.
 		  
 		  graph = new ONNX.Graph(array(node1, node2), "lr", array(X, A, B), array(Y))
+		  
+		  // onnx graph
+		  // there is no metadata in this case.
+		  
+		  model = new ONNX.Model(graph)
 		  
 		  break
 		  
