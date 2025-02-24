@@ -172,7 +172,6 @@ End
 		  TextOutput.AddText EndOfLine
 		  TextOutput.AddText "OUTPUT:" + EndOfLine
 		  
-		  
 		  var output As Dictionary
 		  
 		  output = model.Infer(input)

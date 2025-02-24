@@ -50,9 +50,13 @@ Protected Class Graph
 		    i = i + 1
 		  wend
 		  
-		  // TODO: extract output tensors from data
+		  // extract output tensors from data
 		  
-		  break
+		  i = 0
+		  while i < mOutputs.Count
+		    output.Value(mOutputs(i).Name) = data.Value(mOutputs(i).Name)
+		    i = i + 1
+		  wend
 		  
 		  return output
 		End Function
