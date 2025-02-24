@@ -27,6 +27,9 @@ Protected Class Node
 		Sub Evaluate(data As Dictionary)
 		  select case mOperator
 		    
+		  case ONNX.OperatorEnum.Add
+		    Evaluate_Add(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_MatMul(data)
 		    
@@ -34,6 +37,20 @@ Protected Class Node
 		    break // TODO: implement operator
 		    
 		  end select
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_add(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.Add(b)
+		  
+		  
 		End Sub
 	#tag EndMethod
 

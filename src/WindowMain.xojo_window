@@ -166,9 +166,9 @@ End
 		  TextOutput.AddText "A = " + tensor.ToString() + EndOfLine
 		  
 		  tensor = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("Z") = tensor
-		  TextOutput.AddText "Z = " + tensor.ToString() + EndOfLine
-		   
+		  input.Value("B") = tensor
+		  TextOutput.AddText "B = " + tensor.ToString() + EndOfLine
+		  
 		  TextOutput.AddText EndOfLine
 		  TextOutput.AddText "OUTPUT:" + EndOfLine
 		  
