@@ -9,7 +9,11 @@ Protected Class Model
 
 	#tag Method, Flags = &h0
 		Function Infer(input As Dictionary) As Dictionary
+		  Var output As new Dictionary()
+		  
 		  break
+		  
+		  return output
 		  
 		End Function
 	#tag EndMethod

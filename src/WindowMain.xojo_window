@@ -120,6 +120,7 @@ End
 		  Var graph As ONNX.Graph
 		  Var model As ONNX.Model
 		  Var tensor As ONNX.Tensor
+		  Var i As Integer
 		  
 		  // inputs
 		  
@@ -175,6 +176,13 @@ End
 		  var output As Dictionary
 		  
 		  output = model.Infer(input)
+		  i = 0
+		  while i < output.KeyCount
+		    tensor = output.Value(output.Key(i))
+		    TextOutput.AddText output.Key(i) + " = " + tensor.ToString() + EndOfLine
+		    i = i + 1
+		  wend
+		  
 		  
 		  
 		End Sub
