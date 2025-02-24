@@ -102,11 +102,16 @@ End
 		  
 		  model = new ONNX.Model(graph)
 		  
-		  // define input
+		  // define inputs
 		  
-		  Var X_value As New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  Var A_value As New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  Var Z_value As New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  var inputs As new Dictionary()
+		  inputs.Value("X") = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  inputs.Value("A") = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  inputs.Value("Z") = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  
+		  var outputs As Dictionary
+		  
+		  outputs = model.Infer(inputs)
 		  
 		  break
 		  

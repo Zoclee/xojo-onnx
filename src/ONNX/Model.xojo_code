@@ -7,6 +7,13 @@ Protected Class Model
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Infer(input As Dictionary) As Dictionary
+		  break
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mGraph As ONNX.Graph
@@ -51,14 +58,6 @@ Protected Class Model
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="mGraph"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

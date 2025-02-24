@@ -99,6 +99,20 @@ Protected Class Tensor
 		Private mShape() As Integer
 	#tag EndProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mName
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mName = value
+			End Set
+		#tag EndSetter
+		Name As String
+	#tag EndComputedProperty
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
