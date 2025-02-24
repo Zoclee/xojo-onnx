@@ -30,6 +30,34 @@ Protected Class Graph
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Evaluate(input As Dictionary) As Dictionary
+		  Var output As new Dictionary()
+		  Var data As new Dictionary()
+		  Var i As Integer
+		  
+		  // set up data with input tensors
+		  
+		  i = 0
+		  while i < input.KeyCount
+		    data.Value(input.Key(i)) = input.Value(input.Key(i))
+		    i = i + 1
+		  wend
+		  
+		  i = 0
+		  while i < mNodes.Count
+		    mNodes(i).Evaluate(data)
+		    i = i + 1
+		  wend
+		  
+		  // TODO: extract output tensors from data
+		  
+		  break
+		  
+		  return output
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mInputs() As ONNX.Tensor
@@ -86,14 +114,6 @@ Protected Class Graph
 			Visible=true
 			Group="Position"
 			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="mName"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

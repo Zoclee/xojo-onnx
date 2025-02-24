@@ -23,6 +23,34 @@ Protected Class Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Evaluate(data As Dictionary)
+		  select case mOperator
+		    
+		  case ONNX.OperatorEnum.MatMul
+		    Evaluate_MatMul(data)
+		    
+		  case else 
+		    break // TODO: implement operator
+		    
+		  end select
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_matMul(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.MatMul(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mInputs() As String

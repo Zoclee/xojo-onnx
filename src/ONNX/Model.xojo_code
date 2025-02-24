@@ -11,7 +11,7 @@ Protected Class Model
 		Function Infer(input As Dictionary) As Dictionary
 		  Var output As new Dictionary()
 		  
-		  break
+		  output = mGraph.Evaluate(input)
 		  
 		  return output
 		  

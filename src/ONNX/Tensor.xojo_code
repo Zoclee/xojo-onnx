@@ -1,6 +1,26 @@
 #tag Class
 Protected Class Tensor
 	#tag Method, Flags = &h0
+		Sub Constructor(initElementType As ONNX.ElementTypeEnum, initShape() As Integer, initData As MemoryBlock)
+		  Var i As Integer
+		  
+		  mName = ""
+		  mElementType = initElementType
+		  SetElementSize()
+		  
+		  Redim mShape(-1)
+		  i = 0
+		  while i < initShape.Count
+		    mShape.Add initShape(i)
+		    i = i + 1
+		  wend
+		  
+		  mData = initData
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Constructor(initData As String, initElementType As ONNX.ElementTypeEnum)
 		  Var item As JSONItem
 		  Var i As Integer
@@ -63,6 +83,59 @@ Protected Class Tensor
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function MatMul(t As ONNX.Tensor) As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var i As UInt64
+		  Var j As UInt64
+		  Var k As UInt64
+		  Var tData As MemoryBlock
+		  Var dot As Single
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    tData = t.Data
+		    resultData = new MemoryBlock(mShape(0) * t.Shape(1) * mElementSize) // rows * t.cols * elementSize
+		    
+		    i = 0
+		    while i < mShape(0) // rows
+		      dot = 0
+		      j = 0
+		      while j < t.Shape(1) // t.cols
+		        
+		        dot = 0
+		        k = 0
+		        while (k < mShape(1)) // cols
+		          dot = dot + Value(i, k) * t.Value(k, j)
+		          k = k + 1
+		        wend
+		        
+		        resultData.SingleValue((i * mShape(0) + j) * mElementSize) = dot
+		        
+		        j = j + 1
+		      wend
+		      
+		      i = i + 1
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub SetElementSize()
 		  select case mElementType
@@ -76,6 +149,12 @@ Protected Class Tensor
 		  end select
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Shape(index As Integer) As Integer
+		  return mShape(index)
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -117,6 +196,39 @@ Protected Class Tensor
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Value(row As Integer, column As Integer) As Variant
+		  var result As Variant
+		  
+		  select case mElementType 
+		    
+		  case ONNX.ElementTypeEnum.FLOAT
+		    result = mData.SingleValue((row * mShape(1) + column) * mElementSize)
+		    
+		  else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mData
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mData = value
+			End Set
+		#tag EndSetter
+		Data As MemoryBlock
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
 		Private mData As MemoryBlock
