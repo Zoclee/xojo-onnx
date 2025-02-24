@@ -78,6 +78,45 @@ Protected Class Tensor
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function ToString() As String
+		  Var s() As String
+		  Var rowStr() As String
+		  Var i As UInt64
+		  Var j As UInt64
+		  Var pos As UInt64
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT
+		    pos = 0
+		    
+		    i = 0
+		    while i < mShape(0) // rows
+		      
+		      Redim rowStr(-1)
+		      j = 0
+		      while j < mShape(1) // columns
+		        rowStr.Append Str(mData.SingleValue(pos), "-############0.0#######")
+		        pos = pos + mElementSize
+		        j = j + 1
+		      wend
+		      s.Append "[" + Join(rowStr, ",") + "]"
+		      
+		      i = i + 1
+		    wend
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return "[" + Join(s, ",") + "]"
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mData As MemoryBlock

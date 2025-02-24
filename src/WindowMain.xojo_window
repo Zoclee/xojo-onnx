@@ -55,6 +55,53 @@ Begin DesktopWindow WindowMain
       Visible         =   True
       Width           =   100
    End
+   Begin DesktopTextArea TextOutput
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
+      Height          =   319
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   0
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   61
+      Transparent     =   False
+      Underline       =   False
+      UnicodeMode     =   1
+      ValidationMask  =   ""
+      Visible         =   True
+      Width           =   560
+   End
 End
 #tag EndDesktopWindow
 
@@ -72,6 +119,7 @@ End
 		  Var node2 As ONNX.Node
 		  Var graph As ONNX.Graph
 		  Var model As ONNX.Model
+		  Var tensor As ONNX.Tensor
 		  
 		  // inputs
 		  
@@ -104,16 +152,30 @@ End
 		  
 		  // define inputs
 		  
-		  var inputs As new Dictionary()
-		  inputs.Value("X") = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  inputs.Value("A") = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  inputs.Value("Z") = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  TextOutput.AddText "INPUT:" + EndOfLine
 		  
-		  var outputs As Dictionary
+		  var input As new Dictionary()
 		  
-		  outputs = model.Infer(inputs)
+		  tensor = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("X") = tensor
+		  TextOutput.AddText "X = " + tensor.ToString() + EndOfLine
 		  
-		  break
+		  tensor = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("A") = tensor
+		  TextOutput.AddText "A = " + tensor.ToString() + EndOfLine
+		  
+		  tensor = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("Z") = tensor
+		  TextOutput.AddText "Z = " + tensor.ToString() + EndOfLine
+		   
+		  TextOutput.AddText EndOfLine
+		  TextOutput.AddText "OUTPUT:" + EndOfLine
+		  
+		  
+		  var output As Dictionary
+		  
+		  output = model.Infer(input)
+		  
 		  
 		End Sub
 	#tag EndEvent
