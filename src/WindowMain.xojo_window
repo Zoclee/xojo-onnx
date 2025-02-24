@@ -122,6 +122,8 @@ End
 		  Var tensor As ONNX.Tensor
 		  Var i As Integer
 		  
+		  TextOutput.Text = ""
+		  
 		  // inputs
 		  
 		  // "X" is the name, FLOAT the type, [-1, -1] the shape
