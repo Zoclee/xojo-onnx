@@ -1,6 +1,13 @@
 #tag Module
 Protected Module ONNXTest
 	#tag Method, Flags = &h21
+		Private Function FloatEquals(value As Single, comp As Single) As Boolean
+		  return (Abs(value - comp) > 0.000001)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub RecordTestResult(results As JSONItem, testName As String, pass As Boolean)
 		  results.Child("log").Add new JSONItem("{""test"":""" + testName + """,""success"":" + Str(pass).Lowercase() + "}")
 		  results.Value("tests") = results.Value("tests") + 1
@@ -49,35 +56,16 @@ Protected Module ONNXTest
 		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3, 7], [3, 8, 2]]")
 		  t3 = t1.Add(t2)
 		  
-		  if (t3.Value(0, 0) <> 3) or _
-		    (t3.Value(0, 1) <> 5) or _
-		    (t3.Value(0, 2) <> 10) or _
-		    (t3.Value(1, 0) <> 7) or _
-		    (t3.Value(1, 1) <> 13) or _
-		    (t3.Value(1, 2) <> 8) then
+		  if FloatEquals(t3.Value(0, 0), 3) or _
+		    FloatEquals(t3.Value(0, 1), 5) or _
+		    FloatEquals(t3.Value(0, 2), 10) or _
+		    FloatEquals(t3.Value(1, 0), 7) or _
+		    FloatEquals(t3.Value(1, 1), 13) or _
+		    FloatEquals(t3.Value(1, 2), 8) then
 		    pass = false
 		  end if
 		  
-		  //// test 2
-		  //
-		  //if pass then
-		  //
-		  //t1.Add(t2)
-		  //
-		  //if (t1.Value(0, 0) <> 3) or _
-		  //(t1.Value(0, 1) <> 5) or _
-		  //(t1.Value(0, 2) <> 10) or _
-		  //(t1.Value(1, 0) <> 7) or _
-		  //(t1.Value(1, 1) <> 13) or _
-		  //(t1.Value(1, 2) <> 8) then
-		  //pass = false
-		  //end if
-		  //
-		  //end if
-		  
 		  RecordTestResult(results, "Tensor.Add", pass)
-		  
-		  
 		  
 		End Sub
 	#tag EndMethod
@@ -99,15 +87,15 @@ Protected Module ONNXTest
 		  
 		  if (t3.Shape(0) <> 3) or _
 		    (t3.Shape(1) <> 3) or _
-		    (t3.Value(0, 0) <> 13) or _
-		    (t3.Value(0, 1) <> 25) or _
-		    (t3.Value(0, 2) <> 11) or _
-		    (t3.Value(1, 0) <> 21) or _
-		    (t3.Value(1, 1) <> 15) or _
-		    (t3.Value(1, 2) <> 7) or _
-		    (t3.Value(2, 0) <> 27) or _
-		    (t3.Value(2, 1) <> 24) or _
-		    (t3.Value(2, 2) <> 11) then
+		    FloatEquals(t3.Value(0, 0), 13) or _
+		    FloatEquals(t3.Value(0, 1), 25) or _
+		    FloatEquals(t3.Value(0, 2), 11) or _
+		    FloatEquals(t3.Value(1, 0), 21) or _
+		    FloatEquals(t3.Value(1, 1), 15) or _
+		    FloatEquals(t3.Value(1, 2), 7) or _
+		    FloatEquals(t3.Value(2, 0), 27) or _
+		    FloatEquals(t3.Value(2, 1), 24) or _
+		    FloatEquals(t3.Value(2, 2), 11) then
 		    pass = false
 		  end if
 		  
@@ -131,12 +119,12 @@ Protected Module ONNXTest
 		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, -2, 3], [-4, 0, 6]]")
 		  t2 = t1.Relu()
 		  
-		  if (t2.Value(0, 0) <> 1) or _
-		    (t2.Value(0, 1) <> 0) or _
-		    (t2.Value(0, 2) <> 3) or _
-		    (t2.Value(1, 0) <> 0) or _
-		    (t2.Value(1, 1) <> 0) or _
-		    (t2.Value(1, 2) <> 6) then
+		  if FloatEquals(t2.Value(0, 0), 1) or _ 
+		    FloatEquals(t2.Value(0, 1), 0) or _
+		    FloatEquals(t2.Value(0, 2), 3) or _
+		    FloatEquals(t2.Value(1, 0), 0) or _
+		    FloatEquals(t2.Value(1, 1), 0) or _
+		    FloatEquals(t2.Value(1, 2), 6) then
 		    pass = false
 		  end if
 		  
@@ -160,9 +148,9 @@ Protected Module ONNXTest
 		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, 1.0, -2.0]]")
 		  t2 = t1.Sigmoid()
 		  
-		  if (Abs(t2.Value(0, 0) - 0.62245933120185) > 0.000001) or _
-		    (Abs(t2.Value(0, 1) - 0.73105857863) > 0.000001) or _
-		    (Abs(t2.Value(0, 2) - 0.11920292202212) > 0.000001) then
+		  if FloatEquals(t2.Value(0, 0), 0.62245933120185) or _ 
+		    FloatEquals(t2.Value(0, 1), 0.73105857863) or _
+		    FloatEquals(t2.Value(0, 2), 0.11920292202212) then
 		    pass = false
 		  end if
 		  
