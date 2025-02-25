@@ -169,6 +169,44 @@ Protected Class Tensor
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Relu() As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tmpSingle As Single
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      tmpSingle = mData.SingleValue(pos)
+		      if tmpSingle < 0 then
+		        resultData.SingleValue(pos) = 0
+		      else
+		        resultData.SingleValue(pos) = tmpSingle
+		      end if
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub SetElementSize()
 		  select case mElementType

@@ -27,8 +27,9 @@ Protected Module ONNX
 	#tag EndEnum
 
 	#tag Enum, Name = OperatorEnum, Type = Integer, Flags = &h0
-		MatMul
 		Add
+		  MatMul
+		Relu
 	#tag EndEnum
 
 
