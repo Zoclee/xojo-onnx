@@ -122,8 +122,6 @@ End
 		  Var tensor As ONNX.Tensor
 		  Var i As Integer
 		  
-		  TextOutput.Text = ""
-		  
 		  // inputs
 		  
 		  // "X" is the name, FLOAT the type, [-1, -1] the shape
@@ -155,28 +153,17 @@ End
 		  
 		  // define inputs
 		  
-		  TextOutput.AddText "INPUT:" + EndOfLine
-		  
 		  var input As new Dictionary()
 		  
-		  tensor = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("X") = tensor
-		  TextOutput.AddText "X = " + tensor.ToString() + EndOfLine
-		  
-		  tensor = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("A") = tensor
-		  TextOutput.AddText "A = " + tensor.ToString() + EndOfLine
-		  
-		  tensor = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("B") = tensor
-		  TextOutput.AddText "B = " + tensor.ToString() + EndOfLine
-		  
-		  TextOutput.AddText EndOfLine
-		  TextOutput.AddText "OUTPUT:" + EndOfLine
+		  input.Value("X") = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("A") = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("B") = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
 		  
 		  var output As Dictionary
 		  
 		  output = model.Infer(input)
+		  
+		  TextOutput.Text = ""
 		  i = 0
 		  while i < output.KeyCount
 		    tensor = output.Value(output.Key(i))
