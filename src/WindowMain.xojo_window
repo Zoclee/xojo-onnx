@@ -102,6 +102,37 @@ Begin DesktopWindow WindowMain
       Visible         =   True
       Width           =   560
    End
+   Begin DesktopButton ButtonTest
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Test"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   29
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   132
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
 End
 #tag EndDesktopWindow
 
@@ -172,6 +203,47 @@ End
 		  wend
 		  
 		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ButtonTest
+	#tag Event
+		Sub Pressed()
+		  Var results As JSONItem
+		  Var i As Integer
+		  
+		  results = ONNXTest.RunTests()
+		  
+		  TextOutput.Text = ""
+		  if results.Value("success") then
+		    TextOutput.AddText "PASS" + EndOfLine
+		  else
+		    TextOutput.AddText "FAIL" + EndOfLine
+		  end if
+		  
+		  TextOutput.AddText "Asserted " + Str(results.Value("tests")) + " tests." + EndOfLine
+		  if results.Value("pass") = 1 then
+		    TextOutput.AddText "1 test passed." + EndOfLine
+		  else
+		    TextOutput.AddText Str(results.Value("pass")) + " tests passed." + EndOfLine
+		  end if
+		  if results.Value("fail") = 1 then
+		    TextOutput.AddText "1 test failed." + EndOfLine
+		  else
+		    TextOutput.AddText Str(results.Value("fail")) + " tests failed." + EndOfLine
+		  end if
+		  TextOutput.AddText "Testing logs:"
+		  
+		  i = 0
+		  while i < results.Child("log").Count
+		    if results.Child("log").ChildAt(i).Value("success") then
+		      TextOutput.AddText results.Child("log").ChildAt(i).Value("test") + ": PASS" + EndOfLine
+		    else
+		      TextOutput.AddText results.Child("log").ChildAt(i).Value("test") + ": FAIL" + EndOfLine
+		    end if
+		    i = i + 1
+		  wend
 		  
 		End Sub
 	#tag EndEvent

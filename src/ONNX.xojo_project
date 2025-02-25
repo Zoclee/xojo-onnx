@@ -11,6 +11,7 @@ Class=Tensor;ONNX/Tensor.xojo_code;&h000000001525E7FF;&h000000003B5E8FFF;false
 Class=Node;ONNX/Node.xojo_code;&h000000001CF94FFF;&h000000003B5E8FFF;false
 Class=Graph;ONNX/Graph.xojo_code;&h00000000026DD7FF;&h000000003B5E8FFF;false
 Class=Model;ONNX/Model.xojo_code;&h00000000161747FF;&h000000003B5E8FFF;false
+Module=ONNXTest;ONNXTest.xojo_code;&h0000000039CFBFFF;&h0000000000000000;false
 DefaultWindow=WindowMain
 AppMenuBar=MainMenuBar
 MajorVersion=1
