@@ -54,7 +54,7 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(initData As String, initElementType As ONNX.ElementTypeEnum)
+		Sub Constructor(initElementType As ONNX.ElementTypeEnum, initData As String)
 		  Var item As JSONItem
 		  Var i As Integer
 		  Var j As Integer

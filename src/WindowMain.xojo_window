@@ -186,9 +186,9 @@ End
 		  
 		  var input As new Dictionary()
 		  
-		  input.Value("X") = New ONNX.Tensor("[[1.0, 2.0], [3.0, 4.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("A") = New ONNX.Tensor("[[5.0, 6.0], [7.0, 8.0]]", ONNX.ElementTypeEnum.FLOAT)
-		  input.Value("B") = New ONNX.Tensor("[[1.0, 1.0], [1.0, 1.0]]", ONNX.ElementTypeEnum.FLOAT)
+		  input.Value("X") = New ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 2.0], [3.0, 4.0]]")
+		  input.Value("A") = New ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[5.0, 6.0], [7.0, 8.0]]")
+		  input.Value("B") = New ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 1.0], [1.0, 1.0]]")
 		  
 		  var output As Dictionary
 		  
@@ -222,7 +222,7 @@ End
 		    TextOutput.AddText "FAIL" + EndOfLine
 		  end if
 		  
-		  TextOutput.AddText "Asserted " + Str(results.Value("tests")) + " tests." + EndOfLine
+		  TextOutput.AddText "Completed " + Str(results.Value("tests")) + " tests." + EndOfLine
 		  if results.Value("pass") = 1 then
 		    TextOutput.AddText "1 test passed." + EndOfLine
 		  else
@@ -233,14 +233,14 @@ End
 		  else
 		    TextOutput.AddText Str(results.Value("fail")) + " tests failed." + EndOfLine
 		  end if
-		  TextOutput.AddText "Testing logs:"
+		  TextOutput.AddText EndOfLine
 		  
 		  i = 0
 		  while i < results.Child("log").Count
 		    if results.Child("log").ChildAt(i).Value("success") then
-		      TextOutput.AddText results.Child("log").ChildAt(i).Value("test") + ": PASS" + EndOfLine
+		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: PASS" + EndOfLine
 		    else
-		      TextOutput.AddText results.Child("log").ChildAt(i).Value("test") + ": FAIL" + EndOfLine
+		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: FAIL" + EndOfLine
 		    end if
 		    i = i + 1
 		  wend
