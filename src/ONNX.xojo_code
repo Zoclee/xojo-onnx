@@ -1,5 +1,9 @@
 #tag Module
 Protected Module ONNX
+	#tag Constant, Name = E, Type = Double, Dynamic = False, Default = \"2.7182818284590452354", Scope = Public
+	#tag EndConstant
+
+
 	#tag Enum, Name = ElementTypeEnum, Type = Integer, Flags = &h0
 		FLOAT=1
 		  UINT8 = 2
