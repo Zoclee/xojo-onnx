@@ -25,6 +25,7 @@ Protected Module ONNXTest
 		  results.Value("log") = new JSONItem("[]")
 		  
 		  Test_Tensor_Add(results)
+		  Test_Tensor_MatMul(results)
 		  
 		  return results
 		  
@@ -73,6 +74,42 @@ Protected Module ONNXTest
 		  //end if
 		  
 		  RecordTestResult(results, "Tensor.Add", pass)
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_MatMul(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  Var t3 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3], [4, 1], [5, 2]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[5, 2, 1], [1, 7, 3]]")
+		  t3 = t1.MatMul(t2)
+		  
+		  if (t3.Shape(0) <> 3) or _
+		    (t3.Shape(1) <> 3) or _
+		    (t3.Value(0, 0) <> 13) or _
+		    (t3.Value(0, 1) <> 25) or _
+		    (t3.Value(0, 2) <> 11) or _
+		    (t3.Value(1, 0) <> 21) or _
+		    (t3.Value(1, 1) <> 15) or _
+		    (t3.Value(1, 2) <> 7) or _
+		    (t3.Value(2, 0) <> 27) or _
+		    (t3.Value(2, 1) <> 24) or _
+		    (t3.Value(2, 2) <> 11) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.MatMul", pass)
 		  
 		  
 		  

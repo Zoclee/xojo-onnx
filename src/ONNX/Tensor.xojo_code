@@ -156,7 +156,7 @@ Protected Class Tensor
 		      i = i + 1
 		    wend
 		    
-		    result = new Tensor(mElementType, mShape, resultData)
+		    result = new Tensor(mElementType, array(mShape(0), t.Shape(1)), resultData)
 		    
 		  case else
 		    break

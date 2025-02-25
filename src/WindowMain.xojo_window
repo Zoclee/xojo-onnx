@@ -194,6 +194,7 @@ End
 		  
 		  output = model.Infer(input)
 		  
+		  TextOutput.BackgroundColor = &cffffff
 		  TextOutput.Text = ""
 		  i = 0
 		  while i < output.KeyCount
@@ -217,8 +218,10 @@ End
 		  
 		  TextOutput.Text = ""
 		  if results.Value("success") then
+		    TextOutput.BackgroundColor = &cddffdd
 		    TextOutput.AddText "PASS" + EndOfLine
 		  else
+		    TextOutput.BackgroundColor = &cffdddd
 		    TextOutput.AddText "FAIL" + EndOfLine
 		  end if
 		  
