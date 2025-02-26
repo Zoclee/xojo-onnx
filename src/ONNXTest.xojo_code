@@ -35,6 +35,7 @@ Protected Module ONNXTest
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
+		  Test_Tensor_Softmax(results)
 		  Test_Tensor_Tanh(results)
 		  
 		  return results
@@ -156,6 +157,64 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Sigmoid", pass)
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Softmax(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2.0, 1.0, 0.1]]")
+		  t2 = t1.Softmax(-1)
+		  
+		  if FloatEquals(t2.Value(0, 0), 0.659001138) or _ 
+		    FloatEquals(t2.Value(0, 1), 0.242432970) or _
+		    FloatEquals(t2.Value(0, 2), 0.098565892) then
+		    pass = false
+		  end if
+		  
+		  // test 2
+		  
+		  if pass then
+		    
+		    t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1,2],[4,3]]")
+		    t2 = t1.Softmax(0)
+		    
+		    if FloatEquals(t2.Value(0, 0), 0.04742587357759476) or _ 
+		      FloatEquals(t2.Value(0, 1), 0.2689414322376251) or _
+		      FloatEquals(t2.Value(1, 0), 0.9525741338729858) or _
+		      FloatEquals(t2.Value(1, 1), 0.7310585975646973) then
+		      pass = false
+		    end if
+		    
+		  end if
+		  
+		  // test 3
+		  
+		  if pass then
+		    
+		    t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1,2],[4,3]]")
+		    t2 = t1.Softmax(1)
+		    
+		    if FloatEquals(t2.Value(0, 0), 0.2689414322376251) or _ 
+		      FloatEquals(t2.Value(0, 1), 0.7310585975646973) or _
+		      FloatEquals(t2.Value(1, 0), 0.7310585975646973) or _
+		      FloatEquals(t2.Value(1, 1), 0.2689414322376251) then
+		      pass = false
+		    end if
+		    
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Softmax", pass)
 		  
 		  
 		  

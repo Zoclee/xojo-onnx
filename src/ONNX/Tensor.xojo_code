@@ -263,6 +263,94 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Softmax(axis As Integer) As Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tmpSingle As Single
+		  Var singleTotal As Single
+		  Var col as UInt64
+		  Var row As UInt64
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ElementTypeEnum.FLOAT
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    
+		    // TODO: implement support for tensors of ranks higher than 2
+		    
+		    if (axis = 0) then
+		      
+		      col = 0
+		      while col < mShape(1)
+		        
+		        singleTotal = 0
+		        
+		        row = 0
+		        while row < mShape(0)
+		          pos = (row * mShape(1) + col) * mElementSize
+		          tmpSingle = mData.SingleValue(pos)
+		          singleTotal = singleTotal + Pow(ONNX.E, tmpSingle)
+		          row = row + 1
+		        wend
+		        
+		        row = 0
+		        while row < mShape(0)
+		          pos = (row * mShape(1) + col) * mElementSize
+		          resultData.SingleValue(pos) = Pow(ONNX.E, mData.SingleValue(pos)) / singleTotal
+		          row = row + 1
+		        wend
+		        
+		        col = col + 1
+		      wend
+		      
+		    elseif (axis = 1) or (axis = -1) then
+		      
+		      row = 0
+		      while row < mShape(0)
+		        
+		        singleTotal = 0
+		        
+		        col = 0
+		        while col < mShape(1)
+		          pos = (row * mShape(1) + col) * mElementSize
+		          tmpSingle = mData.SingleValue(pos)
+		          singleTotal = singleTotal + Pow(ONNX.E, tmpSingle)
+		          col = col + 1
+		        wend
+		        
+		        col = 0
+		        while col < mShape(1)
+		          pos = (row * mShape(1) + col) * mElementSize
+		          resultData.SingleValue(pos) = Pow(ONNX.E, mData.SingleValue(pos)) / singleTotal
+		          col = col + 1
+		        wend
+		        
+		        row = row + 1
+		      wend
+		      
+		    else
+		      
+		      break // TODO: higher tensor ranks
+		      
+		    end if
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Tanh() As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
