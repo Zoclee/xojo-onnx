@@ -33,6 +33,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_MatMul(data)
 		    
+		  case ONNX.OperatorEnum.Relu
+		    Evaluate_Relu(data)
+		    
 		  case else 
 		    break // TODO: implement operator
 		    
@@ -63,6 +66,18 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.MatMul(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_relu(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Relu()
 		  
 		  
 		End Sub

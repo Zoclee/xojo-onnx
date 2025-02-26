@@ -33,7 +33,10 @@ Protected Module ONNX
 	#tag Enum, Name = OperatorEnum, Type = Integer, Flags = &h0
 		Add
 		  MatMul
-		Relu
+		  Relu
+		  Sigmoid
+		  Softmax
+		Tanh
 	#tag EndEnum
 
 
