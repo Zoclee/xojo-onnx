@@ -31,7 +31,8 @@ Protected Module ONNX
 	#tag EndEnum
 
 	#tag Enum, Name = OperatorEnum, Type = Integer, Flags = &h0
-		Add
+		Abs
+		  Add
 		  MatMul
 		  Relu
 		  Sigmoid

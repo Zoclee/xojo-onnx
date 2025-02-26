@@ -27,6 +27,9 @@ Protected Class Node
 		Sub Evaluate(data As Dictionary)
 		  select case mOperator
 		    
+		  case ONNX.OperatorEnum.Abs
+		    Evaluate_Abs(data)
+		    
 		  case ONNX.OperatorEnum.Add
 		    Evaluate_Add(data)
 		    
@@ -49,6 +52,18 @@ Protected Class Node
 		    break // TODO: implement operator
 		    
 		  end select
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_abs(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Abs()
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -113,7 +128,7 @@ Protected Class Node
 		  
 		  a = data.Value(mInputs(0))
 		  
-		  data.Value(mOutputs(0)) = a.Softmax()
+		  data.Value(mOutputs(0)) = a.Softmax(axis)
 		  
 		  
 		End Sub
