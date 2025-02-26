@@ -36,6 +36,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Relu
 		    Evaluate_Relu(data)
 		    
+		  case ONNX.OperatorEnum.Sigmoid
+		    Evaluate_Sigmoid(data)
+		    
 		  case else 
 		    break // TODO: implement operator
 		    
@@ -78,6 +81,18 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Relu()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_sigmoid(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Sigmoid()
 		  
 		  
 		End Sub
