@@ -32,6 +32,7 @@ Protected Module ONNXTest
 		  results.Value("log") = new JSONItem("[]")
 		  
 		  Test_Tensor_Abs(results)
+		  Test_Tensor_Acos(results)
 		  Test_Tensor_Add(results)
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
@@ -67,6 +68,31 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Abs", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Acos(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  t2 = t1.Acos()
+		  
+		  if FloatEquals(t2.Value(0, 0), 1.22387943) or _
+		    FloatEquals(t2.Value(0, 1), 0.76699401) or _
+		    FloatEquals(t2.Value(1, 0), 2.73887681) or _
+		    FloatEquals(t2.Value(1, 1), 1.35922137) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Acos", pass)
 		  
 		End Sub
 	#tag EndMethod

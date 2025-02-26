@@ -28,22 +28,25 @@ Protected Class Node
 		  select case mOperator
 		    
 		  case ONNX.OperatorEnum.Abs
-		    Evaluate_Abs(data)
+		    Evaluate_abs(data)
+		    
+		  case ONNX.OperatorEnum.Acos
+		    Evaluate_acos(data)
 		    
 		  case ONNX.OperatorEnum.Add
-		    Evaluate_Add(data)
+		    Evaluate_add(data)
 		    
 		  case ONNX.OperatorEnum.MatMul
-		    Evaluate_MatMul(data)
+		    Evaluate_matmul(data)
 		    
 		  case ONNX.OperatorEnum.Relu
-		    Evaluate_Relu(data)
+		    Evaluate_relu(data)
 		    
 		  case ONNX.OperatorEnum.Sigmoid
-		    Evaluate_Sigmoid(data)
+		    Evaluate_sigmoid(data)
 		    
 		  case ONNX.OperatorEnum.Softmax
-		    Evaluate_Softmax(data)
+		    Evaluate_softmax(data)
 		    
 		  case ONNX.OperatorEnum.Tanh
 		    Evaluate_tanh(data)
@@ -68,6 +71,18 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub Evaluate_acos(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Acos()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub Evaluate_add(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
@@ -82,7 +97,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_matMul(data As Dictionary)
+		Private Sub Evaluate_matmul(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
 		  
