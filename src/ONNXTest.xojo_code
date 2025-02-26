@@ -35,6 +35,7 @@ Protected Module ONNXTest
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
+		  Test_Tensor_Tanh(results)
 		  
 		  return results
 		  
@@ -156,6 +157,31 @@ Protected Module ONNXTest
 		  
 		  RecordTestResult(results, "Tensor.Sigmoid", pass)
 		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Tanh(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, 1.0, -2.0]]")
+		  t2 = t1.Tanh()
+		  
+		  if FloatEquals(t2.Value(0, 0), 0.46211716) or _ 
+		    FloatEquals(t2.Value(0, 1), 0.76159416) or _
+		    FloatEquals(t2.Value(0, 2), -0.96402758) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Tanh", pass)
 		  
 		  
 		End Sub
