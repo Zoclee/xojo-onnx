@@ -39,6 +39,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Add
 		    Evaluate_add(data)
 		    
+		  case ONNX.OperatorEnum.Asin
+		    Evaluate_asin(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_matmul(data)
 		    
@@ -106,6 +109,18 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Add(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_asin(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Asin()
 		  
 		  
 		End Sub
