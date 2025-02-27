@@ -33,6 +33,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Acos
 		    Evaluate_acos(data)
 		    
+		  case ONNX.OperatorEnum.Acosh
+		    Evaluate_acosh(data)
+		    
 		  case ONNX.OperatorEnum.Add
 		    Evaluate_add(data)
 		    
@@ -77,6 +80,18 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Acos()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_acosh(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Acosh()
 		  
 		  
 		End Sub

@@ -33,6 +33,7 @@ Protected Module ONNX
 	#tag Enum, Name = OperatorEnum, Type = Integer, Flags = &h0
 		Abs
 		  Acos
+		  Acosh
 		  Add
 		  MatMul
 		  Relu
