@@ -45,6 +45,12 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Asinh
 		    Evaluate_asinh(data)
 		    
+		  case ONNX.OperatorEnum.Atan
+		    Evaluate_atan(data)
+		    
+		  case ONNX.OperatorEnum.Atanh
+		    Evaluate_atanh(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_matmul(data)
 		    
@@ -136,6 +142,30 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Asinh()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_atan(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Atan()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_atanh(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Atan()
 		  
 		  
 		End Sub
