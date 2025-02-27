@@ -36,6 +36,7 @@ Protected Module ONNX
 		  Acosh
 		  Add
 		  Asin
+		  Asinh
 		  MatMul
 		  Relu
 		  Sigmoid

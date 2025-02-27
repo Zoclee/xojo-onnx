@@ -36,6 +36,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Acosh(results)
 		  Test_Tensor_Add(results)
 		  Test_Tensor_Asin(results)
+		  Test_Tensor_Asinh(results)
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
@@ -173,6 +174,31 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Asin", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Asinh(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  t2 = t1.Asinh()
+		  
+		  if FloatEquals(t2.Value(0, 0), 0.333768351646) or _
+		    FloatEquals(t2.Value(0, 1), 0.668974226754) or _
+		    FloatEquals(t2.Value(1, 0), -0.823659090432) or _
+		    FloatEquals(t2.Value(1, 1), 0.208486350074) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Asinh", pass)
 		  
 		End Sub
 	#tag EndMethod
