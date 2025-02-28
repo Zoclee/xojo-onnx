@@ -424,7 +424,7 @@ Protected Class Tensor
 		    pos = 0
 		    while pos < mData.Size
 		      tmpSingle = mData.SingleValue(pos)
-		      resultData.SingleValue(pos) = (Pow(Vectomodel.E, tmpSingle) + Pow(Vectomodel.E, -tmpSingle)) / 2
+		      resultData.SingleValue(pos) = (Pow(ONNX.E, tmpSingle) + Pow(ONNX.E, -tmpSingle)) / 2
 		      pos = pos + mElementSize
 		    wend
 		    
@@ -434,6 +434,38 @@ Protected Class Tensor
 		    break
 		    
 		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Exp() As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      resultData.SingleValue(pos) = Exp(mData.SingleValue(pos)) 
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
 		  
 		  return result
 		  

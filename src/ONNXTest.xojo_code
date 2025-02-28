@@ -41,6 +41,8 @@ Protected Module ONNXTest
 		  Test_Tensor_Atanh(results)
 		  Test_Tensor_Ceil(results)
 		  Test_Tensor_Cos(results)
+		  Test_Tensor_Cosh(results)
+		  Test_Tensor_Exp(results)
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
@@ -303,6 +305,55 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Cos", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Cosh(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, 1.0, -2.0]]")
+		  t2 = t1.Cosh()
+		  
+		  if FloatEquals(t2.Value(0, 0), 1.127626) or _
+		    FloatEquals(t2.Value(0, 1), 1.5430806) or _
+		    FloatEquals(t2.Value(0, 2), 3.762196) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Cosh", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Exp(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  t2 = t1.Exp()
+		  
+		  if FloatEquals(t2.Value(0, 0), 1.404947590564) or _
+		    FloatEquals(t2.Value(0, 1), 2.054433210644) or _
+		    FloatEquals(t2.Value(1, 0), 0.398519041085) or _
+		    FloatEquals(t2.Value(1, 1), 1.233678059957) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Exp", pass)
 		  
 		End Sub
 	#tag EndMethod

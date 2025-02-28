@@ -42,6 +42,7 @@ Protected Module ONNX
 		  Ceil
 		  Cos
 		  Cosh
+		  Exp
 		  MatMul
 		  Relu
 		  Sigmoid

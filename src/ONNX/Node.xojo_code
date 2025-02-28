@@ -60,6 +60,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Cosh
 		    Evaluate_cosh(data)
 		    
+		  case ONNX.OperatorEnum.Exp
+		    Evaluate_exp(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_matmul(data)
 		    
@@ -199,6 +202,30 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Cos()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_cosh(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Cosh()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_exp(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Exp()
 		  
 		  
 		End Sub
