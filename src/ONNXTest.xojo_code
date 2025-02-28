@@ -293,7 +293,7 @@ Protected Module ONNXTest
 		  // test 1
 		  
 		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[3.34, 4.72], [-1.92, 9.21]]")
-		  t2 = t1.Ceil()
+		  t2 = t1.Cos()
 		  
 		  if FloatEquals(t2.Value(0, 0), -0.98038174613) or _
 		    FloatEquals(t2.Value(0, 1), 0.00761094613) or _

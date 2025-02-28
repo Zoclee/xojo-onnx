@@ -408,6 +408,39 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Cosh() As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tmpSingle As Single
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      tmpSingle = mData.SingleValue(pos)
+		      resultData.SingleValue(pos) = (Pow(Vectomodel.E, tmpSingle) + Pow(Vectomodel.E, -tmpSingle)) / 2
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function MatMul(t As ONNX.Tensor) As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock

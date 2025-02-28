@@ -54,6 +54,12 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Ceil
 		    Evaluate_ceil(data)
 		    
+		  case ONNX.OperatorEnum.Cos
+		    Evaluate_cos(data)
+		    
+		  case ONNX.OperatorEnum.Cosh
+		    Evaluate_cosh(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_matmul(data)
 		    
