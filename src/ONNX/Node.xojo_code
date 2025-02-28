@@ -187,6 +187,18 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub Evaluate_cos(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Cos()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub Evaluate_matmul(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor

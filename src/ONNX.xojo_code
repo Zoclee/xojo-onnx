@@ -40,6 +40,7 @@ Protected Module ONNX
 		  Atan
 		  Atanh
 		  Ceil
+		  Cos
 		  MatMul
 		  Relu
 		  Sigmoid
