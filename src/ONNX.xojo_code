@@ -43,6 +43,7 @@ Protected Module ONNX
 		  Cos
 		  Cosh
 		  Exp
+		  Floor
 		  MatMul
 		  Relu
 		  Sigmoid
