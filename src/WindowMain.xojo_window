@@ -214,16 +214,21 @@ End
 		  Var results As JSONItem
 		  Var i As Integer
 		  
+		  TextOutput.Text = ""
+		  
 		  results = ONNXTest.RunTests()
 		  
-		  TextOutput.Text = ""
-		  if results.Value("success") then
-		    TextOutput.BackgroundColor = &cddffdd
-		    TextOutput.AddText "PASS" + EndOfLine
-		  else
-		    TextOutput.BackgroundColor = &cffdddd
-		    TextOutput.AddText "FAIL" + EndOfLine
-		  end if
+		  i = 0
+		  while i < results.Child("log").Count
+		    if results.Child("log").ChildAt(i).Value("success") then
+		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: PASS" + EndOfLine
+		    else
+		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: FAIL <-----------------------" + EndOfLine
+		    end if
+		    i = i + 1
+		  wend
+		  
+		  TextOutput.AddText EndOfLine
 		  
 		  TextOutput.AddText "Completed " + Str(results.Value("tests")) + " tests." + EndOfLine
 		  if results.Value("pass") = 1 then
@@ -236,17 +241,16 @@ End
 		  else
 		    TextOutput.AddText Str(results.Value("fail")) + " tests failed." + EndOfLine
 		  end if
+		  
 		  TextOutput.AddText EndOfLine
 		  
-		  i = 0
-		  while i < results.Child("log").Count
-		    if results.Child("log").ChildAt(i).Value("success") then
-		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: PASS" + EndOfLine
-		    else
-		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: FAIL <-----------------------" + EndOfLine
-		    end if
-		    i = i + 1
-		  wend
+		  if results.Value("success") then
+		    TextOutput.BackgroundColor = &cddffdd
+		    TextOutput.AddText "PASS" + EndOfLine
+		  else
+		    TextOutput.BackgroundColor = &cffdddd
+		    TextOutput.AddText "FAIL" + EndOfLine
+		  end if
 		  
 		End Sub
 	#tag EndEvent
