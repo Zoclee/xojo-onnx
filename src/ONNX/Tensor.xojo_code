@@ -562,6 +562,46 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GreaterOrEqual(t As ONNX.Tensor) As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var targetPos As UInt64
+		  Var tData As MemoryBlock
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    tData = t.Data
+		    resultData = new MemoryBlock(ElementCount)
+		    targetPos = 0
+		    pos = 0
+		    while pos < mData.Size
+		      if mData.SingleValue(pos) >= tData.SingleValue(pos) then
+		        resultData.UInt8Value(targetPos) = 1
+		      else
+		        resultData.UInt8Value(targetPos) = 0
+		      end if
+		      pos = pos + mElementSize
+		      targetPos = targetPos + 1
+		    wend
+		    
+		    result = new Tensor(ONNX.ElementTypeEnum.BOOL, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function MatMul(t As ONNX.Tensor) As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock

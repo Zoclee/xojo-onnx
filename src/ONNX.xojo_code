@@ -45,6 +45,7 @@ Protected Module ONNX
 		  Exp
 		  Floor
 		  Greater
+		  GreaterOrEqual
 		  MatMul
 		  Relu
 		  Sigmoid
