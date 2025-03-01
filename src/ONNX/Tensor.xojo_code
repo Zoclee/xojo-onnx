@@ -682,6 +682,38 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Log() As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      resultData.SingleValue(pos) = Log(mData.SingleValue(pos))
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function MatMul(t As ONNX.Tensor) As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
@@ -1124,7 +1156,32 @@ Protected Class Tensor
 			Group="Behavior"
 			InitialValue=""
 			Type="ONNX.ElementTypeEnum"
-			EditorType=""
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - FLOAT"
+				"2 - UINT8"
+				"3 - INT8"
+				"4 - UINT16"
+				"5 - INT16"
+				"6 - INT32"
+				"7 - INT64"
+				"8 - STRING"
+				"9 - BOOL"
+				"10 - FLOAT16"
+				"11 - DOUBLE"
+				"12 - UINT32"
+				"13 - UINT64"
+				"14 - COMPLEX64"
+				"15 - COMPLEX128"
+				"16 - BFLOAT16"
+				"17 - FLOAT8E4M3FN"
+				"18 - FLOAT8E4M3FNUZ"
+				"19 - FLOAT8E5M2"
+				"20 - FLOAT8E5M2FNUZ"
+				"21 - UINT4"
+				"22 - INT4"
+				"23 - FLOAT4E2M1"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
