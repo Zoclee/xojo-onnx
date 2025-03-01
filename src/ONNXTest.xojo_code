@@ -44,6 +44,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Cosh(results)
 		  Test_Tensor_Exp(results)
 		  Test_Tensor_Floor(results)
+		  Test_Tensor_Greater(results)
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
@@ -380,6 +381,41 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Floor", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Greater(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  Var t3 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [2, 8, 4]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[4, 2, 4], [7, 5, 3]]")
+		  t3 = t1.Greater(t2)
+		  
+		  
+		  if (t3.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (t3.Shape(0) <> 2) or _
+		    (t3.Shape(1) <> 3) or _
+		    (t3.Value(0, 0) <> false) or _
+		    (t3.Value(0, 1) <> false) or _
+		    (t3.Value(0, 2) <> false) or _
+		    (t3.Value(1, 0) <> false) or _
+		    (t3.Value(1, 1) <> true) or _
+		    (t3.Value(1, 2) <> true) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Greater", pass)
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod

@@ -66,6 +66,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Floor
 		    Evaluate_floor(data)
 		    
+		  case ONNX.OperatorEnum.Greater
+		    Evaluate_greater(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_matmul(data)
 		    
@@ -241,6 +244,20 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Floor()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_greater(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.Greater(b)
 		  
 		  
 		End Sub

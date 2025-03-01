@@ -44,6 +44,7 @@ Protected Module ONNX
 		  Cosh
 		  Exp
 		  Floor
+		  Greater
 		  MatMul
 		  Relu
 		  Sigmoid

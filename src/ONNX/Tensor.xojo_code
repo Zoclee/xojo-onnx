@@ -441,6 +441,23 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function ElementCount() As Integer
+		  Var i As Integer
+		  Var count As Integer
+		  
+		  count = 1
+		  i = 0
+		  while i < mShape.Count
+		    count = count * mShape(i)
+		    i = i + 1
+		  wend
+		  
+		  return count
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Exp() As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
@@ -498,6 +515,46 @@ Protected Class Tensor
 		    
 		  end select
 		  
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Greater(t As ONNX.Tensor) As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var targetPos As UInt64
+		  Var tData As MemoryBlock
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT 
+		    
+		    tData = t.Data
+		    resultData = new MemoryBlock(ElementCount)
+		    targetPos = 0
+		    pos = 0
+		    while pos < mData.Size
+		      if mData.SingleValue(pos) > tData.SingleValue(pos) then
+		        resultData.UInt8Value(targetPos) = 1
+		      else
+		        resultData.UInt8Value(targetPos) = 0
+		      end if
+		      pos = pos + mElementSize
+		      targetPos = targetPos + 1
+		    wend
+		    
+		    result = new Tensor(ONNX.ElementTypeEnum.BOOL, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
 		  
 		  return result
 		  
@@ -598,6 +655,9 @@ Protected Class Tensor
 	#tag Method, Flags = &h21
 		Private Sub SetElementSize()
 		  select case mElementType
+		    
+		  case ONNX.ElementTypeEnum.BOOL
+		    mElementSize = 1
 		    
 		  case ONNX.ElementTypeEnum.FLOAT
 		    mElementSize = 4
@@ -817,6 +877,13 @@ Protected Class Tensor
 		  
 		  select case mElementType 
 		    
+		  case ONNX.ElementTypeEnum.BOOL
+		    if mData.UInt8Value((row * mShape(1) + column) * mElementSize) = 0 then
+		      result = false
+		    else
+		      result = true
+		    end if
+		    
 		  case ONNX.ElementTypeEnum.FLOAT
 		    result = mData.SingleValue((row * mShape(1) + column) * mElementSize)
 		    
@@ -843,6 +910,16 @@ Protected Class Tensor
 			End Set
 		#tag EndSetter
 		Data As MemoryBlock
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mElementType
+			  
+			End Get
+		#tag EndGetter
+		ElementType As ONNX.ElementTypeEnum
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -919,6 +996,14 @@ Protected Class Tensor
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ElementType"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="ONNX.ElementTypeEnum"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

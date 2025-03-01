@@ -243,7 +243,7 @@ End
 		    if results.Child("log").ChildAt(i).Value("success") then
 		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: PASS" + EndOfLine
 		    else
-		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: FAIL" + EndOfLine
+		      TextOutput.AddText "[" + results.Child("log").ChildAt(i).Value("test") + "]: FAIL <-----------------------" + EndOfLine
 		    end if
 		    i = i + 1
 		  wend
