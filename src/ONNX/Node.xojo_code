@@ -72,6 +72,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Less
 		    Evaluate_Less(data)
 		    
+		  case ONNX.OperatorEnum.LessOrEqual
+		    Evaluate_LessOrEqual(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_Matmul(data)
 		    
@@ -289,6 +292,20 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Less(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_LessOrEqual(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.LessOrEqual(b)
 		  
 		  
 		End Sub

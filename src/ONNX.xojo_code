@@ -47,6 +47,7 @@ Protected Module ONNX
 		  Greater
 		  GreaterOrEqual
 		  Less
+		  LessOrEqual
 		  MatMul
 		  Relu
 		  Sigmoid
