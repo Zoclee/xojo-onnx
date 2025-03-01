@@ -49,6 +49,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Less(results)
 		  Test_Tensor_LessOrEqual(results)
 		  Test_Tensor_Log(results)
+		  Test_Tensor_LogicalAnd(results)
 		  Test_Tensor_MatMul(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
@@ -550,6 +551,38 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Log", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_LogicalAnd(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  Var t3 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, false], [true, false]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, true], [false, false]]")
+		  t3 = t1.LogicalAnd(t2)
+		  
+		  if (t1.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (t2.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (t3.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (t3.Value(0, 0) <> true) or _
+		    (t3.Value(0, 1) <> false) or _
+		    (t3.Value(1, 0) <> false) or _
+		    (t3.Value(1, 1) <> false) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.LogicalAnd", pass)
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod

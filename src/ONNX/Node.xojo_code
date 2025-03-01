@@ -78,6 +78,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Log
 		    Evaluate_Log(data)
 		    
+		  case ONNX.OperatorEnum.LogicalAnd
+		    Evaluate_And(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_Matmul(data)
 		    
@@ -145,6 +148,20 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Add(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_And(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.LogicalAnd(b)
 		  
 		  
 		End Sub

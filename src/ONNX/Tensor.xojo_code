@@ -335,6 +335,24 @@ Protected Class Tensor
 		  
 		  select case mElementType
 		    
+		  case ONNX.ElementTypeEnum.BOOL
+		    pos = 0
+		    i = 0
+		    while i < mShape(0)
+		      row = item.Child(i)
+		      j = 0
+		      while j < mShape(1)
+		        if row.ValueAt(j) then
+		          mData.UInt8Value(pos) = 1
+		        else
+		          mData.UInt8Value(pos) = 0
+		        end if
+		        pos = pos + mElementSize
+		        j = j + 1 
+		      wend
+		      i = i + 1
+		    wend
+		    
 		  case ONNX.ElementTypeEnum.FLOAT
 		    pos = 0
 		    i = 0
@@ -707,6 +725,43 @@ Protected Class Tensor
 		    
 		  end select
 		  
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function LogicalAnd(t As ONNX.Tensor) As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tData As MemoryBlock
+		  
+		  select case mElementType
+		    
+		    // ***** BOOL *****************************************
+		    
+		  case ONNX.ElementTypeEnum.BOOL 
+		    
+		    tData = t.Data
+		    resultData = new MemoryBlock(ElementCount)
+		    pos = 0
+		    while pos < mData.Size
+		      if (mData.UInt8Value(pos) <> 0) and (tData.UInt8Value(pos) <> 0) then
+		        resultData.UInt8Value(pos) = 1
+		      else
+		        resultData.UInt8Value(pos) = 0
+		      end if
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
 		  
 		  return result
 		  
