@@ -28,61 +28,61 @@ Protected Class Node
 		  select case mOperator
 		    
 		  case ONNX.OperatorEnum.Abs
-		    Evaluate_abs(data)
+		    Evaluate_Abs(data)
 		    
 		  case ONNX.OperatorEnum.Acos
-		    Evaluate_acos(data)
+		    Evaluate_Acos(data)
 		    
 		  case ONNX.OperatorEnum.Acosh
-		    Evaluate_acosh(data)
+		    Evaluate_Acosh(data)
 		    
 		  case ONNX.OperatorEnum.Add
-		    Evaluate_add(data)
+		    Evaluate_Add(data)
 		    
 		  case ONNX.OperatorEnum.Asin
-		    Evaluate_asin(data)
+		    Evaluate_Asin(data)
 		    
 		  case ONNX.OperatorEnum.Asinh
-		    Evaluate_asinh(data)
+		    Evaluate_Asinh(data)
 		    
 		  case ONNX.OperatorEnum.Atan
-		    Evaluate_atan(data)
+		    Evaluate_Atan(data)
 		    
 		  case ONNX.OperatorEnum.Atanh
-		    Evaluate_atanh(data)
+		    Evaluate_Atanh(data)
 		    
 		  case ONNX.OperatorEnum.Ceil
-		    Evaluate_ceil(data)
+		    Evaluate_Ceil(data)
 		    
 		  case ONNX.OperatorEnum.Cos
-		    Evaluate_cos(data)
+		    Evaluate_Cos(data)
 		    
 		  case ONNX.OperatorEnum.Cosh
-		    Evaluate_cosh(data)
+		    Evaluate_Cosh(data)
 		    
 		  case ONNX.OperatorEnum.Exp
-		    Evaluate_exp(data)
+		    Evaluate_Exp(data)
 		    
 		  case ONNX.OperatorEnum.Floor
-		    Evaluate_floor(data)
+		    Evaluate_Floor(data)
 		    
 		  case ONNX.OperatorEnum.Greater
-		    Evaluate_greater(data)
+		    Evaluate_Greater(data)
 		    
 		  case ONNX.OperatorEnum.MatMul
-		    Evaluate_matmul(data)
+		    Evaluate_Matmul(data)
 		    
 		  case ONNX.OperatorEnum.Relu
-		    Evaluate_relu(data)
+		    Evaluate_Relu(data)
 		    
 		  case ONNX.OperatorEnum.Sigmoid
-		    Evaluate_sigmoid(data)
+		    Evaluate_Sigmoid(data)
 		    
 		  case ONNX.OperatorEnum.Softmax
-		    Evaluate_softmax(data)
+		    Evaluate_Softmax(data)
 		    
 		  case ONNX.OperatorEnum.Tanh
-		    Evaluate_tanh(data)
+		    Evaluate_Tanh(data)
 		    
 		  case else 
 		    break // TODO: implement operator
@@ -92,7 +92,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_abs(data As Dictionary)
+		Private Sub Evaluate_Abs(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -104,7 +104,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_acos(data As Dictionary)
+		Private Sub Evaluate_Acos(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -116,7 +116,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_acosh(data As Dictionary)
+		Private Sub Evaluate_Acosh(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -128,7 +128,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_add(data As Dictionary)
+		Private Sub Evaluate_Add(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
 		  
@@ -142,7 +142,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_asin(data As Dictionary)
+		Private Sub Evaluate_Asin(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -154,7 +154,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_asinh(data As Dictionary)
+		Private Sub Evaluate_Asinh(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -166,7 +166,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_atan(data As Dictionary)
+		Private Sub Evaluate_Atan(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -178,7 +178,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_atanh(data As Dictionary)
+		Private Sub Evaluate_Atanh(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -190,7 +190,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_ceil(data As Dictionary)
+		Private Sub Evaluate_Ceil(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -202,7 +202,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_cos(data As Dictionary)
+		Private Sub Evaluate_Cos(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -214,7 +214,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_cosh(data As Dictionary)
+		Private Sub Evaluate_Cosh(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -226,7 +226,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_exp(data As Dictionary)
+		Private Sub Evaluate_Exp(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -238,7 +238,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_floor(data As Dictionary)
+		Private Sub Evaluate_Floor(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -250,7 +250,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_greater(data As Dictionary)
+		Private Sub Evaluate_Greater(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
 		  
@@ -264,7 +264,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_greaterOrEqual(data As Dictionary)
+		Private Sub Evaluate_GreaterOrEqual(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
 		  
@@ -278,7 +278,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_matmul(data As Dictionary)
+		Private Sub Evaluate_MatMul(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var b As ONNX.Tensor
 		  
@@ -292,7 +292,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_relu(data As Dictionary)
+		Private Sub Evaluate_Relu(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -304,7 +304,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_sigmoid(data As Dictionary)
+		Private Sub Evaluate_Sigmoid(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
@@ -316,7 +316,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_softmax(data As Dictionary)
+		Private Sub Evaluate_Softmax(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var axis As Integer = -1
 		  
@@ -331,7 +331,7 @@ Protected Class Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Evaluate_tanh(data As Dictionary)
+		Private Sub Evaluate_Tanh(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  
 		  a = data.Value(mInputs(0))
