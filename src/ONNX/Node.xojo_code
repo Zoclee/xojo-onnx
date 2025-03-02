@@ -93,6 +93,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Max
 		    Evaluate_Max(data)
 		    
+		  case ONNX.OperatorEnum.Min
+		    Evaluate_Min(data)
+		    
 		  case ONNX.OperatorEnum.Relu
 		    Evaluate_Relu(data)
 		    
@@ -401,6 +404,20 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Max(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Min(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.Min(b)
 		  
 		  
 		End Sub

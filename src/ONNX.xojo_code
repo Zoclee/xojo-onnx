@@ -54,6 +54,7 @@ Protected Module ONNX
 		  LogicalOr
 		  MatMul
 		  Max
+		  Min
 		  Relu
 		  Sigmoid
 		  Softmax

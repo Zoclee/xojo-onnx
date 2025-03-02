@@ -927,6 +927,43 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Min(t As ONNX.Tensor) As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tData As MemoryBlock
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ONNX.ElementTypeEnum.FLOAT
+		    
+		    tData = t.Data
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      if mData.SingleValue(pos) < tData.SingleValue(pos) then
+		        resultData.SingleValue(pos) = mData.SingleValue(pos)
+		      else
+		        resultData.SingleValue(pos) = tData.SingleValue(pos)
+		      end if
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Relu() As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
