@@ -50,6 +50,7 @@ Protected Module ONNX
 		  LessOrEqual
 		  Log
 		  LogicalAnd
+		  LogicalNot
 		  MatMul
 		  Relu
 		  Sigmoid

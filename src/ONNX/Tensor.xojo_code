@@ -769,6 +769,37 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function LogicalNot() As ONNX.Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  
+		  select case mElementType
+		    
+		    // ***** BOOL *****************************************
+		    
+		  case ONNX.ElementTypeEnum.BOOL 
+		    
+		    resultData = new MemoryBlock(mData.Size)
+		    pos = 0
+		    while pos < mData.Size
+		      resultData.UInt8Value(pos) = (mData.UInt8Value(pos) + 1) mod 2
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(mElementType, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function MatMul(t As ONNX.Tensor) As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
