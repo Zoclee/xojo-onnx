@@ -84,6 +84,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.LogicalNot
 		    Evaluate_LogicalNot(data)
 		    
+		  case ONNX.OperatorEnum.LogicalOr
+		    Evaluate_LogicalOr(data)
+		    
 		  case ONNX.OperatorEnum.MatMul
 		    Evaluate_Matmul(data)
 		    
@@ -353,6 +356,20 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.LogicalNot()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_LogicalOr(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.LogicalOr(b)
 		  
 		  
 		End Sub

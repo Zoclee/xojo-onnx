@@ -51,6 +51,7 @@ Protected Module ONNX
 		  Log
 		  LogicalAnd
 		  LogicalNot
+		  LogicalOr
 		  MatMul
 		  Relu
 		  Sigmoid
