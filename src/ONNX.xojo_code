@@ -56,6 +56,7 @@ Protected Module ONNX
 		  Max
 		  Min
 		  Mul
+		  Neg
 		  Relu
 		  Sigmoid
 		  Softmax
