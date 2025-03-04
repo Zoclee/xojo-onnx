@@ -105,6 +105,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Pow
 		    Evaluate_Pow(data)
 		    
+		  case ONNX.OperatorEnum.Reciprocal
+		    Evaluate_Reciprocal(data)
+		    
 		  case ONNX.OperatorEnum.Relu
 		    Evaluate_Relu(data)
 		    
@@ -467,6 +470,18 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Pow(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Reciprocal(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Reciprocal()
 		  
 		  
 		End Sub

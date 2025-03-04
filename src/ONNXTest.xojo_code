@@ -58,6 +58,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Mul(results)
 		  Test_Tensor_Neg(results)
 		  Test_Tensor_Pow(results)
+		  Test_Tensor_Reciprocal(results)
 		  Test_Tensor_Relu(results)
 		  Test_Tensor_Sigmoid(results)
 		  Test_Tensor_Softmax(results)
@@ -826,6 +827,31 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Pow", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Reciprocal(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[3.34, 4.72], [-1.92, 9.21]]")
+		  t2 = t1.Reciprocal()
+		  
+		  if FloatEquals(t2.Value(0, 0), 0.29940120) or _
+		    FloatEquals(t2.Value(0, 1), 0.21186441) or _
+		    FloatEquals(t2.Value(1, 0), -0.52083333) or _
+		    FloatEquals(t2.Value(1, 1), 0.10857763) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Reciprocal", pass)
 		  
 		End Sub
 	#tag EndMethod
