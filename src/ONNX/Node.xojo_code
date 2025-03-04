@@ -117,6 +117,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Sign
 		    Evaluate_Sign(data)
 		    
+		  case ONNX.OperatorEnum.Sin
+		    Evaluate_Sin(data)
+		    
 		  case ONNX.OperatorEnum.Softmax
 		    Evaluate_Softmax(data)
 		    
@@ -521,6 +524,18 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Sign()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Sin(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Sin()
 		  
 		  
 		End Sub
