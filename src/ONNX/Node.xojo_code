@@ -102,6 +102,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Neg
 		    Evaluate_Neg(data)
 		    
+		  case ONNX.OperatorEnum.Pow
+		    Evaluate_Pow(data)
+		    
 		  case ONNX.OperatorEnum.Relu
 		    Evaluate_Relu(data)
 		    
@@ -450,6 +453,20 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Neg()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Pow(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.Pow(b)
 		  
 		  
 		End Sub
