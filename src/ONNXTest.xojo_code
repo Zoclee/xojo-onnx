@@ -63,6 +63,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Sigmoid(results)
 		  Test_Tensor_Sign(results)
 		  Test_Tensor_Sin(results)
+		  Test_Tensor_Sinh(results)
 		  Test_Tensor_Softmax(results)
 		  Test_Tensor_Tanh(results)
 		  
@@ -959,6 +960,30 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Sin", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Sinh(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, 1.0, -2.0]]")
+		  t2 = t1.Sinh()
+		  
+		  if FloatEquals(t2.Value(0, 0), 0.5210953) or _
+		    FloatEquals(t2.Value(0, 1), 1.1752012) or _
+		    FloatEquals(t2.Value(0, 2), -3.6268604) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Sinh", pass)
 		  
 		End Sub
 	#tag EndMethod
