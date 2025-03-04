@@ -126,6 +126,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Softmax
 		    Evaluate_Softmax(data)
 		    
+		  case ONNX.OperatorEnum.Sqrt
+		    Evaluate_Sqrt(data)
+		    
 		  case ONNX.OperatorEnum.Tanh
 		    Evaluate_Tanh(data)
 		    
@@ -566,6 +569,18 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Softmax(axis)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Sqrt(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  
+		  data.Value(mOutputs(0)) = a.Sqrt()
 		  
 		  
 		End Sub

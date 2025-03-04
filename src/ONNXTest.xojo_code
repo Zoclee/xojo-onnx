@@ -65,6 +65,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Sin(results)
 		  Test_Tensor_Sinh(results)
 		  Test_Tensor_Softmax(results)
+		  Test_Tensor_Sqrt(results)
 		  Test_Tensor_Tanh(results)
 		  
 		  return results
@@ -1042,6 +1043,31 @@ Protected Module ONNXTest
 		  RecordTestResult(results, "Tensor.Softmax", pass)
 		  
 		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Sqrt(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[3.34, 25.00], [36.00, 9.21]]")
+		  t2 = t1.Sqrt()
+		  
+		  if FloatEquals(t2.Value(0, 0), 1.8275666882) or _
+		    FloatEquals(t2.Value(0, 1), 5.0) or _
+		    FloatEquals(t2.Value(1, 0), 6.0) or _
+		    FloatEquals(t2.Value(1, 1), 3.0347981810) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Sqrt", pass)
 		  
 		End Sub
 	#tag EndMethod

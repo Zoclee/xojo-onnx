@@ -65,6 +65,7 @@ Protected Module ONNX
 		  Sin
 		  Sinh
 		  Softmax
+		  Sqrt
 		Tanh
 	#tag EndEnum
 
