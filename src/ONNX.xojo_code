@@ -61,6 +61,7 @@ Protected Module ONNX
 		  Reciprocal
 		  Relu
 		  Sigmoid
+		  Sign
 		  Softmax
 		Tanh
 	#tag EndEnum
