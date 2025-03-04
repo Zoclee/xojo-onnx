@@ -129,6 +129,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Sqrt
 		    Evaluate_Sqrt(data)
 		    
+		  case ONNX.OperatorEnum.Subtract
+		    Evaluate_Subtract(data)
+		    
 		  case ONNX.OperatorEnum.Tanh
 		    Evaluate_Tanh(data)
 		    
@@ -581,6 +584,20 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Sqrt()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Subtract(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var b As ONNX.Tensor
+		  
+		  a = data.Value(mInputs(0))
+		  b = data.Value(mInputs(1))
+		  
+		  data.Value(mOutputs(0)) = a.Subtract(b)
 		  
 		  
 		End Sub

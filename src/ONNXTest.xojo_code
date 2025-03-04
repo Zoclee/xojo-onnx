@@ -66,6 +66,7 @@ Protected Module ONNXTest
 		  Test_Tensor_Sinh(results)
 		  Test_Tensor_Softmax(results)
 		  Test_Tensor_Sqrt(results)
+		  Test_Tensor_Subtract(results)
 		  Test_Tensor_Tanh(results)
 		  
 		  return results
@@ -1068,6 +1069,35 @@ Protected Module ONNXTest
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Sqrt", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Test_Tensor_Subtract(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  Var t3 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [4, 5, 6]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3, 7], [3, 8, 2]]")
+		  t3 = t1.Subtract(t2)
+		  
+		  if FloatEquals(t3.Value(0, 0), -1) or _
+		    FloatEquals(t3.Value(0, 1), -1) or _
+		    FloatEquals(t3.Value(0, 2), -4) or _
+		    FloatEquals(t3.Value(1, 0), 1) or _
+		    FloatEquals(t3.Value(1, 1), -3) or _
+		    FloatEquals(t3.Value(1, 2), 4) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.Subtract", pass)
 		  
 		End Sub
 	#tag EndMethod
