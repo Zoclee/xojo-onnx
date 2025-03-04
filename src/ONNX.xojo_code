@@ -67,6 +67,7 @@ Protected Module ONNX
 		  Softmax
 		  Sqrt
 		  Subtract
+		  Tan
 		Tanh
 	#tag EndEnum
 
