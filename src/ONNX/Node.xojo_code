@@ -237,7 +237,7 @@ Protected Class Node
 		  
 		  a = data.Value(mInputs(0))
 		  
-		  data.Value(mOutputs(0)) = a.Atan()
+		  data.Value(mOutputs(0)) = a.Atanh()
 		  
 		  
 		End Sub

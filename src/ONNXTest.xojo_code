@@ -77,6 +77,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Asin(results)
 		  Node.Test_Evaluate_Asinh(results)
 		  Node.Test_Evaluate_Atan(results)
+		  Node.Test_Evaluate_Atanh(results)
 		  
 		  return results
 		  
