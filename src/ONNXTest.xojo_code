@@ -71,6 +71,7 @@ Protected Module ONNXTest
 		  Tensor.Test_Tanh(results)
 		  
 		  Node.Test_Evaluate_Abs(results)
+		  Node.Test_Evaluate_Acos(results)
 		  
 		  return results
 		  

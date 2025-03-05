@@ -4,7 +4,6 @@ Protected Module Node
 		Protected Sub Test_Evaluate_Abs(results As JSONItem)
 		  Var pass As Boolean
 		  Var node As ONNX.Node
-		  Var A As ONNX.Tensor
 		  Var X As ONNX.Tensor
 		  Var data As new Dictionary()
 		  
@@ -26,6 +25,33 @@ Protected Module Node
 		  end if
 		  
 		  RecordTestResult(results, "Node.Evaluate_Abs", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Acos(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Acos, array("A"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 1.22387943) or _
+		    FloatEquals(X.Value(0, 1), 0.76699401) or _
+		    FloatEquals(X.Value(1, 0), 2.73887681) or _
+		    FloatEquals(X.Value(1, 1), 1.35922137) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Acos", pass)
 		  
 		End Sub
 	#tag EndMethod
