@@ -74,6 +74,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Acos(results)
 		  Node.Test_Evaluate_Acosh(results)
 		  Node.Test_Evaluate_Add(results)
+		  Node.Test_Evaluate_Asin(results)
 		  
 		  return results
 		  
