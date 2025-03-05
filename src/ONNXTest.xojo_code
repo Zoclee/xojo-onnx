@@ -70,6 +70,8 @@ Protected Module ONNXTest
 		  Tensor.Test_Tan(results)
 		  Tensor.Test_Tanh(results)
 		  
+		  Node.Test_Evaluate_Abs(results)
+		  
 		  return results
 		  
 		End Function
