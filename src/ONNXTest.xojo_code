@@ -85,6 +85,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Floor(results)
 		  Node.Test_Evaluate_Greater(results)
 		  Node.Test_Evaluate_GreaterOrEqual(results)
+		  Node.Test_Evaluate_Less(results)
 		  
 		  return results
 		  

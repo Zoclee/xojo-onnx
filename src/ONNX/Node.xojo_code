@@ -69,6 +69,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Greater
 		    Evaluate_Greater(data)
 		    
+		  case ONNX.OperatorEnum.GreaterOrEqual
+		    Evaluate_GreaterOrEqual(data)
+		    
 		  case ONNX.OperatorEnum.Less
 		    Evaluate_Less(data)
 		    
