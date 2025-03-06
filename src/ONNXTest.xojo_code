@@ -83,6 +83,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Cosh(results)
 		  Node.Test_Evaluate_Exp(results)
 		  Node.Test_Evaluate_Floor(results)
+		  Node.Test_Evaluate_Greater(results)
 		  
 		  return results
 		  
