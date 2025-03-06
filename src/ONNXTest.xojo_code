@@ -79,6 +79,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Atan(results)
 		  Node.Test_Evaluate_Atanh(results)
 		  Node.Test_Evaluate_Ceil(results)
+		  Node.Test_Evaluate_Cos(results)
 		  
 		  return results
 		  
