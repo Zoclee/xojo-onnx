@@ -658,6 +658,37 @@ Protected Module Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Max(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [2, 8, 4]]")
+		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[4, 2, 4], [7, 5, 3]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Max, array("A", "B"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 4) or _
+		    FloatEquals(X.Value(0, 1), 2) or _
+		    FloatEquals(X.Value(0, 2), 4) or _
+		    FloatEquals(X.Value(1, 0), 7) or _
+		    FloatEquals(X.Value(1, 1), 8) or _
+		    FloatEquals(X.Value(1, 2), 4) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Max", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty

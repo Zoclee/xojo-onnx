@@ -92,6 +92,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_LogicalNot(results)
 		  Node.Test_Evaluate_LogicalOr(results)
 		  Node.Test_Evaluate_MatMul(results)
+		  Node.Test_Evaluate_Max(results)
 		  
 		  return results
 		  
