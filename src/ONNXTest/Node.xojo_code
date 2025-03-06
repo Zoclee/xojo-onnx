@@ -622,6 +622,42 @@ Protected Module Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_MatMul(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3], [4, 1], [5, 2]]")
+		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[5, 2, 1], [1, 7, 3]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.MatMul, array("A", "B"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if (X.Shape(0) <> 3) or _
+		    (X.Shape(1) <> 3) or _
+		    FloatEquals(X.Value(0, 0), 13) or _
+		    FloatEquals(X.Value(0, 1), 25) or _
+		    FloatEquals(X.Value(0, 2), 11) or _
+		    FloatEquals(X.Value(1, 0), 21) or _
+		    FloatEquals(X.Value(1, 1), 15) or _
+		    FloatEquals(X.Value(1, 2), 7) or _
+		    FloatEquals(X.Value(2, 0), 27) or _
+		    FloatEquals(X.Value(2, 1), 24) or _
+		    FloatEquals(X.Value(2, 2), 11) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_MatMul", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
