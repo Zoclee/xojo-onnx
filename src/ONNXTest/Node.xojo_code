@@ -504,6 +504,35 @@ Protected Module Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Log(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[3.34, 4.72], [1.92, 9.21]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Abs, array("A"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 1.20597080699) or _
+		    FloatEquals(X.Value(0, 1), 1.5518087996) or _
+		    FloatEquals(X.Value(1, 0), 0.65232518604) or _
+		    FloatEquals(X.Value(1, 1), 2.22028985027) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Log", pass)
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
