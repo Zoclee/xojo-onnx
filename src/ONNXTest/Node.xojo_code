@@ -294,7 +294,7 @@ Protected Module Node
 		  pass = true
 		  
 		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, 1.0, -2.0]]")
-		  node = new ONNX.Node(ONNX.OperatorEnum.Cos, array("A"), array("X"))
+		  node = new ONNX.Node(ONNX.OperatorEnum.Cosh, array("A"), array("X"))
 		  node.Evaluate(data)
 		  
 		  X = data.Value("X")
@@ -306,6 +306,34 @@ Protected Module Node
 		  end if
 		  
 		  RecordTestResult(results, "Node.Evaluate_Cosh", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Exp(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Exp, array("A"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 1.404947590564) or _
+		    FloatEquals(X.Value(0, 1), 2.054433210644) or _
+		    FloatEquals(X.Value(1, 0), 0.398519041085) or _
+		    FloatEquals(X.Value(1, 1), 1.233678059957) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Exp", pass)
 		  
 		  
 		End Sub
