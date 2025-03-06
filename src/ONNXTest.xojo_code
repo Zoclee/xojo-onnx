@@ -87,6 +87,8 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_GreaterOrEqual(results)
 		  Node.Test_Evaluate_Less(results)
 		  Node.Test_Evaluate_LessOrEqual(results)
+		  Node.Test_Evaluate_Log(results)
+		  Node.Test_Evaluate_LogicalAnd(results)
 		  
 		  return results
 		  

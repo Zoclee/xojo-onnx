@@ -514,7 +514,7 @@ Protected Module Node
 		  pass = true
 		  
 		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[3.34, 4.72], [1.92, 9.21]]")
-		  node = new ONNX.Node(ONNX.OperatorEnum.Abs, array("A"), array("X"))
+		  node = new ONNX.Node(ONNX.OperatorEnum.Log, array("A"), array("X"))
 		  node.Evaluate(data)
 		  
 		  X = data.Value("X")
@@ -528,6 +528,36 @@ Protected Module Node
 		  
 		  RecordTestResult(results, "Node.Evaluate_Log", pass)
 		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_LogicalAnd(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, false], [true, false]]")
+		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, true], [false, false]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.LogicalAnd, array("A", "B"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if (X.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (X.Value(0, 0) <> true) or _
+		    (X.Value(0, 1) <> false) or _
+		    (X.Value(1, 0) <> false) or _
+		    (X.Value(1, 1) <> false) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_LogicalAnd", pass)
 		  
 		  
 		End Sub
