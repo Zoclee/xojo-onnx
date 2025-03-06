@@ -228,6 +228,34 @@ Protected Module Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Ceil(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.34, 0.72], [-0.92, 0.21]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Ceil, array("A"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 1.0) or _
+		    FloatEquals(X.Value(0, 1), 1.0) or _
+		    FloatEquals(X.Value(1, 0), 0.0) or _
+		    FloatEquals(X.Value(1, 1), 1.0) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Ceil", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
