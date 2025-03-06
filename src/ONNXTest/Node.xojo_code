@@ -592,6 +592,36 @@ Protected Module Node
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_LogicalOr(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, false], [false, true]]")
+		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[false, true], [false, false]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.LogicalOr, array("A", "B"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if (X.ElementType <> ONNX.ElementTypeEnum.BOOL) or _
+		    (X.Value(0, 0) <> true) or _
+		    (X.Value(0, 1) <> true) or _
+		    (X.Value(1, 0) <> false) or _
+		    (X.Value(1, 1) <> true) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_LogicalOr", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
