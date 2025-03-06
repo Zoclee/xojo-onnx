@@ -700,7 +700,7 @@ Protected Module Node
 		  
 		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [2, 8, 4]]")
 		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[4, 2, 4], [7, 5, 3]]")
-		  node = new ONNX.Node(ONNX.OperatorEnum.Max, array("A", "B"), array("X"))
+		  node = new ONNX.Node(ONNX.OperatorEnum.Min, array("A", "B"), array("X"))
 		  node.Evaluate(data)
 		  
 		  X = data.Value("X")
@@ -716,6 +716,36 @@ Protected Module Node
 		  
 		  RecordTestResult(results, "Node.Evaluate_Min", pass)
 		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_Mul(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [4, 5, 6]]")
+		  data.Value("B") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3, 7], [3, 8, 2]]")
+		  node = new ONNX.Node(ONNX.OperatorEnum.Mul, array("A", "B"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 2) or _
+		    FloatEquals(X.Value(0, 1), 6) or _
+		    FloatEquals(X.Value(0, 2), 21) or _
+		    FloatEquals(X.Value(1, 0), 12) or _
+		    FloatEquals(X.Value(1, 1), 40) or _
+		    FloatEquals(X.Value(1, 2), 12) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_Mul", pass)
 		  
 		End Sub
 	#tag EndMethod
