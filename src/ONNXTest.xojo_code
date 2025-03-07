@@ -95,6 +95,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Max(results)
 		  Node.Test_Evaluate_Min(results)
 		  Node.Test_Evaluate_Mul(results)
+		  Node.Test_Evaluate_Neg(results)
 		  
 		  return results
 		  
