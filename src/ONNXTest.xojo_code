@@ -106,6 +106,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Softmax(results)
 		  Node.Test_Evaluate_Sqrt(results)
 		  Node.Test_Evaluate_Subtract(results)
+		  Node.Test_Evaluate_Tan(results)
 		  
 		  return results
 		  
