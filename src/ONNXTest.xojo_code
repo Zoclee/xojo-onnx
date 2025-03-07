@@ -101,6 +101,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Relu(results)
 		  Node.Test_Evaluate_Sigmoid(results)
 		  Node.Test_Evaluate_Sign(results)
+		  Node.Test_Evaluate_Sin(results)
 		  
 		  return results
 		  
