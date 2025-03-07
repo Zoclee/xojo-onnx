@@ -102,6 +102,8 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Sigmoid(results)
 		  Node.Test_Evaluate_Sign(results)
 		  Node.Test_Evaluate_Sin(results)
+		  Node.Test_Evaluate_Sinh(results)
+		  Node.Test_Evaluate_Softmax(results)
 		  
 		  return results
 		  

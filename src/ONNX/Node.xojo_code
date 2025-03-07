@@ -573,7 +573,7 @@ Protected Class Node
 		  Var a As ONNX.Tensor
 		  Var axis As Integer = -1
 		  
-		  break // TODO: get axis attribute
+		  // TODO: get axis attribute
 		  
 		  a = data.Value(mInputs(0))
 		  
