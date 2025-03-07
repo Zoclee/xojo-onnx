@@ -99,6 +99,7 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Pow(results)
 		  Node.Test_Evaluate_Reciprocal(results)
 		  Node.Test_Evaluate_Relu(results)
+		  Node.Test_Evaluate_Sigmoid(results)
 		  
 		  return results
 		  
