@@ -30,8 +30,6 @@ Protected Module Graph
 		  
 		  X = outData.Value("O1")
 		  
-		  System.DebugLog X.ToString()
-		  
 		  if (outData.KeyCount <> 1) or _
 		    not outData.HasKey("O1") or _ 
 		    FloatEquals(X.Value(0), 1) or _
@@ -77,8 +75,6 @@ Protected Module Graph
 		  outData = graph.Evaluate(inData)
 		  
 		  X = outData.Value("O1")
-		  
-		  System.DebugLog X.ToString()
 		  
 		  if (outData.KeyCount <> 1) or _
 		    not outData.HasKey("O1") or _ 
