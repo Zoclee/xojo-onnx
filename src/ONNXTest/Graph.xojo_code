@@ -32,7 +32,9 @@ Protected Module Graph
 		  
 		  System.DebugLog X.ToString()
 		  
-		  if FloatEquals(X.Value(0), 1) or _
+		  if (outData.KeyCount <> 1) or _
+		    not outData.HasKey("O1") or _ 
+		    FloatEquals(X.Value(0), 1) or _
 		    FloatEquals(X.Value(1), 7) or _
 		    FloatEquals(X.Value(2), 4) then
 		    pass = false
@@ -78,7 +80,9 @@ Protected Module Graph
 		  
 		  System.DebugLog X.ToString()
 		  
-		  if FloatEquals(X.Value(0), 5) or _
+		  if (outData.KeyCount <> 1) or _
+		    not outData.HasKey("O1") or _ 
+		    FloatEquals(X.Value(0), 5) or _
 		    FloatEquals(X.Value(1), -14) or _
 		    FloatEquals(X.Value(2), 16) then
 		    pass = false
