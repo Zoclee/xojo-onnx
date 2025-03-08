@@ -43,7 +43,7 @@ Protected Module ONNXTest
 	#tag Method, Flags = &h21
 		Private Sub TestGraph(results As JSONItem)
 		  Graph.Test_Evaluate1Node(results)
-		  
+		  Graph.Test_Evaluate2Nodes(results)
 		  
 		End Sub
 	#tag EndMethod
