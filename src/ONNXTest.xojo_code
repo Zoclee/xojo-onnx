@@ -31,45 +31,25 @@ Protected Module ONNXTest
 		  results.Value("success") = true
 		  results.Value("log") = new JSONItem("[]")
 		  
-		  Tensor.Test_Abs(results)
-		  Tensor.Test_Acos(results)
-		  Tensor.Test_Acosh(results)
-		  Tensor.Test_Add(results)
-		  Tensor.Test_Asin(results)
-		  Tensor.Test_Asinh(results)
-		  Tensor.Test_Atan(results)
-		  Tensor.Test_Atanh(results)
-		  Tensor.Test_Ceil(results)
-		  Tensor.Test_Cos(results)
-		  Tensor.Test_Cosh(results)
-		  Tensor.Test_Exp(results)
-		  Tensor.Test_Floor(results)
-		  Tensor.Test_Greater(results)
-		  Tensor.Test_GreaterOrEqual(results)
-		  Tensor.Test_Less(results)
-		  Tensor.Test_LessOrEqual(results)
-		  Tensor.Test_Log(results)
-		  Tensor.Test_LogicalAnd(results)
-		  Tensor.Test_LogicalNot(results)
-		  Tensor.Test_LogicalOr(results)
-		  Tensor.Test_MatMul(results)
-		  Tensor.Test_Max(results)
-		  Tensor.Test_Min(results)
-		  Tensor.Test_Mul(results)
-		  Tensor.Test_Neg(results)
-		  Tensor.Test_Pow(results)
-		  Tensor.Test_Reciprocal(results)
-		  Tensor.Test_Relu(results)
-		  Tensor.Test_Sigmoid(results)
-		  Tensor.Test_Sign(results)
-		  Tensor.Test_Sin(results)
-		  Tensor.Test_Sinh(results)
-		  Tensor.Test_Softmax(results)
-		  Tensor.Test_Sqrt(results)
-		  Tensor.Test_Subtract(results)
-		  Tensor.Test_Tan(results)
-		  Tensor.Test_Tanh(results)
+		  TestTensor(results)
+		  TestNode(results)
+		  TestGraph(results)
 		  
+		  return results
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub TestGraph(results As JSONItem)
+		  Graph.Test_InferSingleNode(results)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub TestNode(results As JSONItem)
 		  Node.Test_Evaluate_Abs(results)
 		  Node.Test_Evaluate_Acos(results)
 		  Node.Test_Evaluate_Acosh(results)
@@ -109,9 +89,51 @@ Protected Module ONNXTest
 		  Node.Test_Evaluate_Tan(results)
 		  Node.Test_Evaluate_Tanh(results)
 		  
-		  return results
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub TestTensor(results As JSONItem)
+		  Tensor.Test_Abs(results)
+		  Tensor.Test_Acos(results)
+		  Tensor.Test_Acosh(results)
+		  Tensor.Test_Add(results)
+		  Tensor.Test_Asin(results)
+		  Tensor.Test_Asinh(results)
+		  Tensor.Test_Atan(results)
+		  Tensor.Test_Atanh(results)
+		  Tensor.Test_Ceil(results)
+		  Tensor.Test_Cos(results)
+		  Tensor.Test_Cosh(results)
+		  Tensor.Test_Exp(results)
+		  Tensor.Test_Floor(results)
+		  Tensor.Test_Greater(results)
+		  Tensor.Test_GreaterOrEqual(results)
+		  Tensor.Test_Less(results)
+		  Tensor.Test_LessOrEqual(results)
+		  Tensor.Test_Log(results)
+		  Tensor.Test_LogicalAnd(results)
+		  Tensor.Test_LogicalNot(results)
+		  Tensor.Test_LogicalOr(results)
+		  Tensor.Test_MatMul(results)
+		  Tensor.Test_Max(results)
+		  Tensor.Test_Min(results)
+		  Tensor.Test_Mul(results)
+		  Tensor.Test_Neg(results)
+		  Tensor.Test_Pow(results)
+		  Tensor.Test_Reciprocal(results)
+		  Tensor.Test_Relu(results)
+		  Tensor.Test_Sigmoid(results)
+		  Tensor.Test_Sign(results)
+		  Tensor.Test_Sin(results)
+		  Tensor.Test_Sinh(results)
+		  Tensor.Test_Softmax(results)
+		  Tensor.Test_Sqrt(results)
+		  Tensor.Test_Subtract(results)
+		  Tensor.Test_Tan(results)
+		  Tensor.Test_Tanh(results)
 		  
-		End Function
+		End Sub
 	#tag EndMethod
 
 

@@ -87,17 +87,32 @@ Protected Module Tensor
 		  
 		  // test 1
 		  
-		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [4, 5, 6]]")
-		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3, 7], [3, 8, 2]]")
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[1, 2, 3]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[2, 3, 7]")
 		  t3 = t1.Add(t2)
-		  
-		  if FloatEquals(t3.Value(0, 0), 3) or _
-		    FloatEquals(t3.Value(0, 1), 5) or _
-		    FloatEquals(t3.Value(0, 2), 10) or _
-		    FloatEquals(t3.Value(1, 0), 7) or _
-		    FloatEquals(t3.Value(1, 1), 13) or _
-		    FloatEquals(t3.Value(1, 2), 8) then
+		  if FloatEquals(t3.Value(0), 3) or _
+		    FloatEquals(t3.Value(1), 5) or _
+		    FloatEquals(t3.Value(2), 10) then
 		    pass = false
+		  end if
+		  
+		  // test 2
+		  
+		  if pass then
+		    
+		    t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1, 2, 3], [4, 5, 6]]")
+		    t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2, 3, 7], [3, 8, 2]]")
+		    t3 = t1.Add(t2)
+		    
+		    if FloatEquals(t3.Value(0, 0), 3) or _
+		      FloatEquals(t3.Value(0, 1), 5) or _
+		      FloatEquals(t3.Value(0, 2), 10) or _
+		      FloatEquals(t3.Value(1, 0), 7) or _
+		      FloatEquals(t3.Value(1, 1), 13) or _
+		      FloatEquals(t3.Value(1, 2), 8) then
+		      pass = false
+		    end if
+		    
 		  end if
 		  
 		  RecordTestResult(results, "Tensor.Add", pass)

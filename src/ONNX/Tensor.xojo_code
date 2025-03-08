@@ -325,11 +325,11 @@ Protected Class Tensor
 		  SetElementSize()
 		  
 		  item = new JSONItem(initData)
-		  Redim mShape(-1)
-		  mShape.Add item.Count // rows
-		  mShape.Add item.Child(0).Count // columns
-		  
-		  mData = new MemoryBlock(mShape(0) * mShape(1) * mElementSize)
+		  DetermineShape(item)
+		  //Redim mShape(-1)
+		  //mShape.Add item.Count // rows
+		  //mShape.Add item.Child(0).Count // columns
+		  //mData = new MemoryBlock(mShape(0) * mShape(1) * mElementSize)
 		  
 		  // initialize data
 		  
@@ -354,18 +354,36 @@ Protected Class Tensor
 		    wend
 		    
 		  case ONNX.ElementTypeEnum.FLOAT
-		    pos = 0
-		    i = 0
-		    while i < mShape(0)
-		      row = item.Child(i)
-		      j = 0
-		      while j < mShape(1)
-		        mData.SingleValue(pos) = row.Value(j)
+		    
+		    select case mShape.Count
+		    case 1
+		      pos = 0
+		      i = 0
+		      while i < mShape(0)
+		        mData.SingleValue(pos) = item.Value(i)
 		        pos = pos + mElementSize
-		        j = j + 1 
+		        i = i + 1
 		      wend
-		      i = i + 1
-		    wend
+		      
+		    case 2
+		      pos = 0
+		      i = 0
+		      while i < mShape(0)
+		        row = item.Child(i)
+		        j = 0
+		        while j < mShape(1)
+		          mData.SingleValue(pos) = row.Value(j)
+		          pos = pos + mElementSize
+		          j = j + 1 
+		        wend
+		        i = i + 1
+		      wend
+		      
+		    case else
+		      break // TODO: revise following code to support "infinite" tensor dimensions
+		      
+		    end select
+		    
 		    
 		  case else
 		    break // TODO: initialize data
@@ -456,6 +474,34 @@ Protected Class Tensor
 		  return result
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub DetermineShape(item As JSONItem)
+		  Dim nextVar As Variant
+		  Dim nextItem As JSONItem
+		  Var i As Integer
+		  Var elementCount As Integer
+		  
+		  Redim mShape(-1)
+		  
+		  nextVar = item
+		  while nextVar IsA JSONItem
+		    nextItem = nextVar
+		    mShape.Add nextItem.Count
+		    nextVar = nextItem.ValueAt(0)
+		  wend
+		  
+		  elementCount = 1
+		  i = 0
+		  while i < mShape.Count
+		    elementCount = elementCount * mShape(i)
+		    i = i + 1
+		  wend
+		  
+		  mData = new MemoryBlock(elementCount * mElementSize)
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1527,22 +1573,42 @@ Protected Class Tensor
 		    // ***** FLOAT *****************************************
 		    
 		  case ONNX.ElementTypeEnum.FLOAT
-		    pos = 0
 		    
-		    i = 0
-		    while i < mShape(0) // rows
+		    select case mShape.Count
 		      
+		    case 1
 		      Redim rowStr(-1)
-		      j = 0
-		      while j < mShape(1) // columns
+		      pos = 0
+		      i = 0
+		      while i < mShape(0) 
 		        rowStr.Append Str(mData.SingleValue(pos), "-############0.0#######")
 		        pos = pos + mElementSize
-		        j = j + 1
-		      wend
+		        i = i + 1
+		      wend 
 		      s.Append "[" + Join(rowStr, ",") + "]"
 		      
-		      i = i + 1
-		    wend
+		    case 2
+		      
+		      pos = 0
+		      i = 0
+		      while i < mShape(0) // rows
+		        
+		        Redim rowStr(-1)
+		        j = 0
+		        while j < mShape(1) // columns
+		          rowStr.Append Str(mData.SingleValue(pos), "-############0.0#######")
+		          pos = pos + mElementSize
+		          j = j + 1
+		        wend
+		        s.Append "[" + Join(rowStr, ",") + "]"
+		        
+		        i = i + 1
+		      wend
+		      
+		    case else
+		      break // TODO: implement ToString for dimension
+		      
+		    end select
 		    
 		  case else
 		    break
@@ -1554,25 +1620,76 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Value(row As Integer, column As Integer) As Variant
+		Function Value(ParamArray index As Integer) As Variant
 		  var result As Variant
 		  
-		  select case mElementType 
+		  if index.Count = mShape.Count then
 		    
-		  case ONNX.ElementTypeEnum.BOOL
-		    if mData.UInt8Value((row * mShape(1) + column) * mElementSize) = 0 then
-		      result = false
-		    else
-		      result = true
-		    end if
+		    select case index.Count
+		      
+		    case 1
+		      select case mElementType 
+		        
+		      case ONNX.ElementTypeEnum.BOOL
+		        if mData.UInt8Value(index(0) * mElementSize) = 0 then
+		          result = false
+		        else
+		          result = true
+		        end if
+		        
+		      case ONNX.ElementTypeEnum.FLOAT
+		        result = mData.SingleValue(index(0) * mElementSize)
+		        
+		      else
+		        break
+		        
+		      end select
+		      
+		    case 2
+		      select case mElementType 
+		        
+		      case ONNX.ElementTypeEnum.BOOL
+		        if mData.UInt8Value((index(0) * mShape(1) + index(1)) * mElementSize) = 0 then
+		          result = false
+		        else
+		          result = true
+		        end if
+		        
+		      case ONNX.ElementTypeEnum.FLOAT
+		        result = mData.SingleValue((index(0) * mShape(1) + index(1)) * mElementSize)
+		        
+		      else
+		        break
+		        
+		      end select
+		      
+		    case else
+		      break // TODO: implement shape value lookup
+		      
+		    end select
 		    
-		  case ONNX.ElementTypeEnum.FLOAT
-		    result = mData.SingleValue((row * mShape(1) + column) * mElementSize)
+		    //select case mElementType 
+		    //
+		    //case ONNX.ElementTypeEnum.BOOL
+		    //if mData.UInt8Value((row * mShape(1) + column) * mElementSize) = 0 then
+		    //result = false
+		    //else
+		    //result = true
+		    //end if
+		    //
+		    //case ONNX.ElementTypeEnum.FLOAT
+		    //result = mData.SingleValue((row * mShape(1) + column) * mElementSize)
+		    //
+		    //else
+		    //break
+		    //
+		    //end select
 		    
 		  else
-		    break
 		    
-		  end select
+		    break // ERROR: index array does not match shape array
+		    
+		  end if
 		  
 		  return result
 		  
