@@ -44,6 +44,7 @@ Protected Module ONNXTest
 		Private Sub TestGraph(results As JSONItem)
 		  Graph.Test_Evaluate1Node(results)
 		  Graph.Test_Evaluate2Nodes(results)
+		  Graph.Test_Evaluate2Outputs(results)
 		  
 		End Sub
 	#tag EndMethod
