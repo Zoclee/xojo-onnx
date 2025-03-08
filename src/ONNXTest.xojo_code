@@ -34,6 +34,7 @@ Protected Module ONNXTest
 		  TestTensor(results)
 		  TestNode(results)
 		  TestGraph(results)
+		  TestModel(results)
 		  
 		  return results
 		  
@@ -45,6 +46,13 @@ Protected Module ONNXTest
 		  Graph.Test_Evaluate1Node(results)
 		  Graph.Test_Evaluate2Nodes(results)
 		  Graph.Test_Evaluate2Outputs(results)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub TestModel(results As JSONItem)
+		  Model.Test_Add(results)
 		  
 		End Sub
 	#tag EndMethod

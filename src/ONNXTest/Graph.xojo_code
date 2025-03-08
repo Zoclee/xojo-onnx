@@ -125,7 +125,7 @@ Protected Module Graph
 		  outData = graph.Evaluate(inData)
 		  
 		  
-		  if (out.KeyCount = 2) and _
+		  if (outData.KeyCount = 2) and _
 		    outData.HasKey("O1") and _
 		    outData.HasKey("O2") then
 		    
@@ -134,7 +134,10 @@ Protected Module Graph
 		    
 		    if FloatEquals(X1.Value(0), 5) or _
 		      FloatEquals(X1.Value(1), -14) or _
-		      FloatEquals(X1.Value(2), 16) then
+		      FloatEquals(X1.Value(2), 16) or _
+		      FloatEquals(X2.Value(0), 0) or _
+		      FloatEquals(X2.Value(1), -17) or _
+		      FloatEquals(X2.Value(2), 17)then
 		      pass = false
 		    end if
 		    
