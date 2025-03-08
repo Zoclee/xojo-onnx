@@ -1,7 +1,7 @@
 #tag Module
 Protected Module Graph
 	#tag Method, Flags = &h1
-		Protected Sub Test_InferSingleNode(results As JSONItem)
+		Protected Sub Test_Evaluate1Node(results As JSONItem)
 		  Var pass As Boolean
 		  Var I1 As ONNX.Tensor
 		  Var I2 As ONNX.Tensor
