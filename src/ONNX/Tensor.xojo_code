@@ -555,6 +555,12 @@ Protected Class Tensor
 		      
 		      if result then
 		        result = (mData = compTensor.Data)
+		        pos = 0
+		         while pos < mData.Siz and result
+		          result = e
+		          pos = pos + mElementSize
+		        wend
+		        
 		      end if
 		      
 		    end if
