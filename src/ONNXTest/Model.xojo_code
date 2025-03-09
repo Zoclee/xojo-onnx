@@ -31,7 +31,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Abs", pass)
+		  RecordTestResult(results, "Model: test/models/operators/abs.onnx", pass)
 		  
 		  
 		End Sub
@@ -68,7 +68,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Acos", pass)
+		  RecordTestResult(results, "Model: test/models/operators/acos.onnx", pass)
 		  
 		  
 		End Sub
@@ -105,7 +105,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Acosh", pass)
+		  RecordTestResult(results, "Model: test/models/operators/acosh.onnx", pass)
 		  
 		  
 		End Sub
@@ -144,7 +144,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Add", pass)
+		  RecordTestResult(results, "Model: test/models/operators/add.onnx", pass)
 		  
 		  
 		End Sub
@@ -181,7 +181,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Asin", pass)
+		  RecordTestResult(results, "Model: test/models/operators/asin.onnx", pass)
 		  
 		  
 		End Sub
@@ -218,7 +218,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator_Asinh", pass)
+		  RecordTestResult(results, "Model: test/models/operators/asinh.onnx", pass)
 		  
 		  
 		End Sub
