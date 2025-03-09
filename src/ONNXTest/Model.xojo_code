@@ -244,10 +244,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.57079633) or _
-		      FloatEquals(X1.Value(0, 1), 0.52359878) or _
+		    if FloatEquals(X1.Value(0, 0), 0.78539816) or _
+		      FloatEquals(X1.Value(0, 1), 0.46364761) or _
 		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), -0.52359878) then
+		      FloatEquals(X1.Value(1, 1), -0.46364761) then
 		      pass = false
 		    end if
 		    
@@ -256,6 +256,43 @@ Protected Module Model
 		  end if
 		  
 		  RecordTestResult(results, "Model: test/models/operators/atan.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_Atanh(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("atanh.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.5, -0.5], [0.1, -0.1]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    if FloatEquals(X1.Value(0, 0), 0.54930614) or _
+		      FloatEquals(X1.Value(0, 1), -0.54930614) or _
+		      FloatEquals(X1.Value(1, 0), 0.10033535) or _
+		      FloatEquals(X1.Value(1, 1), -0.10033535) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/atanh.onnx", pass)
 		  
 		  
 		End Sub
