@@ -67,6 +67,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Atanh(results)
 		  Model.Test_Operator_Ceil(results)
 		  Model.Test_Operator_Cos(results)
+		  Model.Test_Operator_Cosh(results)
 		  
 		End Sub
 	#tag EndMethod

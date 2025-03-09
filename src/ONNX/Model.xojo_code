@@ -72,6 +72,8 @@ Protected Class Model
 		      operator = OperatorEnum.Ceil
 		    case "Cos"
 		      operator = OperatorEnum.Cos
+		    case "Cosh"
+		      operator = OperatorEnum.Cosh
 		    case else
 		      break // unknown operator
 		    end select
