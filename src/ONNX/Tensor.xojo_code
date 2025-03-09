@@ -522,6 +522,50 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function Equals(elementType As ONNX.ElementTypeEnum, data As String) As Boolean
+		  Var compTensor As ONNX.Tensor
+		  
+		  compTensor = new ONNX.Tensor(elementType, data)
+		  
+		  return Equals(compTensor)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Equals(compTensor As ONNX.Tensor) As Boolean
+		  Var result As Boolean 
+		  Var i As Integer
+		  Var compShape() As Integer
+		  
+		  result = false
+		  
+		  if mElementType = compTensor.ElementType then
+		    
+		    compShape = compTensor.Shape
+		    if mShape.Count = compShape.Count then
+		      
+		      result = true
+		      
+		      i = 0
+		      while i < mShape.Count and result
+		        result = (mShape(i) = compShape(i))
+		        i = i + 1
+		      wend
+		      
+		      if result then
+		        result = (mData = compTensor.Data)
+		      end if
+		      
+		    end if
+		    
+		  end if
+		  
+		  return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Exp() As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
@@ -1193,6 +1237,13 @@ Protected Class Tensor
 		  end select
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Shape() As Integer()
+		  return mShape
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

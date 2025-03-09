@@ -20,20 +20,13 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    
-		    if FloatEquals(X1.Value(0, 0), 3.2) or _
-		      FloatEquals(X1.Value(0, 1), 4.5) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.8) then
-		      pass = false
-		    end if
+		    pass = X1.Equals(ONNX.ElementTypeEnum.FLOAT, "[[3.2, 4.5], [0.0, 1.8]]")
 		    
 		  else
 		    pass = false
 		  end if
 		  
 		  RecordTestResult(results, "Model.Abs", pass)
-		  
 		  
 		End Sub
 	#tag EndMethod
