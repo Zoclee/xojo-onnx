@@ -12,8 +12,8 @@ Protected Module Model
 		  
 		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("add.onnx"))
 		  
-		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[5, 3, -1]")
-		  input.Value("input2") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[-4, 4, 5]")
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.42, 0.87], [0.15, 0.93]]")
+		  input.Value("input2") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.38, 0.29], [0.76, 0.51]]")
 		  
 		  output = model.Infer(input)
 		  
@@ -22,9 +22,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0), 1) or _
-		      FloatEquals(X1.Value(1), 7) or _
-		      FloatEquals(X1.Value(2), 4) then
+		    if FloatEquals(X1.Value(0, 0), 0.80) or _
+		      FloatEquals(X1.Value(0, 1), 1.16) or _
+		      FloatEquals(X1.Value(1, 0), 0.91) or _
+		      FloatEquals(X1.Value(1, 1), 1.44) then
 		      pass = false
 		    end if
 		    
