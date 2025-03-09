@@ -52,6 +52,8 @@ Protected Class Model
 		    nodeItem = graphItem.Child("node").ChildAt(i)
 		    
 		    select case nodeItem.Value("opType")
+		    case "Abs"
+		      operator = OperatorEnum.Abs
 		    case "Add"
 		      operator = OperatorEnum.Add
 		    case else
