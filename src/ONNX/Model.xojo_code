@@ -54,6 +54,8 @@ Protected Class Model
 		    select case nodeItem.Value("opType")
 		    case "Abs"
 		      operator = OperatorEnum.Abs
+		    case "Acos"
+		      operator = OperatorEnum.Acos
 		    case "Add"
 		      operator = OperatorEnum.Add
 		    case else

@@ -58,6 +58,7 @@ Protected Module ONNXTest
 	#tag Method, Flags = &h21
 		Private Sub TestModel(results As JSONItem)
 		  Model.Test_Operator_Abs(results)
+		  Model.Test_Operator_Acos(results)
 		  Model.Test_Operator_Add(results)
 		  
 		End Sub
