@@ -60,6 +60,8 @@ Protected Class Model
 		      operator = OperatorEnum.Acosh
 		    case "Add"
 		      operator = OperatorEnum.Add
+		    case "Asin"
+		      operator = OperatorEnum.Asin
 		    case else
 		      break // unknown operator
 		    end select

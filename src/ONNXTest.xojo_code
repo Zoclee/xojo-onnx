@@ -61,6 +61,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Acos(results)
 		  Model.Test_Operator_Acosh(results)
 		  Model.Test_Operator_Add(results)
+		  Model.Test_Operator_Asin(results)
 		  
 		End Sub
 	#tag EndMethod
