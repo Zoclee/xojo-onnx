@@ -24,7 +24,7 @@ graph = helper.make_graph(
 )
 
 # Create the model
-model = helper.make_model(graph, producer_name='abs')
+model = helper.make_model(graph, producer_name='xojo-onnx')
 
 # Save the model to a file
 onnx.save(model, 'abs.onnx')
