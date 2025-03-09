@@ -68,6 +68,8 @@ Protected Class Model
 		      operator = OperatorEnum.Atan
 		    case "Atanh"
 		      operator = OperatorEnum.Atanh
+		    case "Ceil"
+		      operator = OperatorEnum.Ceil
 		    case else
 		      break // unknown operator
 		    end select
