@@ -59,6 +59,7 @@ Protected Module ONNXTest
 		Private Sub TestModel(results As JSONItem)
 		  Model.Test_Operator_Abs(results)
 		  Model.Test_Operator_Acos(results)
+		  Model.Test_Operator_Acosh(results)
 		  Model.Test_Operator_Add(results)
 		  
 		End Sub

@@ -56,6 +56,8 @@ Protected Class Model
 		      operator = OperatorEnum.Abs
 		    case "Acos"
 		      operator = OperatorEnum.Acos
+		    case "Acosh"
+		      operator = OperatorEnum.Acosh
 		    case "Add"
 		      operator = OperatorEnum.Add
 		    case else
