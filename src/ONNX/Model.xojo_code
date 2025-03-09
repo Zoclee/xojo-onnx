@@ -64,6 +64,8 @@ Protected Class Model
 		      operator = OperatorEnum.Asin
 		    case "Asinh"
 		      operator = OperatorEnum.Asinh
+		    case "Atan"
+		      operator = OperatorEnum.Atan
 		    case else
 		      break // unknown operator
 		    end select
