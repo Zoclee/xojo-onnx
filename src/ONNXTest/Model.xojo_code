@@ -1,7 +1,7 @@
 #tag Module
 Protected Module Model
 	#tag Method, Flags = &h1
-		Protected Sub Test_Abs(results As JSONItem)
+		Protected Sub Test_Operator_Abs(results As JSONItem)
 		  Var pass As Boolean
 		  Var input As new Dictionary()
 		  Var output As Dictionary
@@ -31,14 +31,14 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Abs", pass)
+		  RecordTestResult(results, "Model.Operator.Abs", pass)
 		  
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub Test_Add(results As JSONItem)
+		Protected Sub Test_Operator_Add(results As JSONItem)
 		  Var pass As Boolean
 		  Var input As new Dictionary()
 		  Var output As Dictionary
@@ -70,7 +70,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Add", pass)
+		  RecordTestResult(results, "Model.Operator.Add", pass)
 		  
 		  
 		End Sub
