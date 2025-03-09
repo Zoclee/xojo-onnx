@@ -31,7 +31,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator.Abs", pass)
+		  RecordTestResult(results, "Model.Operator_Abs", pass)
 		  
 		  
 		End Sub
@@ -70,7 +70,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model.Operator.Add", pass)
+		  RecordTestResult(results, "Model.Operator_Add", pass)
 		  
 		  
 		End Sub
