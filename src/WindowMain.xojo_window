@@ -213,6 +213,7 @@ End
 		Sub Pressed()
 		  Var results As JSONItem
 		  Var i As Integer
+		  Var testTime As Double
 		  
 		  TextOutput.Text = ""
 		  
@@ -230,7 +231,9 @@ End
 		  
 		  TextOutput.AddText EndOfLine
 		  
-		  TextOutput.AddText "Completed " + Str(results.Value("tests")) + " tests." + EndOfLine
+		  testTime = (results.Value("endtime") - results.Value("starttime")) / 1000
+		  
+		  TextOutput.AddText "Completed " + Str(results.Value("tests")) + " tests in " + Str(testTime, "#######0.00") + "ms" + EndOfLine
 		  if results.Value("pass") = 1 then
 		    TextOutput.AddText "1 test passed." + EndOfLine
 		  else

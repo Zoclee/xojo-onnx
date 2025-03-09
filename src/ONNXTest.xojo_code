@@ -25,6 +25,9 @@ Protected Module ONNXTest
 		Function RunTests() As JSONItem
 		  Var results As new JSONItem("{}")
 		  
+		  results.Value("starttime") = System.Microseconds()
+		  results.Value("endtime") = 0
+		  results.Value("endtime") = 0
 		  results.Value("tests") = 0
 		  results.Value("pass") = 0
 		  results.Value("fail") = 0
@@ -35,6 +38,8 @@ Protected Module ONNXTest
 		  TestNode(results)
 		  TestGraph(results)
 		  TestModel(results)
+		  
+		  results.Value("endtime") = System.Microseconds()
 		  
 		  return results
 		  
