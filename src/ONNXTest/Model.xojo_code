@@ -651,7 +651,7 @@ Protected Module Model
 		  
 		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("log.onnx"))
 		  
-		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 2.0], [2.718281828459045, 10.0]]")
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 2.0], [2.71828183, 10.0]]")
 		  
 		  output = model.Infer(input)
 		  
