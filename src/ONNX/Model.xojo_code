@@ -78,6 +78,8 @@ Protected Class Model
 		      operator = OperatorEnum.Exp
 		    case "Floor"
 		      operator = OperatorEnum.Floor
+		    case "Greater"
+		      operator = OperatorEnum.Greater
 		    case else
 		      break // unknown operator
 		    end select
