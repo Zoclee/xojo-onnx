@@ -71,6 +71,8 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Exp(results)
 		  Model.Test_Operator_Floor(results)
 		  Model.Test_Operator_Greater(results)
+		  Model.Test_Operator_GreaterOrEqual(results)
+		  
 		  
 		End Sub
 	#tag EndMethod
