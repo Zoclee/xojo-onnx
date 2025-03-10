@@ -68,6 +68,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Ceil(results)
 		  Model.Test_Operator_Cos(results)
 		  Model.Test_Operator_Cosh(results)
+		  Model.Test_Operator_Exp(results)
 		  
 		End Sub
 	#tag EndMethod
