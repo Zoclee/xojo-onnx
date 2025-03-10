@@ -73,6 +73,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Greater(results)
 		  Model.Test_Operator_GreaterOrEqual(results)
 		  Model.Test_Operator_Less(results)
+		  Model.Test_Operator_LessOrEqual(results)
 		  
 		End Sub
 	#tag EndMethod
