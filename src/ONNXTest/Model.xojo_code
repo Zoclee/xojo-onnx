@@ -430,9 +430,9 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.54308063) or _
-		      FloatEquals(X1.Value(1, 0), 1.54308063) or _
-		      FloatEquals(X1.Value(1, 1), 3.76219569) then
+		      FloatEquals(X1.Value(0, 1), 2.71828183) or _
+		      FloatEquals(X1.Value(1, 0), 0.36787944) or _
+		      FloatEquals(X1.Value(1, 1), 7.38905610) then
 		      pass = false
 		    end if
 		    
@@ -441,6 +441,43 @@ Protected Module Model
 		  end if
 		  
 		  RecordTestResult(results, "Model: test/models/operators/exp.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_Floor(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("floor.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.7, -0.2], [3.9, -2.8]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    if FloatEquals(X1.Value(0, 0), 1.0) or _
+		      FloatEquals(X1.Value(0, 1), -1.0) or _
+		      FloatEquals(X1.Value(1, 0), 3.0) or _
+		      FloatEquals(X1.Value(1, 1), -3.0) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/floor.onnx", pass)
 		  
 		  
 		End Sub
