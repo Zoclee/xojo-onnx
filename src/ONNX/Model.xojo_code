@@ -82,6 +82,8 @@ Protected Class Model
 		      operator = OperatorEnum.Greater
 		    case "GreaterOrEqual"
 		      operator = OperatorEnum.GreaterOrEqual
+		    case "Less"
+		      operator = OperatorEnum.Less
 		    case else
 		      break // unknown operator
 		    end select
