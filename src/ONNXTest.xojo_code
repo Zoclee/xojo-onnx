@@ -78,7 +78,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_LogicalAnd(results)
 		  Model.Test_Operator_LogicalNot(results)
 		  Model.Test_Operator_LogicalOr(results)
-		  
+		  Model.Test_Operator_MatMul(results)
 		End Sub
 	#tag EndMethod
 

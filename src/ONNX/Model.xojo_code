@@ -90,6 +90,8 @@ Protected Class Model
 		      operator = OperatorEnum.LessOrEqual
 		    case "Log"
 		      operator = OperatorEnum.Log
+		    case "MatMul"
+		      operator = OperatorEnum.MatMul
 		    case "Not"
 		      operator = OperatorEnum.LogicalNot
 		    case "Or"
