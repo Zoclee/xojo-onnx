@@ -82,6 +82,8 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Max(results)
 		  Model.Test_Operator_Min(results)
 		  Model.Test_Operator_Mul(results)
+		  Model.Test_Operator_Neg(results)
+		  
 		End Sub
 	#tag EndMethod
 
