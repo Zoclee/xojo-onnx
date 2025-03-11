@@ -75,7 +75,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Less(results)
 		  Model.Test_Operator_LessOrEqual(results)
 		  Model.Test_Operator_Log(results)
-		  
+		  Model.Test_Operator_LogicalAnd(results)
 		End Sub
 	#tag EndMethod
 

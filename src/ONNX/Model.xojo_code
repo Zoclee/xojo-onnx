@@ -60,6 +60,8 @@ Protected Class Model
 		      operator = OperatorEnum.Acosh
 		    case "Add"
 		      operator = OperatorEnum.Add
+		    case "And"
+		      operator = OperatorEnum.LogicalAnd
 		    case "Asin"
 		      operator = OperatorEnum.Asin
 		    case "Asinh"
