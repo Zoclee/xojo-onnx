@@ -92,6 +92,8 @@ Protected Class Model
 		      operator = OperatorEnum.Log
 		    case "MatMul"
 		      operator = OperatorEnum.MatMul
+		    case "Max"
+		      operator = OperatorEnum.Max
 		    case "Not"
 		      operator = OperatorEnum.LogicalNot
 		    case "Or"
