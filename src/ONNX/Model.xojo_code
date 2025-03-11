@@ -102,6 +102,8 @@ Protected Class Model
 		      operator = OperatorEnum.LogicalNot
 		    case "Neg"
 		      operator = OperatorEnum.Neg
+		    case "Pow"
+		      operator = OperatorEnum.Pow
 		    case "Or"
 		      operator = OperatorEnum.LogicalOr
 		    case else
