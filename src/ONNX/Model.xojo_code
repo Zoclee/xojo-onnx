@@ -96,6 +96,8 @@ Protected Class Model
 		      operator = OperatorEnum.Max
 		    case "Min"
 		      operator = OperatorEnum.Min
+		    case "Mul"
+		      operator = OperatorEnum.Mul
 		    case "Not"
 		      operator = OperatorEnum.LogicalNot
 		    case "Or"
