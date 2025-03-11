@@ -92,6 +92,8 @@ Protected Class Model
 		      operator = OperatorEnum.Log
 		    case "Not"
 		      operator = OperatorEnum.LogicalNot
+		    case "Or"
+		      operator = OperatorEnum.LogicalOr
 		    case else
 		      break // unknown operator
 		    end select

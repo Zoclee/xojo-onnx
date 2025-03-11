@@ -740,7 +740,7 @@ Protected Module Model
 		    if FloatEquals(X1.Value(0, 0), 0.0) or _
 		      FloatEquals(X1.Value(0, 1), 1.0) or _
 		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		      FloatEquals(X1.Value(1, 1), 0.0) then
 		      pass = false
 		    end if
 		    
@@ -749,6 +749,45 @@ Protected Module Model
 		  end if
 		  
 		  RecordTestResult(results, "Model: test/models/operators/not.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_LogicalOr(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("or.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[true, false], [true, false]]")
+		  input.Value("input2") = new ONNX.Tensor(ONNX.ElementTypeEnum.BOOL, "[[false, false], [true, true]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    
+		    if FloatEquals(X1.Value(0, 0), 1.0) or _
+		      FloatEquals(X1.Value(0, 1), 0.0) or _
+		      FloatEquals(X1.Value(1, 0), 1.0) or _
+		      FloatEquals(X1.Value(1, 1), 1.0) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/or.onnx", pass)
 		  
 		  
 		End Sub
