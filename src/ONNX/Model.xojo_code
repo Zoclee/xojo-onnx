@@ -102,10 +102,12 @@ Protected Class Model
 		      operator = OperatorEnum.LogicalNot
 		    case "Neg"
 		      operator = OperatorEnum.Neg
-		    case "Pow"
-		      operator = OperatorEnum.Pow
 		    case "Or"
 		      operator = OperatorEnum.LogicalOr
+		    case "Pow"
+		      operator = OperatorEnum.Pow
+		    case "Reciprocal"
+		      operator = OperatorEnum.Reciprocal
 		    case else
 		      break // unknown operator
 		    end select
