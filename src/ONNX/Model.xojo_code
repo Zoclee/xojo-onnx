@@ -90,6 +90,8 @@ Protected Class Model
 		      operator = OperatorEnum.LessOrEqual
 		    case "Log"
 		      operator = OperatorEnum.Log
+		    case "Not"
+		      operator = OperatorEnum.LogicalNot
 		    case else
 		      break // unknown operator
 		    end select
