@@ -80,6 +80,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_LogicalOr(results)
 		  Model.Test_Operator_MatMul(results)
 		  Model.Test_Operator_Max(results)
+		  Model.Test_Operator_Min(results)
 		  
 		End Sub
 	#tag EndMethod
