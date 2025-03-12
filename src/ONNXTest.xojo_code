@@ -94,6 +94,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Sqrt(results)
 		  Model.Test_Operator_Subtract(results)
 		  Model.Test_Operator_Tan(results)
+		  Model.Test_Operator_Tanh(results)
 		  
 		End Sub
 	#tag EndMethod
