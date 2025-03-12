@@ -110,6 +110,8 @@ Protected Class Model
 		      operator = OperatorEnum.Reciprocal
 		    case "Relu"
 		      operator = OperatorEnum.Relu
+		    case "Sigmoid"
+		      operator = OperatorEnum.Sigmoid
 		    case else
 		      break // unknown operator
 		    end select

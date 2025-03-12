@@ -86,6 +86,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Pow(results)
 		  Model.Test_Operator_Reciprocal(results)
 		  Model.Test_Operator_Relu(results)
+		  Model.Test_Operator_Sigmoid(results)
 		  
 		End Sub
 	#tag EndMethod
