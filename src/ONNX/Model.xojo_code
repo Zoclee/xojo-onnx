@@ -122,6 +122,8 @@ Protected Class Model
 		      operator = OperatorEnum.Softmax
 		    case "Sqrt"
 		      operator = OperatorEnum.Sqrt
+		    case "Subtract"
+		      operator = OperatorEnum.Subtract
 		    case else
 		      break // unknown operator
 		    end select

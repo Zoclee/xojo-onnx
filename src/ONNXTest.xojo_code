@@ -92,7 +92,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Sinh(results)
 		  Model.Test_Operator_Softmax(results)
 		  Model.Test_Operator_Sqrt(results)
-		  
+		  Model.Test_Operator_Subtract(results)
 		  
 		  
 		End Sub
