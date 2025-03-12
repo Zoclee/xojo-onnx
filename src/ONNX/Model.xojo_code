@@ -124,6 +124,8 @@ Protected Class Model
 		      operator = OperatorEnum.Sqrt
 		    case "Subtract"
 		      operator = OperatorEnum.Subtract
+		    case "Tan"
+		      operator = OperatorEnum.Tan
 		    case else
 		      break // unknown operator
 		    end select
