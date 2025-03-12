@@ -1114,7 +1114,45 @@ Protected Module Model
 		  
 		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("sigmoid.onnx"))
 		  
-		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, -2.0], [3.5, -4.5]]")
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, -2.0], [3.0, -4.0]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    
+		    if FloatEquals(X1.Value(0, 0), 0.73105858) or _
+		      FloatEquals(X1.Value(0, 1), 0.11920292) or _
+		      FloatEquals(X1.Value(1, 0), 0.95257413) or _
+		      FloatEquals(X1.Value(1, 1), 0.01798621) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/sigmoid.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_Sign(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("sign.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.5, -2.0], [0.0, 3.0]]")
 		  
 		  output = model.Infer(input)
 		  
@@ -1124,9 +1162,9 @@ Protected Module Model
 		    X1 = output.Value("output1")
 		    
 		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 3.5) or _
-		      FloatEquals(X1.Value(1, 1), 0.0) then
+		      FloatEquals(X1.Value(0, 1), -1.0) or _
+		      FloatEquals(X1.Value(1, 0), 0.0) or _
+		      FloatEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -1134,7 +1172,7 @@ Protected Module Model
 		    pass = false
 		  end if
 		  
-		  RecordTestResult(results, "Model: test/models/operators/sigmoid.onnx", pass)
+		  RecordTestResult(results, "Model: test/models/operators/sign.onnx", pass)
 		  
 		  
 		End Sub

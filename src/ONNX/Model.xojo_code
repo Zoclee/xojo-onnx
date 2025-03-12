@@ -112,6 +112,8 @@ Protected Class Model
 		      operator = OperatorEnum.Relu
 		    case "Sigmoid"
 		      operator = OperatorEnum.Sigmoid
+		    case "Sign"
+		      operator = OperatorEnum.Sign
 		    case else
 		      break // unknown operator
 		    end select
