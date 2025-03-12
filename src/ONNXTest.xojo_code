@@ -90,8 +90,7 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Sign(results)
 		  Model.Test_Operator_Sin(results)
 		  Model.Test_Operator_Sinh(results)
-		  
-		  
+		  Model.Test_Operator_Softmax(results)
 		End Sub
 	#tag EndMethod
 

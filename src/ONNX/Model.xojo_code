@@ -118,6 +118,8 @@ Protected Class Model
 		      operator = OperatorEnum.Sin
 		    case "Sinh"
 		      operator = OperatorEnum.Sinh
+		    case "Softmax"
+		      operator = OperatorEnum.Softmax
 		    case else
 		      break // unknown operator
 		    end select

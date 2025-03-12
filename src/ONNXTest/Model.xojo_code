@@ -1254,6 +1254,46 @@ Protected Module Model
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_Softmax(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("softmax.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 2.0, 3.0], [2.0, 4.0, 6.0]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    
+		    if FloatEquals(X1.Value(0, 0), 0.09003057) or _
+		      FloatEquals(X1.Value(0, 1), 0.24472847) or _
+		      FloatEquals(X1.Value(0, 2), 0.66524096) or _
+		      FloatEquals(X1.Value(1, 0), 0.01587624) or _
+		      FloatEquals(X1.Value(1, 1), 0.11731043) or _
+		      FloatEquals(X1.Value(1, 2), 0.86681336) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/softmax.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
