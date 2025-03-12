@@ -89,6 +89,9 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Sigmoid(results)
 		  Model.Test_Operator_Sign(results)
 		  Model.Test_Operator_Sin(results)
+		  Model.Test_Operator_Sinh(results)
+		  
+		  
 		End Sub
 	#tag EndMethod
 
