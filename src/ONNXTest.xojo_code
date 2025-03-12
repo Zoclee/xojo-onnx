@@ -91,6 +91,10 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Sin(results)
 		  Model.Test_Operator_Sinh(results)
 		  Model.Test_Operator_Softmax(results)
+		  Model.Test_Operator_Sqrt(results)
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
