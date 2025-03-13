@@ -492,6 +492,10 @@ Protected Class Tensor
 		    nextVar = nextItem.ValueAt(0)
 		  wend
 		  
+		  if mShape.Count > 2 then
+		    break // TODO: implement support for tensors with 3 or higher dimensions
+		  end if
+		  
 		  elementCount = 1
 		  i = 0
 		  while i < mShape.Count
