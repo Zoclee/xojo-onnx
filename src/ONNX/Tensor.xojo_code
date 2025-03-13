@@ -1353,7 +1353,7 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Softmax(axis As Integer) As Tensor
+		Function Softmax(axis As Integer = -1) As Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
 		  Var pos As UInt64
@@ -1369,8 +1369,6 @@ Protected Class Tensor
 		  case ElementTypeEnum.FLOAT
 		    
 		    resultData = new MemoryBlock(mData.Size)
-		    
-		    // TODO: implement support for tensors of ranks higher than 2
 		    
 		    if (axis = 0) then
 		      
@@ -1391,6 +1389,7 @@ Protected Class Tensor
 		        while row < mShape(0)
 		          pos = (row * mShape(1) + col) * mElementSize
 		          resultData.SingleValue(pos) = Pow(ONNX.E, mData.SingleValue(pos)) / singleTotal
+		          System.DebugLog Str(resultData.SingleValue(pos))
 		          row = row + 1
 		        wend
 		        
@@ -1424,7 +1423,7 @@ Protected Class Tensor
 		      
 		    else
 		      
-		      break // TODO: higher tensor ranks
+		      break // TODO: implement support for tensors of ranks higher than 2
 		      
 		    end if
 		    

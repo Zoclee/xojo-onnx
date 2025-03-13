@@ -20,6 +20,35 @@ Protected Class Node
 		    i = i + 1
 		  wend
 		  
+		  mAttributes = new Dictionary()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(initOperator As ONNX.OperatorEnum, initInputs() As String, initOutputs() As String, initAttributes As Dictionary)
+		  Var i As Integer
+		  
+		  mOperator = initOperator
+		  
+		  Redim mInputs(-1)
+		  i = 0
+		  while i < initInputs.Count
+		    mInputs.Add initInputs(i)
+		    i = i + 1
+		  wend
+		  
+		  Redim mOutputs(-1)
+		  i = 0
+		  while i < initOutputs.Count
+		    mOutputs.Add initOutputs(i)
+		    i = i + 1
+		  wend
+		  
+		  mAttributes = initAttributes
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -572,8 +601,14 @@ Protected Class Node
 		Private Sub Evaluate_Softmax(data As Dictionary)
 		  Var a As ONNX.Tensor
 		  Var axis As Integer = -1
+		  Var attr As ONNX.Attribute
 		  
-		  // TODO: get axis attribute
+		  // get axis attribute
+		  
+		  if mAttributes.HasKey("axis") then
+		    attr = mAttributes.Value("axis")
+		    axis = attr.Value
+		  end if
 		  
 		  a = data.Value(mInputs(0))
 		  
@@ -633,6 +668,10 @@ Protected Class Node
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private mAttributes As Dictionary
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mInputs() As String

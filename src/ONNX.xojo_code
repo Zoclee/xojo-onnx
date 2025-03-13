@@ -4,6 +4,19 @@ Protected Module ONNX
 	#tag EndConstant
 
 
+	#tag Enum, Name = AttributeTypeEnum, Type = Integer, Flags = &h0
+		FLOAT = 1
+		  INT = 2
+		  STRING = 3
+		  TENSOR = 4
+		  GRAPH = 5
+		  FLOATS = 6
+		  INTS = 7
+		  STRINGS = 8
+		  TENSORS = 9
+		GRAPHS = 10
+	#tag EndEnum
+
 	#tag Enum, Name = ElementTypeEnum, Type = Integer, Flags = &h0
 		FLOAT=1
 		  UINT8 = 2

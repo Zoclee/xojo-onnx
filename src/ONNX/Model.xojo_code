@@ -42,6 +42,9 @@ Protected Class Model
 		  Var j As Integer
 		  Var tensorItem As JSONItem
 		  Var tensor As ONNX.Tensor
+		  Var attribs As Dictionary
+		  Var attribItem As JSONItem
+		  Var attr As ONNX.Attribute
 		  
 		  modelItem = Protobuf.DecodeFile(schema, "ModelProto", onnxFile)
 		  graphItem = modelItem.Child("graph")
@@ -146,7 +149,31 @@ Protected Class Model
 		      j = j + 1
 		    wend 
 		    
-		    node = new ONNX.Node(operator, nodeInputs, nodeOutputs)
+		    attribs = new Dictionary()
+		    if nodeItem.HasKey("attribute") then
+		      j = 0
+		      while j < nodeItem.Child("attribute").Count
+		        
+		        attribItem = nodeItem.Child("attribute").ChildAt(j)
+		        attr = new ONNX.Attribute()
+		        
+		        select case attribItem.Value("type")
+		          
+		        case "INT"
+		          attr.Type = ONNX.AttributeTypeEnum.INT
+		          attr.Value = attribItem.Value("i")
+		          attribs.Value(attribItem.Value("name")) = attr
+		          
+		        case else
+		          break // TODO: implement type
+		          
+		        end select
+		        j = j + 1
+		        
+		      wend 
+		    end if
+		    
+		    node = new ONNX.Node(operator, nodeInputs, nodeOutputs, attribs)
 		    nodes.Add node
 		    i = i + 1
 		  wend 
