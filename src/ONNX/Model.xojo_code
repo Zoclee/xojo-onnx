@@ -40,11 +40,14 @@ Protected Class Model
 		  Var node As ONNX.Node
 		  Var i As Integer
 		  Var j As Integer
+		  Var k As Integer
 		  Var tensorItem As JSONItem
 		  Var tensor As ONNX.Tensor
 		  Var attribs As Dictionary
 		  Var attribItem As JSONItem
 		  Var attr As ONNX.Attribute
+		  Var shape() As Integer
+		  Var elementType As ONNX.ElementTypeEnum
 		  
 		  modelItem = Protobuf.DecodeFile(schema, "ModelProto", onnxFile)
 		  graphItem = modelItem.Child("graph")
@@ -75,6 +78,8 @@ Protected Class Model
 		      operator = OperatorEnum.Atanh
 		    case "Ceil"
 		      operator = OperatorEnum.Ceil
+		    case "Constant"
+		      operator = OperatorEnum.Constant
 		    case "Cos"
 		      operator = OperatorEnum.Cos
 		    case "Cosh"
@@ -136,18 +141,22 @@ Protected Class Model
 		    end select
 		    
 		    Redim nodeInputs(-1)
-		    j = 0
-		    while j < nodeItem.Child("input").Count
-		      nodeInputs.Add nodeItem.Child("input").ValueAt(j)
-		      j = j + 1
-		    wend 
+		    if nodeItem.HasKey("input") then
+		      j = 0
+		      while j < nodeItem.Child("input").Count
+		        nodeInputs.Add nodeItem.Child("input").ValueAt(j)
+		        j = j + 1
+		      wend 
+		    end if
 		    
 		    Redim nodeOutputs(-1)
-		    j = 0
-		    while j < nodeItem.Child("output").Count
-		      nodeOutputs.Add nodeItem.Child("output").ValueAt(j)
-		      j = j + 1
-		    wend 
+		    if nodeItem.HasKey("output") then
+		      j = 0
+		      while j < nodeItem.Child("output").Count
+		        nodeOutputs.Add nodeItem.Child("output").ValueAt(j)
+		        j = j + 1
+		      wend 
+		    end if
 		    
 		    attribs = new Dictionary()
 		    if nodeItem.HasKey("attribute") then
@@ -162,6 +171,20 @@ Protected Class Model
 		        case "INT"
 		          attr.Type = ONNX.AttributeTypeEnum.INT
 		          attr.Value = attribItem.Value("i")
+		          attribs.Value(attribItem.Value("name")) = attr
+		          
+		        case "TENSOR"
+		          attr.Type = ONNX.AttributeTypeEnum.TENSOR
+		          
+		          Redim shape(-1)
+		          k = 0
+		          while k < attribItem.Child("t").Child("dims").Count
+		            shape.Add attribItem.Child("t").Child("dims").ValueAt(k)
+		            k = k + 1
+		          wend
+		          elementType = attribItem.Child("t").Value("dataType")
+		          tensor = new ONNX.Tensor(elementType, shape, DecodeBase64(attribItem.Child("t").Value("rawData")))
+		          attr.Value = tensor
 		          attribs.Value(attribItem.Value("name")) = attr
 		          
 		        case else

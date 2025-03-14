@@ -1,6 +1,44 @@
 #tag Module
 Protected Module Model
 	#tag Method, Flags = &h1
+		Protected Sub Test_General_MatMul_Constant(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("general").Child("matmul_constant.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[1.0, 2.0], [3.0, 4.0]]")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    
+		    if FloatEquals(X1.Value(0, 0), 7.0) or _
+		      FloatEquals(X1.Value(0, 1), 10.0) or _
+		      FloatEquals(X1.Value(1, 0), 15.0) or _
+		      FloatEquals(X1.Value(1, 1), 22.0) then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/general/matmul_constant.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_Operator_Abs(results As JSONItem)
 		  Var pass As Boolean
 		  Var input As new Dictionary()

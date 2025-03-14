@@ -53,6 +53,7 @@ Protected Module ONNX
 		  Atan
 		  Atanh
 		  Ceil
+		  Constant
 		  Cos
 		  Cosh
 		  Exp

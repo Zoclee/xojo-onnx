@@ -83,6 +83,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Ceil
 		    Evaluate_Ceil(data)
 		    
+		  case ONNX.OperatorEnum.Constant
+		    Evaluate_Constant(data)
+		    
 		  case ONNX.OperatorEnum.Cos
 		    Evaluate_Cos(data)
 		    
@@ -282,6 +285,18 @@ Protected Class Node
 		  a = data.Value(mInputs(0))
 		  
 		  data.Value(mOutputs(0)) = a.Ceil()
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_Constant(data As Dictionary)
+		  Var attr As ONNX.Attribute
+		  
+		  attr = mAttributes.Value("value")
+		  
+		  data.Value(mOutputs(0)) = attr.Value
 		  
 		  
 		End Sub

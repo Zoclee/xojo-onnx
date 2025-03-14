@@ -97,6 +97,8 @@ Protected Module ONNXTest
 		  Model.Test_Operator_Tan(results)
 		  Model.Test_Operator_Tanh(results)
 		  
+		  Model.Test_General_MatMul_Constant(results)
+		  
 		End Sub
 	#tag EndMethod
 
