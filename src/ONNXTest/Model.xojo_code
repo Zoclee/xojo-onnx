@@ -1065,6 +1065,50 @@ Protected Module Model
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_QuantizeLinear(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var X1 As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("quantizelinear.onnx"))
+		  
+		  input.Value("input1") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[0.0, 2.5, -1.5, 3.8]")
+		  input.Value("scale") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.1")
+		  input.Value("zero_point") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "128")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("output1") then
+		    
+		    X1 = output.Value("output1")
+		    System.DebugLog Str(X1.Value(0))
+		    System.DebugLog Str(X1.Value(1))
+		    System.DebugLog Str(X1.Value(2))
+		    System.DebugLog Str(X1.Value(3))
+		    
+		    if X1.Value(0) <> 128 or _
+		      X1.Value(1) <> 153 or _
+		      X1.Value(2) <> 113 or _
+		      X1.Value(3) <> 166 then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/quantizelinear.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_Operator_Reciprocal(results As JSONItem)
 		  Var pass As Boolean
 		  Var input As new Dictionary()

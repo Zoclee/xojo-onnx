@@ -1,5 +1,30 @@
 #tag Module
 Protected Module ONNX
+	#tag Method, Flags = &h1
+		Protected Function SaturateUInt8(value As Single) As UInt8
+		  Var roundedValue As Single
+		  Var result As UInt8
+		  
+		  roundedValue = Round(value)
+		  
+		  if Abs(value - roundedValue) = 0.5 then
+		    If roundedValue Mod 2 <> 0 Then
+		      roundedValue = roundedValue - 1 ' Move to the lower even integer
+		    End If
+		  end if
+		  
+		  if roundedValue >= 255 then
+		    result = 255
+		  else
+		    result = roundedValue
+		  end if
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+
 	#tag Constant, Name = E, Type = Double, Dynamic = False, Default = \"2.7182818284590452354", Scope = Public
 	#tag EndConstant
 
@@ -72,6 +97,7 @@ Protected Module ONNX
 		  Mul
 		  Neg
 		  Pow
+		  QuantizeLinear
 		  Reciprocal
 		  Relu
 		  Sigmoid

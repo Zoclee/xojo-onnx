@@ -140,6 +140,9 @@ Protected Class Node
 		  case ONNX.OperatorEnum.Pow
 		    Evaluate_Pow(data)
 		    
+		  case ONNX.OperatorEnum.QuantizeLinear
+		    Evaluate_QuantizeLinear(data)
+		    
 		  case ONNX.OperatorEnum.Reciprocal
 		    Evaluate_Reciprocal(data)
 		    
@@ -535,6 +538,30 @@ Protected Class Node
 		  b = data.Value(mInputs(1))
 		  
 		  data.Value(mOutputs(0)) = a.Pow(b)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Evaluate_QuantizeLinear(data As Dictionary)
+		  Var a As ONNX.Tensor
+		  Var zeroPoint As ONNX.Tensor
+		  Var scale As ONNX.Tensor
+		  //Var attr As ONNX.Attribute
+		  
+		  // get axis attribute
+		  
+		  //if mAttributes.HasKey("axis") then
+		  //attr = mAttributes.Value("axis")
+		  //axis = attr.Value
+		  //end if
+		  
+		  a = data.Value(mInputs(0))
+		  scale = data.Value(mInputs(1))
+		  zeroPoint = data.Value(mInputs(2))
+		  
+		  data.Value(mOutputs(0)) = a.QuantizeLinear(scale, zeroPoint)
 		  
 		  
 		End Sub

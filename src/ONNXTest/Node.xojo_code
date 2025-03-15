@@ -809,6 +809,35 @@ Protected Module Node
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Sub Test_Evaluate_QuantizeLinear(results As JSONItem)
+		  Var pass As Boolean
+		  Var node As ONNX.Node
+		  Var X As ONNX.Tensor
+		  Var data As new Dictionary()
+		  
+		  pass = true
+		  
+		  data.Value("A") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[0.0, 2.0], [4.0, 6.0]]")
+		  data.Value("SCALE") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "2.0")
+		  data.Value("ZEROPOINT") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "1")
+		  node = new ONNX.Node(ONNX.OperatorEnum.QuantizeLinear, array("A", "SCALE", "ZEROPOINT"), array("X"))
+		  node.Evaluate(data)
+		  
+		  X = data.Value("X")
+		  
+		  if FloatEquals(X.Value(0, 0), 1) or _
+		    FloatEquals(X.Value(0, 1), 2) or _
+		    FloatEquals(X.Value(1, 0), 3) or _
+		    FloatEquals(X.Value(1, 1), 4) then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Node.Evaluate_QuantizeLinear", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_Evaluate_Reciprocal(results As JSONItem)
 		  Var pass As Boolean
 		  Var node As ONNX.Node

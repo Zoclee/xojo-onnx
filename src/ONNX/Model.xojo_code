@@ -114,6 +114,8 @@ Protected Class Model
 		      operator = OperatorEnum.LogicalOr
 		    case "Pow"
 		      operator = OperatorEnum.Pow
+		    case "QuantizeLinear"
+		      operator = OperatorEnum.QuantizeLinear
 		    case "Reciprocal"
 		      operator = OperatorEnum.Reciprocal
 		    case "Relu"

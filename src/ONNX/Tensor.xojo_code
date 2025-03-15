@@ -324,72 +324,89 @@ Protected Class Tensor
 		  mElementType = initElementType
 		  SetElementSize()
 		  
-		  item = new JSONItem(initData)
-		  DetermineShape(item)
-		  //Redim mShape(-1)
-		  //mShape.Add item.Count // rows
-		  //mShape.Add item.Child(0).Count // columns
-		  //mData = new MemoryBlock(mShape(0) * mShape(1) * mElementSize)
-		  
-		  // initialize data
-		  
-		  select case mElementType
+		  if IsNumeric(initData) then
 		    
-		  case ONNX.ElementTypeEnum.BOOL
-		    pos = 0
-		    i = 0
-		    while i < mShape(0)
-		      row = item.Child(i)
-		      j = 0
-		      while j < mShape(1)
-		        if row.ValueAt(j) then
-		          mData.UInt8Value(pos) = 1
-		        else
-		          mData.UInt8Value(pos) = 0
-		        end if
-		        pos = pos + mElementSize
-		        j = j + 1 
-		      wend
-		      i = i + 1
-		    wend
+		    Redim mShape(-1)
+		    mData = new MemoryBlock(mElementSize)
 		    
-		  case ONNX.ElementTypeEnum.FLOAT
-		    
-		    select case mShape.Count
-		    case 1
-		      pos = 0
-		      i = 0
-		      while i < mShape(0)
-		        mData.SingleValue(pos) = item.Value(i)
-		        pos = pos + mElementSize
-		        i = i + 1
-		      wend
+		    select case mElementType
 		      
-		    case 2
+		    case ONNX.ElementTypeEnum.FLOAT
+		      mData.SingleValue(0) = Val(initData)
+		      
+		    case ONNX.ElementTypeEnum.UINT8
+		      mData.UInt8Value(0) = Val(initData)
+		      
+		    case else
+		      break // TODO: initialize data
+		      
+		    end select
+		    
+		  else
+		    
+		    item = new JSONItem(initData)
+		    DetermineShape(item)
+		    
+		    // initialize data
+		    
+		    select case mElementType
+		      
+		    case ONNX.ElementTypeEnum.BOOL
 		      pos = 0
 		      i = 0
 		      while i < mShape(0)
 		        row = item.Child(i)
 		        j = 0
 		        while j < mShape(1)
-		          mData.SingleValue(pos) = row.Value(j)
+		          if row.ValueAt(j) then
+		            mData.UInt8Value(pos) = 1
+		          else
+		            mData.UInt8Value(pos) = 0
+		          end if
 		          pos = pos + mElementSize
 		          j = j + 1 
 		        wend
 		        i = i + 1
 		      wend
 		      
+		    case ONNX.ElementTypeEnum.FLOAT
+		      
+		      select case mShape.Count
+		      case 1
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          mData.SingleValue(pos) = item.Value(i)
+		          pos = pos + mElementSize
+		          i = i + 1
+		        wend
+		        
+		      case 2
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          row = item.Child(i)
+		          j = 0
+		          while j < mShape(1)
+		            mData.SingleValue(pos) = row.Value(j)
+		            pos = pos + mElementSize
+		            j = j + 1 
+		          wend
+		          i = i + 1
+		        wend
+		        
+		      case else
+		        break // TODO: revise following code to support "infinite" tensor dimensions
+		        
+		      end select
+		      
+		      
 		    case else
-		      break // TODO: revise following code to support "infinite" tensor dimensions
+		      break // TODO: initialize data
 		      
 		    end select
 		    
-		    
-		  case else
-		    break // TODO: initialize data
-		    
-		  end select
-		  
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -1112,6 +1129,66 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function QuantizeLinear(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor) As Tensor
+		  Var result as Tensor
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
+		  Var tmpSingle As Single
+		  Var singleTotal As Single
+		  Var col as UInt64
+		  Var row As UInt64
+		  Var index As Integer
+		  Var scaleVal As Single
+		  Var zeroPointVal As UInt8
+		  Var tmpUInt8 As UInt8
+		  
+		  select case mElementType
+		    
+		    // ***** FLOAT *****************************************
+		    
+		  case ElementTypeEnum.FLOAT
+		    
+		    resultData = new MemoryBlock(ElementCount)
+		    
+		    if scale.Shape.Count <= 0 then
+		      if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		        scaleVal = scale.Data.SingleValue(0)
+		      else
+		        break
+		      end if
+		      if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		        zeroPointVal = zeroPoint.Data.UInt8Value(0)
+		      else
+		        break
+		      end if
+		      
+		      index = 0
+		      pos = 0
+		      while pos < mData.Size
+		        tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
+		        resultData.UInt8Value(index) = tmpUInt8
+		        pos = pos + mElementSize
+		        index = index + 1
+		      wend
+		      
+		      
+		    else
+		      break
+		    end if
+		    
+		    result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Reciprocal() As ONNX.Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
@@ -1190,6 +1267,9 @@ Protected Class Tensor
 		    
 		  case ONNX.ElementTypeEnum.FLOAT
 		    mElementSize = 4
+		    
+		  case ONNX.ElementTypeEnum.UINT8
+		    mElementSize = 1
 		    
 		  case else
 		    break // TODO: define element size
@@ -1650,6 +1730,9 @@ Protected Class Tensor
 		      case ONNX.ElementTypeEnum.FLOAT
 		        result = mData.SingleValue(index(0) * mElementSize)
 		        
+		      case ONNX.ElementTypeEnum.UINT8
+		        result = mData.UInt8Value(index(0) * mElementSize)
+		        
 		      else
 		        break
 		        
@@ -1667,6 +1750,10 @@ Protected Class Tensor
 		        
 		      case ONNX.ElementTypeEnum.FLOAT
 		        result = mData.SingleValue((index(0) * mShape(1) + index(1)) * mElementSize)
+		        
+		      case ONNX.ElementTypeEnum.UINT8
+		        result = mData.UInt8Value((index(0) * mShape(1) + index(1)) * mElementSize)
+		        
 		        
 		      else
 		        break
