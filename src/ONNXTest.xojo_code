@@ -177,6 +177,7 @@ Protected Module ONNXTest
 		  Tensor.Test_Mul(results)
 		  Tensor.Test_Neg(results)
 		  Tensor.Test_Pow(results)
+		  Tensor.Test_QuantizeLinear(results)
 		  Tensor.Test_Reciprocal(results)
 		  Tensor.Test_Relu(results)
 		  Tensor.Test_Sigmoid(results)

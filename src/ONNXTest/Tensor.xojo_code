@@ -778,6 +778,36 @@ Protected Module Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Sub Test_QuantizeLinear(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1 As ONNX.Tensor
+		  Var t2 As ONNX.Tensor
+		  Var t3 As ONNX.Tensor
+		  Var t4 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "[[2.5, 3.5], [4.5, 5.5]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "1.0")
+		  t3 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "0")
+		  t4 = t1.QuantizeLinear(t2, t3)
+		  
+		  if t4.ElementType <> ONNX.ElementTypeEnum.UINT8 or _
+		    t4.Value(0, 0) <> 2 or _
+		    t4.Value(0, 1) <> 4 or _
+		    t4.Value(1, 0) <> 4 or _
+		    t4.Value(1, 1) <> 6 then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.QuantizeLinear", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_Reciprocal(results As JSONItem)
 		  Var pass As Boolean
 		  Var t1 As ONNX.Tensor
