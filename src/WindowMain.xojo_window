@@ -133,6 +133,37 @@ Begin DesktopWindow WindowMain
       Visible         =   True
       Width           =   100
    End
+   Begin DesktopButton ButtonOpen
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Open"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   29
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
 End
 #tag EndDesktopWindow
 
@@ -253,6 +284,28 @@ End
 		  else
 		    TextOutput.BackgroundColor = &cffdddd
 		    TextOutput.AddText "FAIL" + EndOfLine
+		  end if
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ButtonOpen
+	#tag Event
+		Sub Pressed()
+		  Var dlg As new OpenDialog
+		  Var f As FolderItem
+		  Var onnxType As FileType
+		  Var model As ONNX.Model
+		  
+		  onnxType = New FileType
+		  onnxType.Name = "Open Neural Network Exchange"
+		  onnxType.Extensions = "onnx"
+		  
+		  dlg.Filter = onnxType
+		  f = dlg.ShowModal()
+		  if f <> nil then
+		    model = new ONNX.Model(f)
+		    break
 		  end if
 		  
 		End Sub

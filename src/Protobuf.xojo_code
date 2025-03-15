@@ -120,6 +120,10 @@ Protected Module Protobuf
 		  Var packed As Boolean
 		  Var mb As MemoryBlock
 		  
+		  //if messageName = "TensorProto" then
+		  //break
+		  //end if
+		  
 		  message = schema.Child("messages").Lookup(messageName, nil)
 		  if (message = nil) and parentMessage <> nil then
 		    message = parentMessage.Child("messages").Lookup(messageName, nil)
@@ -227,6 +231,27 @@ Protected Module Protobuf
 		            mb = Decode_bytes(stream, pos, size)
 		            messageJSON.Value(propNameCC) = EncodeBase64(mb, 0)
 		            
+		          case "float"
+		            if not messageJSON.HasKey(propNameCC) then
+		              messageJSON.Value(propNameCC) = new JSONItem("[]")
+		            end if
+		            
+		            if packed then
+		              
+		              size = Decode_varint(stream, pos)
+		              startPos = pos
+		              i = 0
+		              while (pos - startPos) < size
+		                messageJSON.Child(propNameCC).Add Decode_float(stream, pos)
+		                i = i + 1
+		              wend
+		              
+		            else
+		              break // TODO: test this
+		              messageJSON.Child(propNameCC).Add Decode_float(stream, pos)
+		            end if
+		            
+		            
 		          case "int32"
 		            if not messageJSON.HasKey(propNameCC) then
 		              messageJSON.Value(propNameCC) = new JSONItem("[]")
@@ -246,7 +271,6 @@ Protected Module Protobuf
 		              break // TODO: test this
 		              messageJSON.Child(propNameCC).Add Decode_int32(stream, pos)
 		            end if
-		            
 		            
 		          case "string"
 		            if field.Lookup("repeated", false) then
