@@ -32,9 +32,9 @@ Protected Module Graph
 		  
 		  if (outData.KeyCount <> 1) or _
 		    not outData.HasKey("O1") or _ 
-		    FloatEquals(X1.Value(0), 1) or _
-		    FloatEquals(X1.Value(1), 7) or _
-		    FloatEquals(X1.Value(2), 4) then
+		    FloatNotEquals(X1.Value(0), 1) or _
+		    FloatNotEquals(X1.Value(1), 7) or _
+		    FloatNotEquals(X1.Value(2), 4) then
 		    pass = false
 		  end if
 		  
@@ -78,9 +78,9 @@ Protected Module Graph
 		  
 		  if (outData.KeyCount <> 1) or _
 		    not outData.HasKey("O1") or _ 
-		    FloatEquals(X1.Value(0), 5) or _
-		    FloatEquals(X1.Value(1), -14) or _
-		    FloatEquals(X1.Value(2), 16) then
+		    FloatNotEquals(X1.Value(0), 5) or _
+		    FloatNotEquals(X1.Value(1), -14) or _
+		    FloatNotEquals(X1.Value(2), 16) then
 		    pass = false
 		  end if
 		  
@@ -132,12 +132,12 @@ Protected Module Graph
 		    X1 = outData.Value("O1")
 		    X2 = outData.Value("O2")
 		    
-		    if FloatEquals(X1.Value(0), 5) or _
-		      FloatEquals(X1.Value(1), -14) or _
-		      FloatEquals(X1.Value(2), 16) or _
-		      FloatEquals(X2.Value(0), 0) or _
-		      FloatEquals(X2.Value(1), -17) or _
-		      FloatEquals(X2.Value(2), 17)then
+		    if FloatNotEquals(X1.Value(0), 5) or _
+		      FloatNotEquals(X1.Value(1), -14) or _
+		      FloatNotEquals(X1.Value(2), 16) or _
+		      FloatNotEquals(X2.Value(0), 0) or _
+		      FloatNotEquals(X2.Value(1), -17) or _
+		      FloatNotEquals(X2.Value(2), 17)then
 		      pass = false
 		    end if
 		    

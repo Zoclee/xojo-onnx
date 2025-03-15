@@ -1,7 +1,7 @@
 #tag Module
 Protected Module ONNXTest
 	#tag Method, Flags = &h21
-		Private Function FloatEquals(value As Single, comp As Single) As Boolean
+		Private Function FloatNotEquals(value As Single, comp As Single) As Boolean
 		  return (Abs(value - comp) > 0.000001)
 		  
 		End Function

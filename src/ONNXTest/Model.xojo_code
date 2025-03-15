@@ -21,10 +21,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 7.0) or _
-		      FloatEquals(X1.Value(0, 1), 10.0) or _
-		      FloatEquals(X1.Value(1, 0), 15.0) or _
-		      FloatEquals(X1.Value(1, 1), 22.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 7.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 10.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 15.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 22.0) then
 		      pass = false
 		    end if
 		    
@@ -58,10 +58,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 3.2) or _
-		      FloatEquals(X1.Value(0, 1), 4.5) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.8) then
+		    if FloatNotEquals(X1.Value(0, 0), 3.2) or _
+		      FloatNotEquals(X1.Value(0, 1), 4.5) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.8) then
 		      pass = false
 		    end if
 		    
@@ -95,10 +95,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.04719755) or _
-		      FloatEquals(X1.Value(1, 0), 1.57079633) or _
-		      FloatEquals(X1.Value(1, 1), 2.09439510) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.04719755) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.57079633) or _
+		      FloatNotEquals(X1.Value(1, 1), 2.09439510) then
 		      pass = false
 		    end if
 		    
@@ -132,10 +132,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.96242365) or _
-		      FloatEquals(X1.Value(1, 0), 1.31695790) or _
-		      FloatEquals(X1.Value(1, 1), 1.76274717) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.96242365) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.31695790) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.76274717) then
 		      pass = false
 		    end if
 		    
@@ -171,10 +171,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.80) or _
-		      FloatEquals(X1.Value(0, 1), 1.16) or _
-		      FloatEquals(X1.Value(1, 0), 0.91) or _
-		      FloatEquals(X1.Value(1, 1), 1.44) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.80) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.16) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.91) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.44) then
 		      pass = false
 		    end if
 		    
@@ -208,10 +208,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.57079633) or _
-		      FloatEquals(X1.Value(0, 1), 0.52359878) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), -0.52359878) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.57079633) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.52359878) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), -0.52359878) then
 		      pass = false
 		    end if
 		    
@@ -245,10 +245,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 0.88137359) or _
-		      FloatEquals(X1.Value(0, 1), 0.48121183) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), -0.48121183) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.88137359) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.48121183) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), -0.48121183) then
 		      pass = false
 		    end if
 		    
@@ -282,10 +282,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 0.78539816) or _
-		      FloatEquals(X1.Value(0, 1), 0.46364761) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), -0.46364761) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.78539816) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.46364761) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), -0.46364761) then
 		      pass = false
 		    end if
 		    
@@ -319,10 +319,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 0.54930614) or _
-		      FloatEquals(X1.Value(0, 1), -0.54930614) or _
-		      FloatEquals(X1.Value(1, 0), 0.10033535) or _
-		      FloatEquals(X1.Value(1, 1), -0.10033535) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.54930614) or _
+		      FloatNotEquals(X1.Value(0, 1), -0.54930614) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.10033535) or _
+		      FloatNotEquals(X1.Value(1, 1), -0.10033535) then
 		      pass = false
 		    end if
 		    
@@ -356,10 +356,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 2.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 4.0) or _
-		      FloatEquals(X1.Value(1, 1), -2.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 2.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 4.0) or _
+		      FloatNotEquals(X1.Value(1, 1), -2.0) then
 		      pass = false
 		    end if
 		    
@@ -393,10 +393,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.54030231) or _
-		      FloatEquals(X1.Value(1, 0), -1.0) or _
-		      FloatEquals(X1.Value(1, 1), 0.54030231) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.54030231) or _
+		      FloatNotEquals(X1.Value(1, 0), -1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.54030231) then
 		      pass = false
 		    end if
 		    
@@ -430,10 +430,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.54308063) or _
-		      FloatEquals(X1.Value(1, 0), 1.54308063) or _
-		      FloatEquals(X1.Value(1, 1), 3.76219569) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.54308063) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.54308063) or _
+		      FloatNotEquals(X1.Value(1, 1), 3.76219569) then
 		      pass = false
 		    end if
 		    
@@ -467,10 +467,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 2.71828183) or _
-		      FloatEquals(X1.Value(1, 0), 0.36787944) or _
-		      FloatEquals(X1.Value(1, 1), 7.38905610) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 2.71828183) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.36787944) or _
+		      FloatNotEquals(X1.Value(1, 1), 7.38905610) then
 		      pass = false
 		    end if
 		    
@@ -504,10 +504,10 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), -1.0) or _
-		      FloatEquals(X1.Value(1, 0), 3.0) or _
-		      FloatEquals(X1.Value(1, 1), -3.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), -1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 3.0) or _
+		      FloatNotEquals(X1.Value(1, 1), -3.0) then
 		      pass = false
 		    end if
 		    
@@ -543,10 +543,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.0) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), 0.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.0) then
 		      pass = false
 		    end if
 		    
@@ -582,10 +582,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.0) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -621,10 +621,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -660,10 +660,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.0) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -698,10 +698,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.69314718) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 2.30258509) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.69314718) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 2.30258509) then
 		      pass = false
 		    end if
 		    
@@ -737,10 +737,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -775,10 +775,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.0) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 0.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.0) then
 		      pass = false
 		    end if
 		    
@@ -814,10 +814,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 1.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -853,10 +853,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 19.0) or _
-		      FloatEquals(X1.Value(0, 1), 22.0) or _
-		      FloatEquals(X1.Value(1, 0), 43.0) or _
-		      FloatEquals(X1.Value(1, 1), 50.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 19.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 22.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 43.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 50.0) then
 		      pass = false
 		    end if
 		    
@@ -892,10 +892,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 5.0) or _
-		      FloatEquals(X1.Value(0, 1), 4.0) or _
-		      FloatEquals(X1.Value(1, 0), 3.0) or _
-		      FloatEquals(X1.Value(1, 1), 8.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 5.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 4.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 3.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 8.0) then
 		      pass = false
 		    end if
 		    
@@ -931,10 +931,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 2.0) or _
-		      FloatEquals(X1.Value(1, 0), 3.0) or _
-		      FloatEquals(X1.Value(1, 1), 2.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 2.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 3.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 2.0) then
 		      pass = false
 		    end if
 		    
@@ -970,10 +970,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 5.0) or _
-		      FloatEquals(X1.Value(0, 1), 12.0) or _
-		      FloatEquals(X1.Value(1, 0), 21.0) or _
-		      FloatEquals(X1.Value(1, 1), 32.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 5.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 12.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 21.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 32.0) then
 		      pass = false
 		    end if
 		    
@@ -1008,10 +1008,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), -1.0) or _
-		      FloatEquals(X1.Value(0, 1), 2.0) or _
-		      FloatEquals(X1.Value(1, 0), -3.5) or _
-		      FloatEquals(X1.Value(1, 1), 4.5) then
+		    if FloatNotEquals(X1.Value(0, 0), -1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 2.0) or _
+		      FloatNotEquals(X1.Value(1, 0), -3.5) or _
+		      FloatNotEquals(X1.Value(1, 1), 4.5) then
 		      pass = false
 		    end if
 		    
@@ -1047,10 +1047,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 8.0) or _
-		      FloatEquals(X1.Value(0, 1), 9.0) or _
-		      FloatEquals(X1.Value(1, 0), 16.0) or _
-		      FloatEquals(X1.Value(1, 1), 125.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 8.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 9.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 16.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 125.0) then
 		      pass = false
 		    end if
 		    
@@ -1129,10 +1129,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.5) or _
-		      FloatEquals(X1.Value(0, 1), 0.25) or _
-		      FloatEquals(X1.Value(1, 0), 2.0) or _
-		      FloatEquals(X1.Value(1, 1), 0.125) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.5) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.25) or _
+		      FloatNotEquals(X1.Value(1, 0), 2.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.125) then
 		      pass = false
 		    end if
 		    
@@ -1167,10 +1167,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.0) or _
-		      FloatEquals(X1.Value(1, 0), 3.5) or _
-		      FloatEquals(X1.Value(1, 1), 0.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 3.5) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.0) then
 		      pass = false
 		    end if
 		    
@@ -1205,10 +1205,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.73105858) or _
-		      FloatEquals(X1.Value(0, 1), 0.11920292) or _
-		      FloatEquals(X1.Value(1, 0), 0.95257413) or _
-		      FloatEquals(X1.Value(1, 1), 0.01798621) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.73105858) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.11920292) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.95257413) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.01798621) then
 		      pass = false
 		    end if
 		    
@@ -1243,10 +1243,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 1.0) or _
-		      FloatEquals(X1.Value(0, 1), -1.0) or _
-		      FloatEquals(X1.Value(1, 0), 0.0) or _
-		      FloatEquals(X1.Value(1, 1), 1.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 1.0) or _
+		      FloatNotEquals(X1.Value(0, 1), -1.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 1.0) then
 		      pass = false
 		    end if
 		    
@@ -1281,10 +1281,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.84147098) or _
-		      FloatEquals(X1.Value(1, 0), -0.84147098) or _
-		      FloatEquals(X1.Value(1, 1), 0.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.84147098) or _
+		      FloatNotEquals(X1.Value(1, 0), -0.84147098) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.0) then
 		      pass = false
 		    end if
 		    
@@ -1319,10 +1319,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.17520119) or _
-		      FloatEquals(X1.Value(1, 0), -1.17520119) or _
-		      FloatEquals(X1.Value(1, 1), 3.62686041) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.17520119) or _
+		      FloatNotEquals(X1.Value(1, 0), -1.17520119) or _
+		      FloatNotEquals(X1.Value(1, 1), 3.62686041) then
 		      pass = false
 		    end if
 		    
@@ -1357,12 +1357,12 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.09003057) or _
-		      FloatEquals(X1.Value(0, 1), 0.24472847) or _
-		      FloatEquals(X1.Value(0, 2), 0.66524096) or _
-		      FloatEquals(X1.Value(1, 0), 0.01587624) or _
-		      FloatEquals(X1.Value(1, 1), 0.11731043) or _
-		      FloatEquals(X1.Value(1, 2), 0.86681336) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.09003057) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.24472847) or _
+		      FloatNotEquals(X1.Value(0, 2), 0.66524096) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.01587624) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.11731043) or _
+		      FloatNotEquals(X1.Value(1, 2), 0.86681336) then
 		      pass = false
 		    end if
 		    
@@ -1397,12 +1397,12 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.26894142) or _
-		      FloatEquals(X1.Value(0, 1), 0.11920292) or _
-		      FloatEquals(X1.Value(0, 2), 0.04742587) or _
-		      FloatEquals(X1.Value(1, 0), 0.73105858) or _
-		      FloatEquals(X1.Value(1, 1), 0.88079708) or _
-		      FloatEquals(X1.Value(1, 2), 0.95257413) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.26894142) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.11920292) or _
+		      FloatNotEquals(X1.Value(0, 2), 0.04742587) or _
+		      FloatNotEquals(X1.Value(1, 0), 0.73105858) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.88079708) or _
+		      FloatNotEquals(X1.Value(1, 2), 0.95257413) then
 		      pass = false
 		    end if
 		    
@@ -1437,10 +1437,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 2.0) or _
-		      FloatEquals(X1.Value(0, 1), 3.0) or _
-		      FloatEquals(X1.Value(1, 0), 4.0) or _
-		      FloatEquals(X1.Value(1, 1), 5.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 2.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 3.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 4.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 5.0) then
 		      pass = false
 		    end if
 		    
@@ -1476,10 +1476,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 3.0) or _
-		      FloatEquals(X1.Value(0, 1), 5.0) or _
-		      FloatEquals(X1.Value(1, 0), 6.0) or _
-		      FloatEquals(X1.Value(1, 1), 2.0) then
+		    if FloatNotEquals(X1.Value(0, 0), 3.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 5.0) or _
+		      FloatNotEquals(X1.Value(1, 0), 6.0) or _
+		      FloatNotEquals(X1.Value(1, 1), 2.0) then
 		      pass = false
 		    end if
 		    
@@ -1514,10 +1514,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 1.55740772) or _
-		      FloatEquals(X1.Value(1, 0), -1.55740772) or _
-		      FloatEquals(X1.Value(1, 1), 0.54630249) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 1.55740772) or _
+		      FloatNotEquals(X1.Value(1, 0), -1.55740772) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.54630249) then
 		      pass = false
 		    end if
 		    
@@ -1552,10 +1552,10 @@ Protected Module Model
 		    
 		    X1 = output.Value("output1")
 		    
-		    if FloatEquals(X1.Value(0, 0), 0.0) or _
-		      FloatEquals(X1.Value(0, 1), 0.76159416) or _
-		      FloatEquals(X1.Value(1, 0), -0.76159416) or _
-		      FloatEquals(X1.Value(1, 1), 0.46211716) then
+		    if FloatNotEquals(X1.Value(0, 0), 0.0) or _
+		      FloatNotEquals(X1.Value(0, 1), 0.76159416) or _
+		      FloatNotEquals(X1.Value(1, 0), -0.76159416) or _
+		      FloatNotEquals(X1.Value(1, 1), 0.46211716) then
 		      pass = false
 		    end if
 		    

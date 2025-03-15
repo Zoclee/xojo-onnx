@@ -15,12 +15,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1) or _
-		    FloatEquals(X.Value(0, 1), 2) or _
-		    FloatEquals(X.Value(0, 2), 3) or _
-		    FloatEquals(X.Value(1, 0), 4) or _
-		    FloatEquals(X.Value(1, 1), 0) or _
-		    FloatEquals(X.Value(1, 2), 6) then
+		  if FloatNotEquals(X.Value(0, 0), 1) or _
+		    FloatNotEquals(X.Value(0, 1), 2) or _
+		    FloatNotEquals(X.Value(0, 2), 3) or _
+		    FloatNotEquals(X.Value(1, 0), 4) or _
+		    FloatNotEquals(X.Value(1, 1), 0) or _
+		    FloatNotEquals(X.Value(1, 2), 6) then
 		    pass = false
 		  end if
 		  
@@ -44,10 +44,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.22387943) or _
-		    FloatEquals(X.Value(0, 1), 0.76699401) or _
-		    FloatEquals(X.Value(1, 0), 2.73887681) or _
-		    FloatEquals(X.Value(1, 1), 1.35922137) then
+		  if FloatNotEquals(X.Value(0, 0), 1.22387943) or _
+		    FloatNotEquals(X.Value(0, 1), 0.76699401) or _
+		    FloatNotEquals(X.Value(1, 0), 2.73887681) or _
+		    FloatNotEquals(X.Value(1, 1), 1.35922137) then
 		    pass = false
 		  end if
 		  
@@ -71,9 +71,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.0) or _
-		    FloatEquals(X.Value(0, 1), 2.332429323319) or _
-		    FloatEquals(X.Value(0, 2), 2.029275144348) then
+		  if FloatNotEquals(X.Value(0, 0), 0.0) or _
+		    FloatNotEquals(X.Value(0, 1), 2.332429323319) or _
+		    FloatNotEquals(X.Value(0, 2), 2.029275144348) then
 		    pass = false
 		  end if
 		  
@@ -99,12 +99,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 3) or _
-		    FloatEquals(X.Value(0, 1), 5) or _
-		    FloatEquals(X.Value(0, 2), 10) or _
-		    FloatEquals(X.Value(1, 0), 7) or _
-		    FloatEquals(X.Value(1, 1), 13) or _
-		    FloatEquals(X.Value(1, 2), 8) then
+		  if FloatNotEquals(X.Value(0, 0), 3) or _
+		    FloatNotEquals(X.Value(0, 1), 5) or _
+		    FloatNotEquals(X.Value(0, 2), 10) or _
+		    FloatNotEquals(X.Value(1, 0), 7) or _
+		    FloatNotEquals(X.Value(1, 1), 13) or _
+		    FloatNotEquals(X.Value(1, 2), 8) then
 		    pass = false
 		  end if
 		  
@@ -129,10 +129,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.3469169) or _
-		    FloatEquals(X.Value(0, 1), 0.80380232) or _
-		    FloatEquals(X.Value(1, 0), -1.16808049) or _
-		    FloatEquals(X.Value(1, 1), 0.21157496) then
+		  if FloatNotEquals(X.Value(0, 0), 0.3469169) or _
+		    FloatNotEquals(X.Value(0, 1), 0.80380232) or _
+		    FloatNotEquals(X.Value(1, 0), -1.16808049) or _
+		    FloatNotEquals(X.Value(1, 1), 0.21157496) then
 		    pass = false
 		  end if
 		  
@@ -158,10 +158,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.333768351646) or _
-		    FloatEquals(X.Value(0, 1), 0.668974226754) or _
-		    FloatEquals(X.Value(1, 0), -0.823659090432) or _
-		    FloatEquals(X.Value(1, 1), 0.208486350074) then
+		  if FloatNotEquals(X.Value(0, 0), 0.333768351646) or _
+		    FloatNotEquals(X.Value(0, 1), 0.668974226754) or _
+		    FloatNotEquals(X.Value(1, 0), -0.823659090432) or _
+		    FloatNotEquals(X.Value(1, 1), 0.208486350074) then
 		    pass = false
 		  end if
 		  
@@ -187,10 +187,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.32773851) or _
-		    FloatEquals(X.Value(0, 1), 0.62402305) or _
-		    FloatEquals(X.Value(1, 0), -0.74375558) or _
-		    FloatEquals(X.Value(1, 1), 0.20699219) then
+		  if FloatNotEquals(X.Value(0, 0), 0.32773851) or _
+		    FloatNotEquals(X.Value(0, 1), 0.62402305) or _
+		    FloatNotEquals(X.Value(1, 0), -0.74375558) or _
+		    FloatNotEquals(X.Value(1, 1), 0.20699219) then
 		    pass = false
 		  end if
 		  
@@ -215,10 +215,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.354092528962) or _
-		    FloatEquals(X.Value(0, 1), 0.907644983319) or _
-		    FloatEquals(X.Value(1, 0), -1.589026915174) or _
-		    FloatEquals(X.Value(1, 1), 0.213171346565) then
+		  if FloatNotEquals(X.Value(0, 0), 0.354092528962) or _
+		    FloatNotEquals(X.Value(0, 1), 0.907644983319) or _
+		    FloatNotEquals(X.Value(1, 0), -1.589026915174) or _
+		    FloatNotEquals(X.Value(1, 1), 0.213171346565) then
 		    pass = false
 		  end if
 		  
@@ -243,10 +243,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.0) or _
-		    FloatEquals(X.Value(0, 1), 1.0) or _
-		    FloatEquals(X.Value(1, 0), 0.0) or _
-		    FloatEquals(X.Value(1, 1), 1.0) then
+		  if FloatNotEquals(X.Value(0, 0), 1.0) or _
+		    FloatNotEquals(X.Value(0, 1), 1.0) or _
+		    FloatNotEquals(X.Value(1, 0), 0.0) or _
+		    FloatNotEquals(X.Value(1, 1), 1.0) then
 		    pass = false
 		  end if
 		  
@@ -271,10 +271,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), -0.98038174613) or _
-		    FloatEquals(X.Value(0, 1), 0.00761094613) or _
-		    FloatEquals(X.Value(1, 0), -0.34214965115) or _
-		    FloatEquals(X.Value(1, 1), -0.97702374162) then
+		  if FloatNotEquals(X.Value(0, 0), -0.98038174613) or _
+		    FloatNotEquals(X.Value(0, 1), 0.00761094613) or _
+		    FloatNotEquals(X.Value(1, 0), -0.34214965115) or _
+		    FloatNotEquals(X.Value(1, 1), -0.97702374162) then
 		    pass = false
 		  end if
 		  
@@ -299,9 +299,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.127626) or _
-		    FloatEquals(X.Value(0, 1), 1.5430806) or _
-		    FloatEquals(X.Value(0, 2), 3.762196) then
+		  if FloatNotEquals(X.Value(0, 0), 1.127626) or _
+		    FloatNotEquals(X.Value(0, 1), 1.5430806) or _
+		    FloatNotEquals(X.Value(0, 2), 3.762196) then
 		    pass = false
 		  end if
 		  
@@ -326,10 +326,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.404947590564) or _
-		    FloatEquals(X.Value(0, 1), 2.054433210644) or _
-		    FloatEquals(X.Value(1, 0), 0.398519041085) or _
-		    FloatEquals(X.Value(1, 1), 1.233678059957) then
+		  if FloatNotEquals(X.Value(0, 0), 1.404947590564) or _
+		    FloatNotEquals(X.Value(0, 1), 2.054433210644) or _
+		    FloatNotEquals(X.Value(1, 0), 0.398519041085) or _
+		    FloatNotEquals(X.Value(1, 1), 1.233678059957) then
 		    pass = false
 		  end if
 		  
@@ -354,10 +354,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.0) or _
-		    FloatEquals(X.Value(0, 1), 0.0) or _
-		    FloatEquals(X.Value(1, 0), -1.0) or _
-		    FloatEquals(X.Value(1, 1), 0.0) then
+		  if FloatNotEquals(X.Value(0, 0), 0.0) or _
+		    FloatNotEquals(X.Value(0, 1), 0.0) or _
+		    FloatNotEquals(X.Value(1, 0), -1.0) or _
+		    FloatNotEquals(X.Value(1, 1), 0.0) then
 		    pass = false
 		  end if
 		  
@@ -519,10 +519,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.20597080699) or _
-		    FloatEquals(X.Value(0, 1), 1.5518087996) or _
-		    FloatEquals(X.Value(1, 0), 0.65232518604) or _
-		    FloatEquals(X.Value(1, 1), 2.22028985027) then
+		  if FloatNotEquals(X.Value(0, 0), 1.20597080699) or _
+		    FloatNotEquals(X.Value(0, 1), 1.5518087996) or _
+		    FloatNotEquals(X.Value(1, 0), 0.65232518604) or _
+		    FloatNotEquals(X.Value(1, 1), 2.22028985027) then
 		    pass = false
 		  end if
 		  
@@ -640,15 +640,15 @@ Protected Module Node
 		  
 		  if (X.Shape(0) <> 3) or _
 		    (X.Shape(1) <> 3) or _
-		    FloatEquals(X.Value(0, 0), 13) or _
-		    FloatEquals(X.Value(0, 1), 25) or _
-		    FloatEquals(X.Value(0, 2), 11) or _
-		    FloatEquals(X.Value(1, 0), 21) or _
-		    FloatEquals(X.Value(1, 1), 15) or _
-		    FloatEquals(X.Value(1, 2), 7) or _
-		    FloatEquals(X.Value(2, 0), 27) or _
-		    FloatEquals(X.Value(2, 1), 24) or _
-		    FloatEquals(X.Value(2, 2), 11) then
+		    FloatNotEquals(X.Value(0, 0), 13) or _
+		    FloatNotEquals(X.Value(0, 1), 25) or _
+		    FloatNotEquals(X.Value(0, 2), 11) or _
+		    FloatNotEquals(X.Value(1, 0), 21) or _
+		    FloatNotEquals(X.Value(1, 1), 15) or _
+		    FloatNotEquals(X.Value(1, 2), 7) or _
+		    FloatNotEquals(X.Value(2, 0), 27) or _
+		    FloatNotEquals(X.Value(2, 1), 24) or _
+		    FloatNotEquals(X.Value(2, 2), 11) then
 		    pass = false
 		  end if
 		  
@@ -674,12 +674,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 4) or _
-		    FloatEquals(X.Value(0, 1), 2) or _
-		    FloatEquals(X.Value(0, 2), 4) or _
-		    FloatEquals(X.Value(1, 0), 7) or _
-		    FloatEquals(X.Value(1, 1), 8) or _
-		    FloatEquals(X.Value(1, 2), 4) then
+		  if FloatNotEquals(X.Value(0, 0), 4) or _
+		    FloatNotEquals(X.Value(0, 1), 2) or _
+		    FloatNotEquals(X.Value(0, 2), 4) or _
+		    FloatNotEquals(X.Value(1, 0), 7) or _
+		    FloatNotEquals(X.Value(1, 1), 8) or _
+		    FloatNotEquals(X.Value(1, 2), 4) then
 		    pass = false
 		  end if
 		  
@@ -705,12 +705,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1) or _
-		    FloatEquals(X.Value(0, 1), 2) or _
-		    FloatEquals(X.Value(0, 2), 3) or _
-		    FloatEquals(X.Value(1, 0), 2) or _
-		    FloatEquals(X.Value(1, 1), 5) or _
-		    FloatEquals(X.Value(1, 2), 3) then
+		  if FloatNotEquals(X.Value(0, 0), 1) or _
+		    FloatNotEquals(X.Value(0, 1), 2) or _
+		    FloatNotEquals(X.Value(0, 2), 3) or _
+		    FloatNotEquals(X.Value(1, 0), 2) or _
+		    FloatNotEquals(X.Value(1, 1), 5) or _
+		    FloatNotEquals(X.Value(1, 2), 3) then
 		    pass = false
 		  end if
 		  
@@ -736,12 +736,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 2) or _
-		    FloatEquals(X.Value(0, 1), 6) or _
-		    FloatEquals(X.Value(0, 2), 21) or _
-		    FloatEquals(X.Value(1, 0), 12) or _
-		    FloatEquals(X.Value(1, 1), 40) or _
-		    FloatEquals(X.Value(1, 2), 12) then
+		  if FloatNotEquals(X.Value(0, 0), 2) or _
+		    FloatNotEquals(X.Value(0, 1), 6) or _
+		    FloatNotEquals(X.Value(0, 2), 21) or _
+		    FloatNotEquals(X.Value(1, 0), 12) or _
+		    FloatNotEquals(X.Value(1, 1), 40) or _
+		    FloatNotEquals(X.Value(1, 2), 12) then
 		    pass = false
 		  end if
 		  
@@ -765,10 +765,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), -3.34) or _
-		    FloatEquals(X.Value(0, 1), -4.72) or _
-		    FloatEquals(X.Value(1, 0), 1.92) or _
-		    FloatEquals(X.Value(1, 1), -9.21) then
+		  if FloatNotEquals(X.Value(0, 0), -3.34) or _
+		    FloatNotEquals(X.Value(0, 1), -4.72) or _
+		    FloatNotEquals(X.Value(1, 0), 1.92) or _
+		    FloatNotEquals(X.Value(1, 1), -9.21) then
 		    pass = false
 		  end if
 		  
@@ -793,12 +793,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1) or _
-		    FloatEquals(X.Value(0, 1), 4) or _
-		    FloatEquals(X.Value(0, 2), 81) or _
-		    FloatEquals(X.Value(1, 0), 128) or _
-		    FloatEquals(X.Value(1, 1), 32768) or _
-		    FloatEquals(X.Value(1, 2), 64) then
+		  if FloatNotEquals(X.Value(0, 0), 1) or _
+		    FloatNotEquals(X.Value(0, 1), 4) or _
+		    FloatNotEquals(X.Value(0, 2), 81) or _
+		    FloatNotEquals(X.Value(1, 0), 128) or _
+		    FloatNotEquals(X.Value(1, 1), 32768) or _
+		    FloatNotEquals(X.Value(1, 2), 64) then
 		    pass = false
 		  end if
 		  
@@ -825,10 +825,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1) or _
-		    FloatEquals(X.Value(0, 1), 2) or _
-		    FloatEquals(X.Value(1, 0), 3) or _
-		    FloatEquals(X.Value(1, 1), 4) then
+		  if FloatNotEquals(X.Value(0, 0), 1) or _
+		    FloatNotEquals(X.Value(0, 1), 2) or _
+		    FloatNotEquals(X.Value(1, 0), 3) or _
+		    FloatNotEquals(X.Value(1, 1), 4) then
 		    pass = false
 		  end if
 		  
@@ -852,10 +852,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.29940120) or _
-		    FloatEquals(X.Value(0, 1), 0.21186441) or _
-		    FloatEquals(X.Value(1, 0), -0.52083333) or _
-		    FloatEquals(X.Value(1, 1), 0.10857763) then
+		  if FloatNotEquals(X.Value(0, 0), 0.29940120) or _
+		    FloatNotEquals(X.Value(0, 1), 0.21186441) or _
+		    FloatNotEquals(X.Value(1, 0), -0.52083333) or _
+		    FloatNotEquals(X.Value(1, 1), 0.10857763) then
 		    pass = false
 		  end if
 		  
@@ -879,12 +879,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1) or _ 
-		    FloatEquals(X.Value(0, 1), 0) or _
-		    FloatEquals(X.Value(0, 2), 3) or _
-		    FloatEquals(X.Value(1, 0), 0) or _
-		    FloatEquals(X.Value(1, 1), 0) or _
-		    FloatEquals(X.Value(1, 2), 6) then
+		  if FloatNotEquals(X.Value(0, 0), 1) or _ 
+		    FloatNotEquals(X.Value(0, 1), 0) or _
+		    FloatNotEquals(X.Value(0, 2), 3) or _
+		    FloatNotEquals(X.Value(1, 0), 0) or _
+		    FloatNotEquals(X.Value(1, 1), 0) or _
+		    FloatNotEquals(X.Value(1, 2), 6) then
 		    pass = false
 		  end if
 		  
@@ -909,9 +909,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.62245933120185) or _ 
-		    FloatEquals(X.Value(0, 1), 0.73105857863) or _
-		    FloatEquals(X.Value(0, 2), 0.11920292202212) then
+		  if FloatNotEquals(X.Value(0, 0), 0.62245933120185) or _ 
+		    FloatNotEquals(X.Value(0, 1), 0.73105857863) or _
+		    FloatNotEquals(X.Value(0, 2), 0.11920292202212) then
 		    pass = false
 		  end if
 		  
@@ -935,10 +935,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.0) or _
-		    FloatEquals(X.Value(0, 1), 1.0) or _
-		    FloatEquals(X.Value(1, 0), -1.0) or _
-		    FloatEquals(X.Value(1, 1), 0.0) then
+		  if FloatNotEquals(X.Value(0, 0), 1.0) or _
+		    FloatNotEquals(X.Value(0, 1), 1.0) or _
+		    FloatNotEquals(X.Value(1, 0), -1.0) or _
+		    FloatNotEquals(X.Value(1, 1), 0.0) then
 		    pass = false
 		  end if
 		  
@@ -965,10 +965,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), -0.19710817293) or _
-		    FloatEquals(X.Value(0, 1), -0.99997103633) or _
-		    FloatEquals(X.Value(1, 0), -0.93964547368) or _
-		    FloatEquals(X.Value(1, 1), 0.21313049595) then
+		  if FloatNotEquals(X.Value(0, 0), -0.19710817293) or _
+		    FloatNotEquals(X.Value(0, 1), -0.99997103633) or _
+		    FloatNotEquals(X.Value(1, 0), -0.93964547368) or _
+		    FloatNotEquals(X.Value(1, 1), 0.21313049595) then
 		    pass = false
 		  end if
 		  
@@ -993,9 +993,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.5210953) or _
-		    FloatEquals(X.Value(0, 1), 1.1752012) or _
-		    FloatEquals(X.Value(0, 2), -3.6268604) then
+		  if FloatNotEquals(X.Value(0, 0), 0.5210953) or _
+		    FloatNotEquals(X.Value(0, 1), 1.1752012) or _
+		    FloatNotEquals(X.Value(0, 2), -3.6268604) then
 		    pass = false
 		  end if
 		  
@@ -1020,9 +1020,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.659001138) or _ 
-		    FloatEquals(X.Value(0, 1), 0.242432970) or _
-		    FloatEquals(X.Value(0, 2), 0.098565892) then
+		  if FloatNotEquals(X.Value(0, 0), 0.659001138) or _ 
+		    FloatNotEquals(X.Value(0, 1), 0.242432970) or _
+		    FloatNotEquals(X.Value(0, 2), 0.098565892) then
 		    pass = false
 		  end if
 		  
@@ -1046,10 +1046,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 1.8275666882) or _
-		    FloatEquals(X.Value(0, 1), 5.0) or _
-		    FloatEquals(X.Value(1, 0), 6.0) or _
-		    FloatEquals(X.Value(1, 1), 3.0347981810) then
+		  if FloatNotEquals(X.Value(0, 0), 1.8275666882) or _
+		    FloatNotEquals(X.Value(0, 1), 5.0) or _
+		    FloatNotEquals(X.Value(1, 0), 6.0) or _
+		    FloatNotEquals(X.Value(1, 1), 3.0347981810) then
 		    pass = false
 		  end if
 		  
@@ -1076,12 +1076,12 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), -1) or _
-		    FloatEquals(X.Value(0, 1), -1) or _
-		    FloatEquals(X.Value(0, 2), -4) or _
-		    FloatEquals(X.Value(1, 0), 1) or _
-		    FloatEquals(X.Value(1, 1), -3) or _
-		    FloatEquals(X.Value(1, 2), 4) then
+		  if FloatNotEquals(X.Value(0, 0), -1) or _
+		    FloatNotEquals(X.Value(0, 1), -1) or _
+		    FloatNotEquals(X.Value(0, 2), -4) or _
+		    FloatNotEquals(X.Value(1, 0), 1) or _
+		    FloatNotEquals(X.Value(1, 1), -3) or _
+		    FloatNotEquals(X.Value(1, 2), 4) then
 		    pass = false
 		  end if
 		  
@@ -1105,10 +1105,10 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.20105247135) or _
-		    FloatEquals(X.Value(0, 1), -131.389526367) or _
-		    FloatEquals(X.Value(1, 0), 2.74629966894) or _
-		    FloatEquals(X.Value(1, 1), -0.21814259662) then
+		  if FloatNotEquals(X.Value(0, 0), 0.20105247135) or _
+		    FloatNotEquals(X.Value(0, 1), -131.389526367) or _
+		    FloatNotEquals(X.Value(1, 0), 2.74629966894) or _
+		    FloatNotEquals(X.Value(1, 1), -0.21814259662) then
 		    pass = false
 		  end if
 		  
@@ -1132,9 +1132,9 @@ Protected Module Node
 		  
 		  X = data.Value("X")
 		  
-		  if FloatEquals(X.Value(0, 0), 0.46211716) or _ 
-		    FloatEquals(X.Value(0, 1), 0.76159416) or _
-		    FloatEquals(X.Value(0, 2), -0.96402758) then
+		  if FloatNotEquals(X.Value(0, 0), 0.46211716) or _ 
+		    FloatNotEquals(X.Value(0, 1), 0.76159416) or _
+		    FloatNotEquals(X.Value(0, 2), -0.96402758) then
 		    pass = false
 		  end if
 		  
