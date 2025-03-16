@@ -400,6 +400,36 @@ Protected Class Tensor
 		        
 		      end select
 		      
+		    case ONNX.ElementTypeEnum.UINT8
+		      
+		      select case mShape.Count
+		      case 1
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          mData.UInt8Value(pos) = item.Value(i)
+		          pos = pos + mElementSize
+		          i = i + 1
+		        wend
+		        
+		      case 2
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          row = item.Child(i)
+		          j = 0
+		          while j < mShape(1)
+		            mData.UInt8Value(pos) = row.Value(j)
+		            pos = pos + mElementSize
+		            j = j + 1 
+		          wend
+		          i = i + 1
+		        wend
+		        
+		      case else
+		        break // TODO: revise following code to support "infinite" tensor dimensions
+		        
+		      end select
 		      
 		    case else
 		      break // TODO: initialize data
