@@ -1129,14 +1129,68 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function QLinearConv(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor, w As ONNX.Tensor, wScale As ONNX.Tensor, wZeroPoint As ONNX.Tensor, outScale As ONNX.Tensor, outZeroPoint As ONNX.Tensor) As Tensor
+		  Var result as Tensor
+		  //Var resultData As MemoryBlock
+		  //Var pos As UInt64
+		  //Var index As Integer
+		  //Var scaleVal As Single
+		  //Var zeroPointVal As UInt8
+		  //Var tmpUInt8 As UInt8
+		  
+		  break
+		  
+		  //select case mElementType
+		  //
+		  //// ***** FLOAT *****************************************
+		  //
+		  //case ElementTypeEnum.FLOAT
+		  //
+		  //resultData = new MemoryBlock(ElementCount)
+		  //
+		  //if scale.Shape.Count <= 0 then
+		  //if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		  //scaleVal = scale.Data.SingleValue(0)
+		  //else
+		  //break
+		  //end if
+		  //if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		  //zeroPointVal = zeroPoint.Data.UInt8Value(0)
+		  //else
+		  //break
+		  //end if
+		  //
+		  //index = 0
+		  //pos = 0
+		  //while pos < mData.Size
+		  //tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
+		  //resultData.UInt8Value(index) = tmpUInt8
+		  //pos = pos + mElementSize
+		  //index = index + 1
+		  //wend
+		  //
+		  //
+		  //else
+		  //break
+		  //end if
+		  //
+		  //result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
+		  //
+		  //case else
+		  //break
+		  //
+		  //end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function QuantizeLinear(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor) As Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
 		  Var pos As UInt64
-		  Var tmpSingle As Single
-		  Var singleTotal As Single
-		  Var col as UInt64
-		  Var row As UInt64
 		  Var index As Integer
 		  Var scaleVal As Single
 		  Var zeroPointVal As UInt8

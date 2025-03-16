@@ -1065,6 +1065,52 @@ Protected Module Model
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Sub Test_Operator_QLinearConv(results As JSONItem)
+		  Var pass As Boolean
+		  Var input As new Dictionary()
+		  Var output As Dictionary
+		  Var Y As ONNX.Tensor
+		  Var model As ONNX.Model
+		  
+		  pass = true
+		  
+		  model = new ONNX.Model(App.TestFolder.Child("models").Child("operators").Child("qlinearconv.onnx"))
+		  
+		  input.Value("x") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "[[[[1, 2], [3, 4]]]]")
+		  input.Value("w") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "[[[[1, 0], [0, 1]]]]")
+		  input.Value("b") = new ONNX.Tensor(ONNX.ElementTypeEnum.INT32, "0")
+		  input.Value("x_scale") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.1")
+		  input.Value("x_zero_point") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "128")
+		  input.Value("w_scale") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.2")
+		  input.Value("w_zero_point") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "130")
+		  input.Value("y_scale") = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.3")
+		  input.Value("y_zero_point") = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "140")
+		  
+		  output = model.Infer(input)
+		  
+		  if (output.KeyCount = 1) and _
+		    output.HasKey("y") then
+		    
+		    Y = output.Value("y")
+		    
+		    if Y.Value(0, 0, 0, 0) <> 140 or _
+		      Y.Value(0, 0, 0, 1) <> 140 or _
+		      Y.Value(0, 0, 1, 0) <> 141 or _
+		      Y.Value(0, 0, 1, 1) <> 142 then
+		      pass = false
+		    end if
+		    
+		  else
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Model: test/models/operators/qlinearconv.onnx", pass)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_Operator_QuantizeLinear(results As JSONItem)
 		  Var pass As Boolean
 		  Var input As new Dictionary()
@@ -1086,10 +1132,6 @@ Protected Module Model
 		    output.HasKey("output1") then
 		    
 		    X1 = output.Value("output1")
-		    System.DebugLog Str(X1.Value(0))
-		    System.DebugLog Str(X1.Value(1))
-		    System.DebugLog Str(X1.Value(2))
-		    System.DebugLog Str(X1.Value(3))
 		    
 		    if X1.Value(0) <> 128 or _
 		      X1.Value(1) <> 153 or _

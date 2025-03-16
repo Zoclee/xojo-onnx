@@ -97,6 +97,7 @@ Protected Module ONNX
 		  Mul
 		  Neg
 		  Pow
+		  QLinearConv
 		  QuantizeLinear
 		  Reciprocal
 		  Relu
