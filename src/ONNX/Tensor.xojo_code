@@ -1161,55 +1161,78 @@ Protected Class Tensor
 	#tag Method, Flags = &h0
 		Function QLinearConv(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor, w As ONNX.Tensor, wScale As ONNX.Tensor, wZeroPoint As ONNX.Tensor, outScale As ONNX.Tensor, outZeroPoint As ONNX.Tensor) As Tensor
 		  Var result as Tensor
-		  //Var resultData As MemoryBlock
-		  //Var pos As UInt64
+		  Var resultData As MemoryBlock
+		  Var pos As UInt64
 		  //Var index As Integer
-		  //Var scaleVal As Single
-		  //Var zeroPointVal As UInt8
-		  //Var tmpUInt8 As UInt8
+		  Var xScaleVal As Single
+		  Var xZeroPointVal As UInt8
+		  Var wScaleVal As Single
+		  Var wZeroPointVal As UInt8
+		  Var outScaleVal As Single
+		  Var outZeroPointVal As UInt8
+		  Var tmpUInt8 As UInt8
+		  Var dqX As Single
+		  Var dqW As Single
+		  Var dqOut As Single
 		  
-		  break
-		  
-		  //select case mElementType
-		  //
-		  //// ***** FLOAT *****************************************
-		  //
-		  //case ElementTypeEnum.FLOAT
-		  //
-		  //resultData = new MemoryBlock(ElementCount)
-		  //
-		  //if scale.Shape.Count <= 0 then
-		  //if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
-		  //scaleVal = scale.Data.SingleValue(0)
-		  //else
-		  //break
-		  //end if
-		  //if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
-		  //zeroPointVal = zeroPoint.Data.UInt8Value(0)
-		  //else
-		  //break
-		  //end if
-		  //
-		  //index = 0
-		  //pos = 0
-		  //while pos < mData.Size
-		  //tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
-		  //resultData.UInt8Value(index) = tmpUInt8
-		  //pos = pos + mElementSize
-		  //index = index + 1
-		  //wend
-		  //
-		  //
-		  //else
-		  //break
-		  //end if
-		  //
-		  //result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
-		  //
-		  //case else
-		  //break
-		  //
-		  //end select
+		  select case mElementType
+		    
+		    // ***** UINT8 *****************************************
+		    
+		  case ElementTypeEnum.UINT8
+		    
+		    resultData = new MemoryBlock(ElementCount)
+		    
+		    if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		      xScaleVal = scale.Data.SingleValue(0)
+		    else
+		      break
+		    end if
+		    if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		      xZeroPointVal = zeroPoint.Data.UInt8Value(0)
+		    else
+		      break
+		    end if
+		    
+		    if wScale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		      wScaleVal = wScale.Data.SingleValue(0)
+		    else
+		      break
+		    end if
+		    if wZeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		      wZeroPointVal = wZeroPoint.Data.UInt8Value(0)
+		    else
+		      break
+		    end if
+		    
+		    if outScale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		      outScaleVal = outScale.Data.SingleValue(0)
+		    else
+		      break
+		    end if
+		    if outZeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		      outZeroPointVal = outZeroPoint.Data.UInt8Value(0)
+		    else
+		      break
+		    end if
+		    
+		    pos = 0
+		    while pos < mData.Size
+		      dqX = (mData.UInt8Value(pos) - xZeroPointVal) * xScaleVal
+		      dqW = (w.Data.UInt8Value(pos) - wZeroPointVal) * wScaleVal
+		      // TODO: apply convolution 
+		      // dqOut = ?
+		      tmpUInt8 = SaturateUInt8(dqOut / outScaleVal) + outZeroPointVal
+		      resultData.UInt8Value(pos) = tmpUInt8
+		      pos = pos + mElementSize
+		    wend
+		    
+		    result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
+		    
+		  case else
+		    break
+		    
+		  end select
 		  
 		  return result
 		  
@@ -1234,31 +1257,32 @@ Protected Class Tensor
 		    
 		    resultData = new MemoryBlock(ElementCount)
 		    
-		    if scale.Shape.Count <= 0 then
-		      if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
-		        scaleVal = scale.Data.SingleValue(0)
-		      else
-		        break
-		      end if
-		      if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
-		        zeroPointVal = zeroPoint.Data.UInt8Value(0)
-		      else
-		        break
-		      end if
-		      
-		      index = 0
-		      pos = 0
-		      while pos < mData.Size
-		        tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
-		        resultData.UInt8Value(index) = tmpUInt8
-		        pos = pos + mElementSize
-		        index = index + 1
-		      wend
-		      
-		      
+		    //if scale.Shape.Count <= 0 then
+		    
+		    if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		      scaleVal = scale.Data.SingleValue(0)
 		    else
 		      break
 		    end if
+		    if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		      zeroPointVal = zeroPoint.Data.UInt8Value(0)
+		    else
+		      break
+		    end if
+		    
+		    index = 0
+		    pos = 0
+		    while pos < mData.Size
+		      tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
+		      resultData.UInt8Value(index) = tmpUInt8
+		      pos = pos + mElementSize
+		      index = index + 1
+		    wend
+		    
+		    
+		    //else
+		    //break
+		    //end if
 		    
 		    result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
 		    
