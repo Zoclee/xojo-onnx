@@ -778,6 +778,38 @@ Protected Module Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Sub Test_QLinearConv(results As JSONItem)
+		  Var pass As Boolean
+		  Var t1, t2, t3, t4, t5, t6, t7, t8, t9 As ONNX.Tensor
+		  
+		  pass = true
+		  
+		  // test 1
+		  
+		  t1 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "[[10, 20], [30, 40]]")
+		  t2 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "[[1, 2], [3, 4]]")
+		  t3 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.1")
+		  t4 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "128")
+		  t5 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.2")
+		  t6 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "130")
+		  t7 = new ONNX.Tensor(ONNX.ElementTypeEnum.FLOAT, "0.3")
+		  t8 = new ONNX.Tensor(ONNX.ElementTypeEnum.UINT8, "140")
+		  t9 = t1.QLinearConv(t3, t4, t2, t5, t6, t7, t8)
+		  
+		  if t9.ElementType <> ONNX.ElementTypeEnum.UINT8 or _
+		    t9.Value(0, 0) <> 140 or _
+		    t4.Value(0, 1) <> 141 or _
+		    t4.Value(1, 0) <> 143 or _
+		    t4.Value(1, 1) <> 146 then
+		    pass = false
+		  end if
+		  
+		  RecordTestResult(results, "Tensor.QLinearConv", pass)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Sub Test_QuantizeLinear(results As JSONItem)
 		  Var pass As Boolean
 		  Var t1 As ONNX.Tensor

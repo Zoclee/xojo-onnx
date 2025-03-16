@@ -400,6 +400,36 @@ Protected Class Tensor
 		        
 		      end select
 		      
+		    case ONNX.ElementTypeEnum.UINT8
+		      
+		      select case mShape.Count
+		      case 1
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          mData.UInt8Value(pos) = item.Value(i)
+		          pos = pos + mElementSize
+		          i = i + 1
+		        wend
+		        
+		      case 2
+		        pos = 0
+		        i = 0
+		        while i < mShape(0)
+		          row = item.Child(i)
+		          j = 0
+		          while j < mShape(1)
+		            mData.UInt8Value(pos) = row.Value(j)
+		            pos = pos + mElementSize
+		            j = j + 1 
+		          wend
+		          i = i + 1
+		        wend
+		        
+		      case else
+		        break // TODO: revise following code to support "infinite" tensor dimensions
+		        
+		      end select
 		      
 		    case else
 		      break // TODO: initialize data
@@ -1129,14 +1159,68 @@ Protected Class Tensor
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function QLinearConv(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor, w As ONNX.Tensor, wScale As ONNX.Tensor, wZeroPoint As ONNX.Tensor, outScale As ONNX.Tensor, outZeroPoint As ONNX.Tensor) As Tensor
+		  Var result as Tensor
+		  //Var resultData As MemoryBlock
+		  //Var pos As UInt64
+		  //Var index As Integer
+		  //Var scaleVal As Single
+		  //Var zeroPointVal As UInt8
+		  //Var tmpUInt8 As UInt8
+		  
+		  break
+		  
+		  //select case mElementType
+		  //
+		  //// ***** FLOAT *****************************************
+		  //
+		  //case ElementTypeEnum.FLOAT
+		  //
+		  //resultData = new MemoryBlock(ElementCount)
+		  //
+		  //if scale.Shape.Count <= 0 then
+		  //if scale.ElementType = ONNX.ElementTypeEnum.FLOAT then
+		  //scaleVal = scale.Data.SingleValue(0)
+		  //else
+		  //break
+		  //end if
+		  //if zeroPoint.ElementType = ONNX.ElementTypeEnum.UINT8 then
+		  //zeroPointVal = zeroPoint.Data.UInt8Value(0)
+		  //else
+		  //break
+		  //end if
+		  //
+		  //index = 0
+		  //pos = 0
+		  //while pos < mData.Size
+		  //tmpUInt8 = SaturateUInt8(mData.SingleValue(pos) / scaleVal) + zeroPointVal
+		  //resultData.UInt8Value(index) = tmpUInt8
+		  //pos = pos + mElementSize
+		  //index = index + 1
+		  //wend
+		  //
+		  //
+		  //else
+		  //break
+		  //end if
+		  //
+		  //result = new Tensor(ONNX.ElementTypeEnum.UINT8, mShape, resultData)
+		  //
+		  //case else
+		  //break
+		  //
+		  //end select
+		  
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function QuantizeLinear(scale As ONNX.Tensor, zeroPoint As ONNX.Tensor) As Tensor
 		  Var result as Tensor
 		  Var resultData As MemoryBlock
 		  Var pos As UInt64
-		  Var tmpSingle As Single
-		  Var singleTotal As Single
-		  Var col as UInt64
-		  Var row As UInt64
 		  Var index As Integer
 		  Var scaleVal As Single
 		  Var zeroPointVal As UInt8
